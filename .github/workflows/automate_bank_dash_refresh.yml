@@ -7,7 +7,7 @@ on:
     # MT is UTC-6 (MDT) or UTC-7 (MST); we'll use UTC-7 (MST) as base and note DST adjustment
     # 12 PM MT (MST) = 19:00 UTC; during MDT (Mar-Nov), it’s 18:00 UTC
     # Cron: minute hour day-of-month month day-of-week (in UTC)
-    - cron: '0 19 * * 0'  # 19:00 UTC every Sunday (12 PM MST)
+    - cron: '0 19 * * 0'  # 19:00 UTC every Sunday (12 PM MST or 1 PM MDT)
 
   # Allows manual triggering from GitHub Actions tab
   workflow_dispatch:
@@ -35,13 +35,13 @@ jobs:
       - name: Generate dashboard
         run: python build_frontend_bank_research_dash.py
 
-      # Commit and push changes
+      # Commit and push changes using PAT
       - name: Commit and push updated dashboard
+        env:
+          PERSONAL_ACCESS_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
         run: |
           git config --global user.name "GitHub Actions Bot"
           git config --global user.email "actions@github.com"
           git add docs/index.html
           git diff --staged --quiet || git commit -m "Weekly dashboard refresh: $(date -u +'%Y-%m-%d %H:%M UTC')"
-          git push origin main
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          git push https://x-access-token:${PERSONAL_ACCESS_TOKEN}@github.com/matthewimig89/matthewimig89.github.io.git main
