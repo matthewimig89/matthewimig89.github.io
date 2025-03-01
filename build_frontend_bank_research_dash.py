@@ -365,6 +365,3 @@ html_content = template.render(
 
 with open(os.path.join(deploy_dir, 'index.html'), 'w') as f:
     f.write(html_content)
-
-
-""")
