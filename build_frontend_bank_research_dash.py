@@ -153,12 +153,6 @@ template_string = """
     </style>
 </head>
 <body>
-    <header>
-        <h1>{{ header_text }}</h1>
-        {% if logo_url %}
-            <img src="{{ logo_url }}" alt="Company Logo">
-        {% endif %}
-    </header>
     
     <div class="dashboard-container">
         <div class="tab-wrapper">
