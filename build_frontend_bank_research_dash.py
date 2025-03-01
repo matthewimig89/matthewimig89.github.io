@@ -16,7 +16,6 @@ template_string = """
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ header_text }}</title>
     <style>
-        /* Reset and base styles */
         * {
             box-sizing: border-box;
             margin: 0;
@@ -40,21 +39,12 @@ template_string = """
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
 
-        header h1 {
-            font-size: 24px;
-        }
-
-        header img {
-            max-height: 40px;
-        }
-
         .dashboard-container {
             max-width: 1400px;
             margin: 20px auto;
             padding: 0 15px;
         }
 
-        /* Tab navigation styles */
         .tab-wrapper {
             margin-bottom: 20px;
         }
@@ -77,27 +67,17 @@ template_string = """
             cursor: pointer;
             font-size: 16px;
             border-radius: 6px;
-            position: relative;
-            overflow: visible;
             min-width: 120px;
             text-align: center;
             outline: none;
-            z-index: 2;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-        }
-
-        .tab-btn:hover {
-            background-color: #e3f2fd;
         }
 
         .tab-btn.active {
             background-color: #1976D2;
             color: white;
             border-color: #1565C0;
-            box-shadow: 0 0 8px rgba(25, 118, 210, 0.6);
         }
 
-        /* Tab content container */
         .content-container {
             background-color: white;
             border: 1px solid #ccc;
@@ -121,35 +101,6 @@ template_string = """
             height: 100%;
             border: none;
         }
-
-        /* Debug Info Panel */
-        .debug-panel {
-            margin-top: 20px;
-            padding: 15px;
-            background-color: #f0f0f0;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            font-family: monospace;
-            display: none;
-        }
-
-        .debug-btn {
-            background-color: #f0f0f0;
-            border: 1px solid #ccc;
-            padding: 5px 10px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 12px;
-            margin-top: 5px;
-        }
-
-        @media (max-width: 768px) {
-            .tab-btn {
-                padding: 10px 15px;
-                font-size: 14px;
-                min-width: 100px;
-            }
-        }
     </style>
 </head>
 <body>
@@ -162,19 +113,14 @@ template_string = """
     
     <div class="dashboard-container">
         <div class="tab-wrapper">
-            <!-- Debug text to verify data -->
-            <div id="debug-info" style="margin-bottom:10px;font-family:monospace;font-size:12px;display:none;">
-                Tabs loaded: <span id="tab-count">0</span>
-            </div>
-            
             <div class="tab-buttons" role="tablist">
                 {% for tab in tabs %}
                     <button 
-                        id="tab-btn-{{ loop.index }}" 
+                        id="tab-btn-{{ loop.index0 }}" 
                         class="tab-btn {% if loop.first %}active{% endif %}" 
                         role="tab" 
                         aria-selected="{% if loop.first %}true{% else %}false{% endif %}" 
-                        data-tab-id="{{ loop.index }}">
+                        data-tab-id="{{ loop.index0 }}">
                         {{ tab.label|default('Tab ' ~ loop.index) }}
                     </button>
                 {% endfor %}
@@ -184,10 +130,10 @@ template_string = """
         <div class="content-container">
             {% for tab in tabs %}
                 <div 
-                    id="content-{{ loop.index }}" 
+                    id="content-{{ loop.index0 }}" 
                     class="tab-content {% if loop.first %}active{% endif %}" 
                     role="tabpanel" 
-                    aria-labelledby="tab-btn-{{ loop.index }}">
+                    aria-labelledby="tab-btn-{{ loop.index0 }}">
                     <iframe 
                         src="{{ tab.url }}" 
                         title="{{ tab.label|default('Tab ' ~ loop.index) }}" 
@@ -198,152 +144,64 @@ template_string = """
                 </div>
             {% endfor %}
         </div>
-        
-        <!-- Debug Panel -->
-        <div class="debug-panel" id="debug-panel">
-            <h3>Debug Information</h3>
-            <pre id="debug-output"></pre>
-            <button class="debug-btn" id="toggle-debug">Toggle Debug Mode</button>
-            <button class="debug-btn" id="reload-frames">Reload All Frames</button>
-        </div>
     </div>
     
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Get all UI elements
             const tabButtons = document.querySelectorAll('.tab-btn');
             const tabContents = document.querySelectorAll('.tab-content');
-            const debugOutput = document.getElementById('debug-output');
-            const debugPanel = document.getElementById('debug-panel');
-            const tabCount = document.getElementById('tab-count');
-            const iframes = document.querySelectorAll('iframe');
-            
-            // Debug mode functionality
-            let isDebugMode = false;
-            document.getElementById('toggle-debug').addEventListener('click', function() {
-                isDebugMode = !isDebugMode;
-                debugPanel.style.display = isDebugMode ? 'block' : 'none';
-                document.getElementById('debug-info').style.display = isDebugMode ? 'block' : 'none';
-                logDebug('Debug mode ' + (isDebugMode ? 'enabled' : 'disabled'));
-            });
-            
-            // Iframe reload functionality
-            document.getElementById('reload-frames').addEventListener('click', function() {
-                iframes.forEach((iframe, i) => {
-                    const src = iframe.src;
-                    logDebug(`Reloading iframe ${i+1}: ${src}`);
-                    iframe.src = 'about:blank';
-                    setTimeout(() => {
-                        iframe.src = src;
-                    }, 100);
-                });
-            });
-            
-            // Simple double-click anywhere triggers debug mode
-            document.addEventListener('dblclick', function() {
-                isDebugMode = !isDebugMode;
-                debugPanel.style.display = isDebugMode ? 'block' : 'none';
-                document.getElementById('debug-info').style.display = isDebugMode ? 'block' : 'none';
-            });
-            
-            // Logging helper function
-            function logDebug(message) {
-                if (debugOutput) {
-                    const timestamp = new Date().toLocaleTimeString();
-                    debugOutput.textContent = `[${timestamp}] ${message}\n` + debugOutput.textContent;
-                }
+
+            console.log("Tabs detected:", tabButtons.length);
+            console.log("Content detected:", tabContents.length);
+
+            if (tabButtons.length === 0 || tabContents.length === 0) {
+                console.error("No tabs or content sections found!");
+                return;
             }
-            
-            // Initial debug info
-            tabCount.textContent = tabButtons.length;
-            let debugInfo = 'Tab Information:\n';
-            tabButtons.forEach((btn, i) => {
-                let label = btn.textContent.trim();
-                let tabId = btn.getAttribute('data-tab-id');
-                debugInfo += `Tab ${i+1}: "${label}" (ID: ${tabId})\n`;
-            });
-            
-            // Log iframe info
-            debugInfo += '\nIframe Sources:\n';
-            iframes.forEach((iframe, i) => {
-                debugInfo += `Iframe ${i+1}: "${iframe.src}"\n`;
-            });
-            
-            debugOutput.textContent = debugInfo;
-            
-            // Tab switching functionality - enhanced for reliability
+
+            // Ensure the first tab is active on page load
+            const firstTabButton = document.querySelector('.tab-btn');
+            const firstTabContent = document.querySelector('.tab-content');
+
+            if (firstTabButton && firstTabContent) {
+                firstTabButton.classList.add('active');
+                firstTabContent.classList.add('active');
+            }
+
             tabButtons.forEach(button => {
                 button.addEventListener('click', function(event) {
                     event.preventDefault();
                     const tabId = this.getAttribute('data-tab-id');
-                    
+
                     if (!tabId) {
-                        logDebug('ERROR: Missing tab ID on clicked button');
+                        console.error("Tab ID missing!");
                         return;
                     }
-                    
-                    logDebug(`Switching to tab ${tabId}: "${this.textContent.trim()}"`);
-                    
-                    // Update active states for buttons
+
+                    console.log(`Switching to tab ${tabId}`);
+
+                    // Remove active states
                     tabButtons.forEach(btn => {
                         btn.classList.remove('active');
                         btn.setAttribute('aria-selected', 'false');
                     });
-                    
-                    // Update active states for content panels
+
                     tabContents.forEach(content => {
                         content.classList.remove('active');
                     });
-                    
-                    // Activate clicked tab
+
+                    // Activate selected tab
                     this.classList.add('active');
                     this.setAttribute('aria-selected', 'true');
-                    
-                    // Find and activate corresponding content
-                    const targetContent = document.getElementById(`content-${tabId}`);
+
+                    const targetContent = document.querySelector(`#content-${tabId}`);
                     if (targetContent) {
                         targetContent.classList.add('active');
-                        
-                        // Force iframe refresh if it's empty or having issues
-                        const iframe = targetContent.querySelector('iframe');
-                        if (iframe) {
-                            if (!iframe.src || iframe.src === 'about:blank' || iframe.contentDocument && iframe.contentDocument.body.innerHTML === '') {
-                                const originalSrc = iframe.getAttribute('data-original-src') || iframe.src;
-                                logDebug(`Refreshing iframe in tab ${tabId}: ${originalSrc}`);
-                                iframe.src = 'about:blank';
-                                setTimeout(() => {
-                                    iframe.src = originalSrc;
-                                }, 100);
-                            }
-                        }
                     } else {
-                        logDebug(`ERROR: Content panel #content-${tabId} not found`);
+                        console.error(`Tab content #content-${tabId} not found`);
                     }
                 });
             });
-            
-            // Store original iframe sources for potential refreshes
-            iframes.forEach(iframe => {
-                iframe.setAttribute('data-original-src', iframe.src);
-            });
-            
-            // Force tab label visibility and ensure first tab is active
-            setTimeout(() => {
-                // Make sure first tab is active
-                if (tabButtons.length > 0 && tabContents.length > 0) {
-                    tabButtons[0].classList.add('active');
-                    tabButtons[0].setAttribute('aria-selected', 'true');
-                    tabContents[0].classList.add('active');
-                    logDebug('Initial tab setup complete - first tab activated');
-                }
-                
-                // Force reflow to ensure rendering of all tabs
-                tabButtons.forEach(btn => {
-                    btn.style.display = 'inline-block';
-                    btn.style.visibility = 'visible';
-                    btn.style.opacity = '1';
-                });
-            }, 300);
         });
     </script>
 </body>
@@ -363,5 +221,7 @@ html_content = template.render(
     tabs=config['tabs']
 )
 
+with open(os.path.join(deploy_dir, 'index.html'), 'w') as f:
+    f.write(html_content)
 with open(os.path.join(deploy_dir, 'index.html'), 'w') as f:
     f.write(html_content)
