@@ -91,6 +91,18 @@
             height: 100%;
             border: none;
         }
+
+        .open-tab-btn {
+            display: block;
+            margin: 10px 0;
+            padding: 10px;
+            background-color: #1976D2;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
@@ -151,12 +163,17 @@
                     class="tab-content active" 
                     role="tabpanel" 
                     aria-labelledby="tab-btn-0">
+                    
+                    <!-- Open in New Tab Button -->
+                    <a href="https://lookerstudio.google.com/embed/u/0/reporting/b1585049-e3ad-4d12-8cec-743cf5e83e56/page/fvnQD" target="_blank" class="open-tab-btn">Open in New Tab</a>
+
+                    <!-- Embedded iFrame -->
                     <iframe 
                         src="https://lookerstudio.google.com/embed/u/0/reporting/b1585049-e3ad-4d12-8cec-743cf5e83e56/page/fvnQD" 
                         title="Bank Price to Book Modeling" 
                         loading="lazy"
-                        sandbox="allow-same-origin allow-scripts allow-popups allow-forms"
-                        allowfullscreen>
+                        sandbox="allow-same-origin allow-scripts allow-popups allow-forms allow-storage-access-by-user-activation"
+                        allow="fullscreen; clipboard-write; encrypted-media;">
                     </iframe>
                 </div>
             
@@ -165,12 +182,17 @@
                     class="tab-content " 
                     role="tabpanel" 
                     aria-labelledby="tab-btn-1">
+                    
+                    <!-- Open in New Tab Button -->
+                    <a href="https://lookerstudio.google.com/embed/u/0/reporting/2ac791db-129c-4672-b315-1c044869cea0/page/p_i4ox8hlv9c" target="_blank" class="open-tab-btn">Open in New Tab</a>
+
+                    <!-- Embedded iFrame -->
                     <iframe 
                         src="https://lookerstudio.google.com/embed/u/0/reporting/2ac791db-129c-4672-b315-1c044869cea0/page/p_i4ox8hlv9c" 
                         title="Bank Metric Trends" 
                         loading="lazy"
-                        sandbox="allow-same-origin allow-scripts allow-popups allow-forms"
-                        allowfullscreen>
+                        sandbox="allow-same-origin allow-scripts allow-popups allow-forms allow-storage-access-by-user-activation"
+                        allow="fullscreen; clipboard-write; encrypted-media;">
                     </iframe>
                 </div>
             
@@ -179,12 +201,17 @@
                     class="tab-content " 
                     role="tabpanel" 
                     aria-labelledby="tab-btn-2">
+                    
+                    <!-- Open in New Tab Button -->
+                    <a href="https://lookerstudio.google.com/embed/u/0/reporting/8d65a083-c759-46e1-bcc3-8af41ee46159/page/p_8mp929ov6c" target="_blank" class="open-tab-btn">Open in New Tab</a>
+
+                    <!-- Embedded iFrame -->
                     <iframe 
                         src="https://lookerstudio.google.com/embed/u/0/reporting/8d65a083-c759-46e1-bcc3-8af41ee46159/page/p_8mp929ov6c" 
                         title="Napkin Math Valuation" 
                         loading="lazy"
-                        sandbox="allow-same-origin allow-scripts allow-popups allow-forms"
-                        allowfullscreen>
+                        sandbox="allow-same-origin allow-scripts allow-popups allow-forms allow-storage-access-by-user-activation"
+                        allow="fullscreen; clipboard-write; encrypted-media;">
                     </iframe>
                 </div>
             
@@ -193,12 +220,17 @@
                     class="tab-content " 
                     role="tabpanel" 
                     aria-labelledby="tab-btn-3">
+                    
+                    <!-- Open in New Tab Button -->
+                    <a href="https://lookerstudio.google.com/embed/u/0/reporting/5cdc5260-7b96-49ec-ad24-831aae9b1898/page/p_pfnt7uud7c" target="_blank" class="open-tab-btn">Open in New Tab</a>
+
+                    <!-- Embedded iFrame -->
                     <iframe 
                         src="https://lookerstudio.google.com/embed/u/0/reporting/5cdc5260-7b96-49ec-ad24-831aae9b1898/page/p_pfnt7uud7c" 
                         title="Valuation Comparisons" 
                         loading="lazy"
-                        sandbox="allow-same-origin allow-scripts allow-popups allow-forms"
-                        allowfullscreen>
+                        sandbox="allow-same-origin allow-scripts allow-popups allow-forms allow-storage-access-by-user-activation"
+                        allow="fullscreen; clipboard-write; encrypted-media;">
                     </iframe>
                 </div>
             
@@ -210,22 +242,14 @@
             const tabButtons = document.querySelectorAll('.tab-btn');
             const tabContents = document.querySelectorAll('.tab-content');
 
-            console.log("Tabs detected:", tabButtons.length);
-            console.log("Content detected:", tabContents.length);
-
             if (tabButtons.length === 0 || tabContents.length === 0) {
                 console.error("No tabs or content sections found!");
                 return;
             }
 
-            // Ensure the first tab is active on page load
-            const firstTabButton = document.querySelector('.tab-btn');
-            const firstTabContent = document.querySelector('.tab-content');
-
-            if (firstTabButton && firstTabContent) {
-                firstTabButton.classList.add('active');
-                firstTabContent.classList.add('active');
-            }
+            // Ensure first tab is active on page load
+            tabButtons[0].classList.add('active');
+            tabContents[0].classList.add('active');
 
             tabButtons.forEach(button => {
                 button.addEventListener('click', function(event) {
@@ -236,8 +260,6 @@
                         console.error("Tab ID missing!");
                         return;
                     }
-
-                    console.log(`Switching to tab ${tabId}`);
 
                     // Remove active states
                     tabButtons.forEach(btn => {
@@ -260,6 +282,17 @@
                         console.error(`Tab content #content-${tabId} not found`);
                     }
                 });
+            });
+
+            // Attempt to request storage access on Safari
+            document.addEventListener('DOMContentLoaded', async function() {
+                try {
+                    if (document.featurePolicy.allowsFeature('storage-access')) {
+                        await document.requestStorageAccess();
+                    }
+                } catch (error) {
+                    console.error("Storage access request failed:", error);
+                }
             });
         });
     </script>
