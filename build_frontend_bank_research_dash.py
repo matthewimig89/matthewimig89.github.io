@@ -101,6 +101,18 @@ template_string = """
             height: 100%;
             border: none;
         }
+
+        .open-tab-btn {
+            display: block;
+            margin: 10px 0;
+            padding: 10px;
+            background-color: #1976D2;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
@@ -134,12 +146,17 @@ template_string = """
                     class="tab-content {% if loop.first %}active{% endif %}" 
                     role="tabpanel" 
                     aria-labelledby="tab-btn-{{ loop.index0 }}">
+                    
+                    <!-- Open in New Tab Button -->
+                    <a href="{{ tab.url }}" target="_blank" class="open-tab-btn">Open in New Tab</a>
+
+                    <!-- Embedded iFrame -->
                     <iframe 
                         src="{{ tab.url }}" 
                         title="{{ tab.label|default('Tab ' ~ loop.index) }}" 
                         loading="lazy"
-                        sandbox="allow-same-origin allow-scripts allow-popups allow-forms"
-                        allowfullscreen>
+                        sandbox="allow-same-origin allow-scripts allow-popups allow-forms allow-storage-access-by-user-activation"
+                        allow="fullscreen; clipboard-write; encrypted-media;">
                     </iframe>
                 </div>
             {% endfor %}
@@ -151,22 +168,14 @@ template_string = """
             const tabButtons = document.querySelectorAll('.tab-btn');
             const tabContents = document.querySelectorAll('.tab-content');
 
-            console.log("Tabs detected:", tabButtons.length);
-            console.log("Content detected:", tabContents.length);
-
             if (tabButtons.length === 0 || tabContents.length === 0) {
                 console.error("No tabs or content sections found!");
                 return;
             }
 
-            // Ensure the first tab is active on page load
-            const firstTabButton = document.querySelector('.tab-btn');
-            const firstTabContent = document.querySelector('.tab-content');
-
-            if (firstTabButton && firstTabContent) {
-                firstTabButton.classList.add('active');
-                firstTabContent.classList.add('active');
-            }
+            // Ensure first tab is active on page load
+            tabButtons[0].classList.add('active');
+            tabContents[0].classList.add('active');
 
             tabButtons.forEach(button => {
                 button.addEventListener('click', function(event) {
@@ -177,8 +186,6 @@ template_string = """
                         console.error("Tab ID missing!");
                         return;
                     }
-
-                    console.log(`Switching to tab ${tabId}`);
 
                     // Remove active states
                     tabButtons.forEach(btn => {
@@ -202,6 +209,17 @@ template_string = """
                     }
                 });
             });
+
+            // Attempt to request storage access on Safari
+            document.addEventListener('DOMContentLoaded', async function() {
+                try {
+                    if (document.featurePolicy.allowsFeature('storage-access')) {
+                        await document.requestStorageAccess();
+                    }
+                } catch (error) {
+                    console.error("Storage access request failed:", error);
+                }
+            });
         });
     </script>
 </body>
@@ -221,7 +239,5 @@ html_content = template.render(
     tabs=config['tabs']
 )
 
-with open(os.path.join(deploy_dir, 'index.html'), 'w') as f:
-    f.write(html_content)
 with open(os.path.join(deploy_dir, 'index.html'), 'w') as f:
     f.write(html_content)
