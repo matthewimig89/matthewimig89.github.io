@@ -17,9 +17,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Checkout the repository
+      # Checkout the repository with write permissions
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          ref: main
+          token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
 
       # Set up Python
       - name: Set up Python
@@ -45,3 +48,9 @@ jobs:
           git add docs/index.html
           git diff --staged --quiet || git commit -m "Weekly dashboard refresh: $(date -u +'%Y-%m-%d %H:%M UTC')"
           git push https://x-access-token:${PERSONAL_ACCESS_TOKEN}@github.com/matthewimig89/matthewimig89.github.io.git main
+
+      # Optional: Verify the push (debugging)
+      - name: Check repository status
+        run: |
+          git status
+        if: always()
