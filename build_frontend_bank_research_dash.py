@@ -153,6 +153,12 @@ template_string = """
     </style>
 </head>
 <body>
+    <header>
+        <h1>{{ header_text }}</h1>
+        {% if logo_url %}
+            <img src="{{ logo_url }}" alt="">
+        {% endif %}
+    </header>
     
     <div class="dashboard-container">
         <div class="tab-wrapper">
@@ -370,5 +376,8 @@ To update on GitHub Pages:
    - git add docs/
    - git commit -m "Fixed tab functionality and improved reliability"
    - git push origin main
+
+""")
+
 
 """)
