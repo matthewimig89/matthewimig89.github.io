@@ -33,7 +33,7 @@ jobs:
 
       # Run the Python script to generate index.html
       - name: Generate dashboard
-        run: python script.py
+        run: python build_frontend_bank_research_dash.py
 
       # Commit and push changes
       - name: Commit and push updated dashboard
