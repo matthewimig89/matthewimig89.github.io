@@ -44,12 +44,11 @@
             padding: 0 15px;
         }
 
-        /* Debug styles to ensure tab labels are visible */
+        /* Tab navigation styles */
         .tab-wrapper {
             margin-bottom: 20px;
         }
 
-        /* High-contrast tab navigation styles */
         .tab-buttons {
             display: flex;
             flex-wrap: wrap;
@@ -166,10 +165,7 @@
                         role="tab" 
                         aria-selected="true" 
                         data-tab-id="1">
-                        <!-- Fallback text span with inline styling for guaranteed visibility -->
-                        <span style="display:inline-block;color:#000;text-shadow:0 0 1px #fff;z-index:10;position:relative;">
-                            Bank Price to Book Modeling
-                        </span>
+                        Bank Price to Book Modeling
                     </button>
                 
                     <button 
@@ -178,10 +174,7 @@
                         role="tab" 
                         aria-selected="false" 
                         data-tab-id="2">
-                        <!-- Fallback text span with inline styling for guaranteed visibility -->
-                        <span style="display:inline-block;color:#000;text-shadow:0 0 1px #fff;z-index:10;position:relative;">
-                            Bank Metric Trends
-                        </span>
+                        Bank Metric Trends
                     </button>
                 
                     <button 
@@ -190,10 +183,7 @@
                         role="tab" 
                         aria-selected="false" 
                         data-tab-id="3">
-                        <!-- Fallback text span with inline styling for guaranteed visibility -->
-                        <span style="display:inline-block;color:#000;text-shadow:0 0 1px #fff;z-index:10;position:relative;">
-                            Napkin Math Valuation
-                        </span>
+                        Napkin Math Valuation
                     </button>
                 
                     <button 
@@ -202,10 +192,7 @@
                         role="tab" 
                         aria-selected="false" 
                         data-tab-id="4">
-                        <!-- Fallback text span with inline styling for guaranteed visibility -->
-                        <span style="display:inline-block;color:#000;text-shadow:0 0 1px #fff;z-index:10;position:relative;">
-                            Valuation Comparisons
-                        </span>
+                        Valuation Comparisons
                     </button>
                 
             </div>
@@ -276,23 +263,39 @@
             <h3>Debug Information</h3>
             <pre id="debug-output"></pre>
             <button class="debug-btn" id="toggle-debug">Toggle Debug Mode</button>
+            <button class="debug-btn" id="reload-frames">Reload All Frames</button>
         </div>
     </div>
     
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            // Get all UI elements
             const tabButtons = document.querySelectorAll('.tab-btn');
             const tabContents = document.querySelectorAll('.tab-content');
             const debugOutput = document.getElementById('debug-output');
             const debugPanel = document.getElementById('debug-panel');
             const tabCount = document.getElementById('tab-count');
+            const iframes = document.querySelectorAll('iframe');
             
-            // Enable debug display for troubleshooting
+            // Debug mode functionality
             let isDebugMode = false;
             document.getElementById('toggle-debug').addEventListener('click', function() {
                 isDebugMode = !isDebugMode;
                 debugPanel.style.display = isDebugMode ? 'block' : 'none';
                 document.getElementById('debug-info').style.display = isDebugMode ? 'block' : 'none';
+                logDebug('Debug mode ' + (isDebugMode ? 'enabled' : 'disabled'));
+            });
+            
+            // Iframe reload functionality
+            document.getElementById('reload-frames').addEventListener('click', function() {
+                iframes.forEach((iframe, i) => {
+                    const src = iframe.src;
+                    logDebug(`Reloading iframe ${i+1}: ${src}`);
+                    iframe.src = 'about:blank';
+                    setTimeout(() => {
+                        iframe.src = src;
+                    }, 100);
+                });
             });
             
             // Simple double-click anywhere triggers debug mode
@@ -302,28 +305,57 @@
                 document.getElementById('debug-info').style.display = isDebugMode ? 'block' : 'none';
             });
             
+            // Logging helper function
+            function logDebug(message) {
+                if (debugOutput) {
+                    const timestamp = new Date().toLocaleTimeString();
+                    debugOutput.textContent = `[${timestamp}] ${message}
+` + debugOutput.textContent;
+                }
+            }
+            
             // Initial debug info
             tabCount.textContent = tabButtons.length;
             let debugInfo = 'Tab Information:
 ';
             tabButtons.forEach((btn, i) => {
                 let label = btn.textContent.trim();
-                debugInfo += `Tab ${i+1}: "${label}" (${label.length} chars)
+                let tabId = btn.getAttribute('data-tab-id');
+                debugInfo += `Tab ${i+1}: "${label}" (ID: ${tabId})
 `;
             });
+            
+            // Log iframe info
+            debugInfo += '
+Iframe Sources:
+';
+            iframes.forEach((iframe, i) => {
+                debugInfo += `Iframe ${i+1}: "${iframe.src}"
+`;
+            });
+            
             debugOutput.textContent = debugInfo;
             
-            // Tab switching functionality
+            // Tab switching functionality - enhanced for reliability
             tabButtons.forEach(button => {
-                button.addEventListener('click', function() {
+                button.addEventListener('click', function(event) {
+                    event.preventDefault();
                     const tabId = this.getAttribute('data-tab-id');
                     
-                    // Update active states
+                    if (!tabId) {
+                        logDebug('ERROR: Missing tab ID on clicked button');
+                        return;
+                    }
+                    
+                    logDebug(`Switching to tab ${tabId}: "${this.textContent.trim()}"`);
+                    
+                    // Update active states for buttons
                     tabButtons.forEach(btn => {
                         btn.classList.remove('active');
                         btn.setAttribute('aria-selected', 'false');
                     });
                     
+                    // Update active states for content panels
                     tabContents.forEach(content => {
                         content.classList.remove('active');
                     });
@@ -331,26 +363,52 @@
                     // Activate clicked tab
                     this.classList.add('active');
                     this.setAttribute('aria-selected', 'true');
-                    document.getElementById(`content-${tabId}`).classList.add('active');
                     
-                    // Add debug info
-                    if (isDebugMode) {
-                        const newLine = `Switched to "${this.textContent.trim()}" at ${new Date().toLocaleTimeString()}
-`;
-                        debugOutput.textContent = newLine + debugOutput.textContent;
+                    // Find and activate corresponding content
+                    const targetContent = document.getElementById(`content-${tabId}`);
+                    if (targetContent) {
+                        targetContent.classList.add('active');
+                        
+                        // Force iframe refresh if it's empty or having issues
+                        const iframe = targetContent.querySelector('iframe');
+                        if (iframe) {
+                            if (!iframe.src || iframe.src === 'about:blank' || iframe.contentDocument && iframe.contentDocument.body.innerHTML === '') {
+                                const originalSrc = iframe.getAttribute('data-original-src') || iframe.src;
+                                logDebug(`Refreshing iframe in tab ${tabId}: ${originalSrc}`);
+                                iframe.src = 'about:blank';
+                                setTimeout(() => {
+                                    iframe.src = originalSrc;
+                                }, 100);
+                            }
+                        }
+                    } else {
+                        logDebug(`ERROR: Content panel #content-${tabId} not found`);
                     }
                 });
             });
             
-            // Force tab label visibility after a short delay (for any lazy-loading issues)
+            // Store original iframe sources for potential refreshes
+            iframes.forEach(iframe => {
+                iframe.setAttribute('data-original-src', iframe.src);
+            });
+            
+            // Force tab label visibility and ensure first tab is active
             setTimeout(() => {
+                // Make sure first tab is active
+                if (tabButtons.length > 0 && tabContents.length > 0) {
+                    tabButtons[0].classList.add('active');
+                    tabButtons[0].setAttribute('aria-selected', 'true');
+                    tabContents[0].classList.add('active');
+                    logDebug('Initial tab setup complete - first tab activated');
+                }
+                
+                // Force reflow to ensure rendering of all tabs
                 tabButtons.forEach(btn => {
-                    // Force reflow to ensure rendering
                     btn.style.display = 'inline-block';
                     btn.style.visibility = 'visible';
                     btn.style.opacity = '1';
                 });
-            }, 500);
+            }, 300);
         });
     </script>
 </body>
