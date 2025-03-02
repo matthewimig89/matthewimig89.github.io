@@ -4,7 +4,8 @@
     "tabs": [
         {"label": "Bank Price to Book Modeling", "url": "https://lookerstudio.google.com/embed/u/0/reporting/b1585049-e3ad-4d12-8cec-743cf5e83e56/page/fvnQD"},
         {"label": "Bank Metric Trends", "url": "https://lookerstudio.google.com/embed/u/0/reporting/2ac791db-129c-4672-b315-1c044869cea0/page/p_i4ox8hlv9c"},
-        {"label": "Napkin Math Valuation", "url": "https://lookerstudio.google.com/embed/u/0/reporting/8d65a083-c759-46e1-bcc3-8af41ee46159/page/p_8mp929ov6c"},
-        {"label": "Valuation Comparisons", "url": "https://lookerstudio.google.com/embed/u/0/reporting/5cdc5260-7b96-49ec-ad24-831aae9b1898/page/p_pfnt7uud7c"}
+        {"label": "Napkin Math Bank Valuation", "url": "https://lookerstudio.google.com/embed/u/0/reporting/8d65a083-c759-46e1-bcc3-8af41ee46159/page/p_8mp929ov6c"},
+        {"label": "Bank Valuation Comparisons", "url": "https://lookerstudio.google.com/embed/u/0/reporting/5cdc5260-7b96-49ec-ad24-831aae9b1898/page/p_pfnt7uud7c"},
+        {"label": "Magic Formula Screen (Non-Banks)", "url": "https://lookerstudio.google.com/embed/u/0/reporting/d3a2049e-3c1b-46b8-9f52-3739972fd2dd/page/klR3E"}
     ]
 }
