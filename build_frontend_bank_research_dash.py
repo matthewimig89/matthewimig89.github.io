@@ -365,16 +365,3 @@ html_content = template.render(
 
 with open(os.path.join(deploy_dir, 'index.html'), 'w') as f:
     f.write(html_content)
-
-print("""
-Dashboard files generated in the 'docs' directory:
-- index.html: Main dashboard with fixed tab functionality
-- debug.html: Alternative version with hardcoded tab names for troubleshooting
-
-To update on GitHub Pages:
-1. Run these commands:
-   - git add docs/
-   - git commit -m "Fixed tab functionality and improved reliability"
-   - git push origin main
-
-""")

@@ -1,6 +1,6 @@
 {
     "header_text": "Bank Valuation Research Dashboards",
-    "logo_url": "https://example.com/schwab-logo.png",
+    "logo_url": "",
     "tabs": [
         {"label": "Bank Price to Book Modeling", "url": "https://lookerstudio.google.com/embed/u/0/reporting/b1585049-e3ad-4d12-8cec-743cf5e83e56/page/fvnQD"},
         {"label": "Bank Metric Trends", "url": "https://lookerstudio.google.com/embed/u/0/reporting/2ac791db-129c-4672-b315-1c044869cea0/page/p_i4ox8hlv9c"},
