@@ -119,7 +119,7 @@ template_string = """
     <header>
         <h1>{{ header_text }}</h1>
         {% if logo_url %}
-            <img src="{{ logo_url }}" alt="">
+            <img src="{{ logo_url }}" alt="https://www.linkedin.com/in/mimig/">
         {% endif %}
     </header>
     
