@@ -2,6 +2,7 @@
     "header_text": "Bank Valuation Research Dashboards",
     "logo_url": "https://www.linkedin.com/in/mimig/",
     "tabs": [
+        {"label": "Value Quality Model Picks", "url": "https://lookerstudio.google.com/embed/reporting/eb4da8db-96e9-48d6-af5a-300d0dd1e5dc/page/bMsBF"},
         {"label": "Bank Price to Book Modeling", "url": "https://lookerstudio.google.com/embed/u/0/reporting/b1585049-e3ad-4d12-8cec-743cf5e83e56/page/fvnQD"},
         {"label": "Bank Metric Trends", "url": "https://lookerstudio.google.com/embed/u/0/reporting/2ac791db-129c-4672-b315-1c044869cea0/page/p_i4ox8hlv9c"},
         {"label": "Napkin Math Bank Valuation", "url": "https://lookerstudio.google.com/embed/u/0/reporting/8d65a083-c759-46e1-bcc3-8af41ee46159/page/p_8mp929ov6c"},
