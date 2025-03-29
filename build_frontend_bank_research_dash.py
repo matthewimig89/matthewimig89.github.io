@@ -610,9 +610,9 @@ template_string = """
                 <!-- Home Tab -->
                 <div id="home" class="tab-content active">
                     <div class="documentation">
-                        <h2>{{ header_text }}</h2>
+                        <h2>Value & Quality Stock Selection Dashboard</h2>
                         
-                        <p>Welcome to the Bank Valuation Research Dashboards, a machine learning-powered tool designed to identify potentially undervalued financial institutions and analyze bank valuation metrics.</p>
+                        <p>Welcome to the Value & Quality Stock Selection Dashboard, a machine learning-powered tool designed to identify potentially undervalued stocks with strong fundamentals.</p>
                         
                         <div class="feature-cards">
                             <div class="feature-card">
@@ -621,27 +621,26 @@ template_string = """
                             </div>
                             
                             <div class="feature-card">
-                                <h4><i class="fas fa-landmark"></i>Bank-Specific Analysis</h4>
-                                <p>Specialized tools for analyzing financial institutions using industry-specific metrics and valuation models.</p>
+                                <h4><i class="fas fa-award"></i>Quality Assessment</h4>
+                                <p>Evaluate companies based on profitability, efficiency, consistency, and leverage metrics.</p>
                             </div>
                             
                             <div class="feature-card">
                                 <h4><i class="fas fa-brain"></i>Machine Learning</h4>
-                                <p>Using advanced algorithms to predict stocks likely to achieve significant returns while avoiding severe underperformers.</p>
+                                <p>Using advanced algorithms to predict stocks likely to achieve 20%+ returns while avoiding severe underperformers.</p>
                             </div>
                         </div>
                         
-                        <p>This dashboard implements a comprehensive approach to identifying valuable investment opportunities in the financial sector. Navigate through the tabs above to explore different aspects of the model and its recommendations.</p>
+                        <p>This dashboard implements a comprehensive approach to identifying valuable investment opportunities. Navigate through the tabs above to explore different aspects of the model and its recommendations.</p>
                         
-                        <h3>Dashboard Sections</h3>
-                        <ul>
-                            <li><strong>Value Quality Model Picks</strong> - Machine learning recommendations for undervalued stocks</li>
-                            <li><strong>Bank Price to Book Modeling</strong> - Analysis of price-to-book ratios for financial institutions</li>
-                            <li><strong>Bank Metric Trends</strong> - Historical data on key performance indicators</li>
-                            <li><strong>Napkin Math Bank Valuation</strong> - Simplified valuation models</li>
-                            <li><strong>Bank Valuation Comparisons</strong> - Peer analysis and relative valuation</li>
-                            <li><strong>Magic Formula Screen</strong> - Non-bank stock ideas using Greenblatt's formula</li>
-                        </ul>
+                        <h3>Getting Started</h3>
+                        <ol>
+                            <li>Review the <strong>Documentation</strong> tab to understand the methodology.</li>
+                            <li>Explore <strong>Stock Recommendations</strong> for current investment opportunities.</li>
+                            <li>Analyze the <strong>Feature Analysis</strong> tab to understand what drives predictions.</li>
+                            <li>Check <strong>Performance Metrics</strong> to validate the model's effectiveness.</li>
+                            <li>Consider <strong>Market Environment</strong> for broader context.</li>
+                        </ol>
                     </div>
                 </div>
                 
