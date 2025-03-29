@@ -11,9 +11,9 @@ documentation_content = """
 <h2>Value & Quality Stock Selection Documentation</h2>
 
 <h3>Background</h3>
-<p>This dashboard implements a machine learning approach to identify potentially undervalued stocks combining value investing principles with quality metrics. The methodology is inspired by research on machine learning-based stock picking using value investing and quality features, but with important modifications to optimize for practical use.</p>
+<p>This dashboard implements a machine learning approach to identify potentially undervalued stocks combining value investing principles with quality metrics. The methodology is inspired by research on machine learning-based stock picking using value investing and quality features, but with important modifications to optimize for practical use. Special thanks to Ronen Priel and Lior Rokach the author of the paper that inspired this work, you can find the paper for free here: https://link.springer.com/article/10.1007/s00521-024-09700-3 .</p>
 
-<p>The system analyzes thousands of US-listed companies on a weekly basis to identify stocks that exhibit both value characteristics (trading below intrinsic value) and quality characteristics (strong fundamentals), with a focus on predicting significant future returns (20%+) while avoiding severe underperformers.</p>
+<p>The system analyzes thousands of US-listed companies on a quarterly basis to identify stocks that exhibit both value characteristics (trading below intrinsic value) and quality characteristics (strong fundamentals), with a focus on predicting significant future returns (20%+) while avoiding severe underperformers.</p>
 
 <h3>Investment Philosophy</h3>
 <p>The dashboard is built on three core investment principles:</p>
@@ -68,22 +68,21 @@ documentation_content = """
 <h4>Machine Learning Approach</h4>
 <p>The system uses two model types:</p>
 <ol>
-    <li><strong>Investment Grade Prediction</strong>: Predicts stocks likely to achieve 20%+ returns</li>
-    <li><strong>Severe Underperform Prediction</strong>: Identifies stocks likely to decline 20%+ to be excluded</li>
+    <li><strong>Investment Grade Prediction</strong>: Predicts stocks likely to achieve 20%+ returns in next 12 months</li>
+    <li><strong>Severe Underperform Prediction</strong>: Identifies stocks likely to decline 20%+ in the next 12 months (to be excluded)</li>
 </ol>
 
 <p>Each model utilizes:</p>
 <ul>
-    <li>Random Forest and Gradient Boosting ensembles</li>
-    <li>Multiple tree depths and configurations</li>
-    <li>Precision-optimized classification thresholds</li>
+    <li>Gradient Boosting Classifier with L1 and L2 Regularization</li>
+    <li>Maximum Tree Depth of 5</li>
+    <li>Optimized Tree Depth and Regularization based on Out-of-Time Sample</li>
 </ul>
 
 <p>The final stock selection requires:</p>
 <ol>
     <li>High probability score from the investment grade model</li>
-    <li>Low probability score from the underperform model</li>
-    <li>Sufficient valuation discount (margin of safety)</li>
+    <li>Less than 50th percentile probability score from the underperform model</li>
 </ol>
 
 <h3>Dashboard Views</h3>
@@ -100,13 +99,13 @@ documentation_content = """
 <h4>2. Feature Analysis</h4>
 <p>This view reveals the most influential predictive factors:</p>
 <ul>
-    <li>Value feature importance (80-85% of model decisions)</li>
-    <li>Quality feature importance (15-20% of model decisions)</li>
+    <li>Value feature importance</li>
+    <li>Quality feature importance</li>
     <li>Feature ranking by SHAP values</li>
     <li>Correlation analysis between features and outcomes</li>
 </ul>
 
-<h4>3. Performance Metrics</h4>
+<h4>3. Model Performance Metrics</h4>
 <p>Track model effectiveness with:</p>
 <ul>
     <li>Success rate in identifying 20%+ return stocks</li>
@@ -119,18 +118,15 @@ documentation_content = """
 <p>Understand broader context with:</p>
 <ul>
     <li>Current macroeconomic indicators</li>
-    <li>Industry valuation metrics</li>
     <li>Market cycle positioning</li>
-    <li>Recommendation frequency relative to market conditions</li>
 </ul>
 
-<h4>5. Percentile Analysis</h4>
+<h4>5. Univariate Feature Analysis</h4>
 <p>Examine feature distributions with:</p>
 <ul>
-    <li>Valuation metric percentiles</li>
-    <li>Quality metric percentiles</li>
-    <li>Combined score percentiles</li>
-    <li>Industry-relative rankings</li>
+    <li>List of valuation, quality and economic features sorted then broken out into deciles</li>
+    <li>Plot average investment grade (%) vs feature deciles</li>
+    <li>Purpose is to observe correlation of predictor with investment grade (%)</li>
 </ul>
 
 <h3>Interpretation Guidelines</h3>
