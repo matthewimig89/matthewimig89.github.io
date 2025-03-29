@@ -2,40 +2,184 @@ import json
 import os
 from jinja2 import Environment, FileSystemLoader
 
-# Create config.json template
-config = {
-    "header_text": "Value & Quality Stock Selection Dashboard",
-    "logo_url": "https://via.placeholder.com/200x40?text=Logo",
-    "tabs": [
-        {
-            "label": "Stock Recommendations",
-            "url": "https://lookerstudio.google.com/embed/reporting/eb4da8db-96e9-48d6-af5a-300d0dd1e5dc/page/bMsBF"
-        },
-        {
-            "label": "Feature Analysis",
-            "url": "https://lookerstudio.google.com/embed/reporting/eb4da8db-96e9-48d6-af5a-300d0dd1e5dc/page/p_yjbdako2qd"
-        },
-        {
-            "label": "Model Performance",
-            "url": "https://lookerstudio.google.com/embed/reporting/eb4da8db-96e9-48d6-af5a-300d0dd1e5dc/page/p_n9aakyw2qd"
-        },
-        {
-            "label": "Market Environment",
-            "url": "https://lookerstudio.google.com/embed/reporting/eb4da8db-96e9-48d6-af5a-300d0dd1e5dc/page/p_oc9ltgy2qd"
-        },
-        {
-            "label": "Univariate Feature Analysis",
-            "url": "https://lookerstudio.google.com/reporting/eb4da8db-96e9-48d6-af5a-300d0dd1e5dc/page/p5"
-        }
-    ]
-}
+# Load configuration from config.json
+with open('config.json', 'r') as f:
+    config = json.load(f)
 
-# Save config.json
-with open('config.json', 'w') as f:
-    json.dump(config, f, indent=4)
+# Create documentation content
+documentation_content = """
+<h2>Value & Quality Stock Selection Documentation</h2>
 
-# Create HTML template
-html_template = """<!DOCTYPE html>
+<h3>Background</h3>
+<p>This dashboard implements a machine learning approach to identify potentially undervalued stocks combining value investing principles with quality metrics. The methodology is inspired by research on machine learning-based stock picking using value investing and quality features, but with important modifications to optimize for practical use.</p>
+
+<p>The system analyzes thousands of US-listed companies on a weekly basis to identify stocks that exhibit both value characteristics (trading below intrinsic value) and quality characteristics (strong fundamentals), with a focus on predicting significant future returns (20%+) while avoiding severe underperformers.</p>
+
+<h3>Investment Philosophy</h3>
+<p>The dashboard is built on three core investment principles:</p>
+
+<ol>
+    <li><strong>Value Investing</strong>: Stocks occasionally trade below their intrinsic value due to market inefficiencies, providing opportunities for excess returns. This system uses multiple valuation metrics relative to industry-specific historical norms to identify potentially undervalued securities.</li>
+    <li><strong>Quality Assessment</strong>: Not all cheap stocks represent good investments. Quality metrics help distinguish between temporarily undervalued high-quality businesses and structurally challenged companies trading at justifiably low valuations.</li>
+    <li><strong>Margin of Safety</strong>: The greater the discount to intrinsic value, the larger the "margin of safety" protecting against valuation errors and providing higher potential returns.</li>
+</ol>
+
+<h3>Methodology</h3>
+
+<h4>Data Sources</h4>
+<p>The model processes:</p>
+<ul>
+    <li>Quarterly financial data from US public companies</li>
+    <li>Market capitalization and price information</li>
+    <li>Industry classifications</li>
+    <li>Macroeconomic indicators (GDP, unemployment rate, fed funds rate, yield spread)</li>
+</ul>
+
+<h4>Feature Engineering</h4>
+<p><strong>Value Features</strong></p>
+<p>The system dynamically selects the most appropriate valuation metric for each company based on historical correlations between low valuations and market cap within their industry:</p>
+<ul>
+    <li>Price/Earnings (P/E)</li>
+    <li>Price/Book (P/B)</li>
+    <li>Price/Tangible Book (P/TB)</li>
+    <li>Price/Free Cash Flow (P/FCF)</li>
+    <li>EV/EBIT</li>
+    <li>EV/EBITDA</li>
+</ul>
+
+<p>For each company, the system:</p>
+<ol>
+    <li>Calculates the percentile of current valuation multiples within industry-specific historical distributions</li>
+    <li>Compares current multiples to historical 25th, 50th, and 75th percentiles</li>
+    <li>Assesses valuation "alpha correlations" - measuring how often low valuations coincide with small market caps</li>
+    <li>Calculates margin of safety based on the deviation from historical median valuations</li>
+</ol>
+
+<p><strong>Quality Features</strong></p>
+<p>Quality assessment evaluates:</p>
+<ol>
+    <li><strong>Profitability</strong>: Return on Equity (ROE), Return on Assets (ROA), Return on Invested Capital (ROIC), Gross profit to total assets</li>
+    <li><strong>Financial Health</strong>: Current ratio > 1, Assets exceeding debt, Leverage metrics</li>
+    <li><strong>Consistency & Growth</strong>: 5-year earnings consistency, 10-year CAGR for equity, EPS, and revenue, Cash flow generation quality (FCF > Net Income)</li>
+    <li><strong>Quality Frameworks</strong>: Piotroski F-Score components, Greenblatt Magic Formula metrics, Graham quality criteria, Grantham quality rank, Mohanram G-Score</li>
+    <li><strong>Economic Environment</strong>: Macroeconomic trend indicators, Yield curve analysis, Volatility metrics</li>
+</ol>
+
+<h4>Machine Learning Approach</h4>
+<p>The system uses two model types:</p>
+<ol>
+    <li><strong>Investment Grade Prediction</strong>: Predicts stocks likely to achieve 20%+ returns</li>
+    <li><strong>Severe Underperform Prediction</strong>: Identifies stocks likely to decline 20%+ to be excluded</li>
+</ol>
+
+<p>Each model utilizes:</p>
+<ul>
+    <li>Random Forest and Gradient Boosting ensembles</li>
+    <li>Multiple tree depths and configurations</li>
+    <li>Precision-optimized classification thresholds</li>
+</ul>
+
+<p>The final stock selection requires:</p>
+<ol>
+    <li>High probability score from the investment grade model</li>
+    <li>Low probability score from the underperform model</li>
+    <li>Sufficient valuation discount (margin of safety)</li>
+</ol>
+
+<h3>Dashboard Views</h3>
+
+<h4>1. Stock Recommendations</h4>
+<p>The primary view presents current stock recommendations with:</p>
+<ul>
+    <li>Company identifiers and basic information</li>
+    <li>Probability scores for significant returns</li>
+    <li>Key valuation and quality metrics</li>
+    <li>Industry and size categories</li>
+</ul>
+
+<h4>2. Feature Analysis</h4>
+<p>This view reveals the most influential predictive factors:</p>
+<ul>
+    <li>Value feature importance (80-85% of model decisions)</li>
+    <li>Quality feature importance (15-20% of model decisions)</li>
+    <li>Feature ranking by SHAP values</li>
+    <li>Correlation analysis between features and outcomes</li>
+</ul>
+
+<h4>3. Performance Metrics</h4>
+<p>Track model effectiveness with:</p>
+<ul>
+    <li>Success rate in identifying 20%+ return stocks</li>
+    <li>Average returns of recommended stocks</li>
+    <li>Comparison to relevant benchmarks</li>
+    <li>Historical precision and recall metrics</li>
+</ul>
+
+<h4>4. Market Environment</h4>
+<p>Understand broader context with:</p>
+<ul>
+    <li>Current macroeconomic indicators</li>
+    <li>Industry valuation metrics</li>
+    <li>Market cycle positioning</li>
+    <li>Recommendation frequency relative to market conditions</li>
+</ul>
+
+<h4>5. Percentile Analysis</h4>
+<p>Examine feature distributions with:</p>
+<ul>
+    <li>Valuation metric percentiles</li>
+    <li>Quality metric percentiles</li>
+    <li>Combined score percentiles</li>
+    <li>Industry-relative rankings</li>
+</ul>
+
+<h3>Interpretation Guidelines</h3>
+
+<h4>Reading the Recommendations</h4>
+<ul>
+    <li><strong>High Probability Scores</strong>: Stocks with higher investment grade probability scores have historically shown better performance</li>
+    <li><strong>Valuation Metrics</strong>: Lower percentiles indicate more attractive valuations relative to history</li>
+    <li><strong>Quality Metrics</strong>: Higher rankings indicate stronger fundamental characteristics</li>
+    <li><strong>Combined Metrics</strong>: Focus on stocks showing both value and quality characteristics</li>
+</ul>
+
+<h4>Portfolio Considerations</h4>
+<ul>
+    <li><strong>Diversification</strong>: Consider spreading investments across industries and size categories</li>
+    <li><strong>Position Sizing</strong>: Higher probability scores may warrant larger allocations</li>
+    <li><strong>Time Horizon</strong>: Model is optimized for 1-3 year investment horizons</li>
+    <li><strong>Rebalancing</strong>: Consider refreshing positions when stocks reach intrinsic value or quality deteriorates</li>
+</ul>
+
+<h3>Glossary of Key Metrics</h3>
+
+<h4>Value Metrics</h4>
+<ul>
+    <li><strong>Valuation Multiple Percentile</strong>: Where current valuation stands in historical distribution (lower is better)</li>
+    <li><strong>Margin of Safety</strong>: Discount to historical median valuation (higher is better)</li>
+    <li><strong>Alpha Correlation</strong>: How often low valuations coincide with small market caps</li>
+</ul>
+
+<h4>Quality Metrics</h4>
+<ul>
+    <li><strong>F-Score</strong>: Piotroski's 9-point framework for financial strength (higher is better)</li>
+    <li><strong>ROIC</strong>: Return on Invested Capital, measuring capital allocation efficiency</li>
+    <li><strong>Cash Flow Persistence</strong>: Consistency of cash generation relative to earnings</li>
+    <li><strong>Growth Consistency</strong>: Stability of growth across equity, earnings, and revenue</li>
+</ul>
+
+<h4>Combined Metrics</h4>
+<ul>
+    <li><strong>Contrarian Sentiment</strong>: Measures disagreement between valuation and quality indicators</li>
+    <li><strong>Neglected Stock Indicator</strong>: Identifies overlooked smaller companies with strong fundamentals</li>
+    <li><strong>Quality-Value Composite</strong>: Weighted combination of value and quality signals</li>
+</ul>
+"""
+
+# Set up Jinja2 environment
+env = Environment(loader=FileSystemLoader('.'))
+template_string = """
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -303,6 +447,13 @@ html_template = """<!DOCTYPE html>
             font-weight: 600;
         }
 
+        .documentation h4 {
+            color: var(--primary-text);
+            margin: 1.25rem 0 0.75rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
         .documentation p {
             margin-bottom: 1rem;
             line-height: 1.6;
@@ -316,6 +467,12 @@ html_template = """<!DOCTYPE html>
 
         .documentation li {
             margin-bottom: 0.5rem;
+            color: var(--secondary-text);
+        }
+
+        .documentation strong {
+            font-weight: 600;
+            color: var(--primary-text);
         }
 
         .feature-cards {
@@ -436,7 +593,7 @@ html_template = """<!DOCTYPE html>
                 {% for tab in tabs %}
                 <li class="nav-item">
                     <a href="#" class="nav-link" data-tab="tab-{{ loop.index }}">
-                        <i class="fas {% if loop.index == 1 %}fa-chart-line{% elif loop.index == 2 %}fa-microscope{% elif loop.index == 3 %}fa-chart-bar{% elif loop.index == 4 %}fa-globe{% else %}fa-percentage{% endif %} nav-icon"></i>
+                        <i class="fas {% if loop.index == 1 %}fa-chart-line{% elif loop.index == 2 %}fa-landmark{% elif loop.index == 3 %}fa-chart-bar{% elif loop.index == 4 %}fa-calculator{% elif loop.index == 5 %}fa-balance-scale{% else %}fa-chart-pie{% endif %} nav-icon"></i>
                         <span class="nav-text">{{ tab.label }}</span>
                     </a>
                 </li>
@@ -446,10 +603,10 @@ html_template = """<!DOCTYPE html>
         
         <div class="content-area">
             <div class="tab-buttons" role="tablist">
-                <button id="tab-btn-home" class="tab-btn active" data-tab="home">Overview</button>
-                <button id="tab-btn-documentation" class="tab-btn" data-tab="documentation">Documentation</button>
+                <button class="tab-btn active" data-tab="home">Overview</button>
+                <button class="tab-btn" data-tab="documentation">Documentation</button>
                 {% for tab in tabs %}
-                <button id="tab-btn-{{ loop.index }}" class="tab-btn" data-tab="tab-{{ loop.index }}">{{ tab.label }}</button>
+                <button class="tab-btn" data-tab="tab-{{ loop.index }}">{{ tab.label }}</button>
                 {% endfor %}
             </div>
             
@@ -457,9 +614,9 @@ html_template = """<!DOCTYPE html>
                 <!-- Home Tab -->
                 <div id="home" class="tab-content active">
                     <div class="documentation">
-                        <h2>Value & Quality Stock Selection Dashboard</h2>
+                        <h2>{{ header_text }}</h2>
                         
-                        <p>Welcome to the Value & Quality Stock Selection Dashboard, a machine learning-powered tool designed to identify potentially undervalued stocks with strong fundamentals.</p>
+                        <p>Welcome to the Bank Valuation Research Dashboards, a machine learning-powered tool designed to identify potentially undervalued financial institutions and analyze bank valuation metrics.</p>
                         
                         <div class="feature-cards">
                             <div class="feature-card">
@@ -468,36 +625,34 @@ html_template = """<!DOCTYPE html>
                             </div>
                             
                             <div class="feature-card">
-                                <h4><i class="fas fa-award"></i>Quality Assessment</h4>
-                                <p>Evaluate companies based on profitability, efficiency, consistency, and leverage metrics.</p>
+                                <h4><i class="fas fa-landmark"></i>Bank-Specific Analysis</h4>
+                                <p>Specialized tools for analyzing financial institutions using industry-specific metrics and valuation models.</p>
                             </div>
                             
                             <div class="feature-card">
                                 <h4><i class="fas fa-brain"></i>Machine Learning</h4>
-                                <p>Using advanced algorithms to predict stocks likely to achieve 20%+ returns while avoiding severe underperformers.</p>
+                                <p>Using advanced algorithms to predict stocks likely to achieve significant returns while avoiding severe underperformers.</p>
                             </div>
                         </div>
                         
-                        <p>This dashboard implements a comprehensive approach to identifying valuable investment opportunities. Navigate through the tabs above to explore different aspects of the model and its recommendations.</p>
+                        <p>This dashboard implements a comprehensive approach to identifying valuable investment opportunities in the financial sector. Navigate through the tabs above to explore different aspects of the model and its recommendations.</p>
                         
-                        <h3>Getting Started</h3>
-                        <ol>
-                            <li>Review the <strong>Documentation</strong> tab to understand the methodology.</li>
-                            <li>Explore <strong>Stock Recommendations</strong> for current investment opportunities.</li>
-                            <li>Analyze the <strong>Feature Analysis</strong> tab to understand what drives predictions.</li>
-                            <li>Check <strong>Performance Metrics</strong> to validate the model's effectiveness.</li>
-                            <li>Consider <strong>Market Environment</strong> for broader context.</li>
-                        </ol>
+                        <h3>Dashboard Sections</h3>
+                        <ul>
+                            <li><strong>Value Quality Model Picks</strong> - Machine learning recommendations for undervalued stocks</li>
+                            <li><strong>Bank Price to Book Modeling</strong> - Analysis of price-to-book ratios for financial institutions</li>
+                            <li><strong>Bank Metric Trends</strong> - Historical data on key performance indicators</li>
+                            <li><strong>Napkin Math Bank Valuation</strong> - Simplified valuation models</li>
+                            <li><strong>Bank Valuation Comparisons</strong> - Peer analysis and relative valuation</li>
+                            <li><strong>Magic Formula Screen</strong> - Non-bank stock ideas using Greenblatt's formula</li>
+                        </ul>
                     </div>
                 </div>
                 
                 <!-- Documentation Tab -->
                 <div id="documentation" class="tab-content">
                     <div class="documentation">
-                        <!-- Documentation content goes here -->
-                        <h2>Value & Quality Stock Selection Documentation</h2>
-                        
-                        <!-- Copy the content from the documentation artifact here -->
+                        {{ documentation_content|safe }}
                     </div>
                 </div>
                 
@@ -553,7 +708,7 @@ html_template = """<!DOCTYPE html>
                 
                 // Activate selected tab
                 const selectedContent = document.getElementById(tabId);
-                const selectedTabBtn = document.querySelector(`[data-tab="${tabId}"]`);
+                const selectedTabBtn = document.querySelector(`.tab-btn[data-tab="${tabId}"]`);
                 const selectedNavLink = document.querySelector(`.nav-link[data-tab="${tabId}"]`);
                 
                 if (selectedContent) selectedContent.classList.add('active');
@@ -677,207 +832,22 @@ html_template = """<!DOCTYPE html>
 </html>
 """
 
-# Create documentation.md file with value investing documentation
-documentation_content = """# Value & Quality Stock Selection Documentation
-
-## Background
-
-This dashboard implements a machine learning approach to identify potentially undervalued stocks combining value investing principles with quality metrics. The methodology is inspired by research on machine learning-based stock picking using value investing and quality features, but with important modifications to optimize for practical use.
-
-The system analyzes thousands of US-listed companies on a weekly basis to identify stocks that exhibit both value characteristics (trading below intrinsic value) and quality characteristics (strong fundamentals), with a focus on predicting significant future returns (20%+) while avoiding severe underperformers.
-
-## Investment Philosophy
-
-The dashboard is built on three core investment principles:
-
-1. **Value Investing**: Stocks occasionally trade below their intrinsic value due to market inefficiencies, providing opportunities for excess returns. This system uses multiple valuation metrics relative to industry-specific historical norms to identify potentially undervalued securities.
-
-2. **Quality Assessment**: Not all cheap stocks represent good investments. Quality metrics help distinguish between temporarily undervalued high-quality businesses and structurally challenged companies trading at justifiably low valuations.
-
-3. **Margin of Safety**: The greater the discount to intrinsic value, the larger the "margin of safety" protecting against valuation errors and providing higher potential returns.
-
-## Methodology
-
-### Data Sources
-
-The model processes:
-- Quarterly financial data from US public companies
-- Market capitalization and price information
-- Industry classifications
-- Macroeconomic indicators (GDP, unemployment rate, fed funds rate, yield spread)
-
-### Feature Engineering
-
-#### Value Features
-The system dynamically selects the most appropriate valuation metric for each company based on historical correlations between low valuations and market cap within their industry:
-
-- Price/Earnings (P/E)
-- Price/Book (P/B)
-- Price/Tangible Book (P/TB)
-- Price/Free Cash Flow (P/FCF)
-- EV/EBIT
-- EV/EBITDA
-
-For each company, the system:
-1. Calculates the percentile of current valuation multiples within industry-specific historical distributions
-2. Compares current multiples to historical 25th, 50th, and 75th percentiles
-3. Assesses valuation "alpha correlations" - measuring how often low valuations coincide with small market caps
-4. Calculates margin of safety based on the deviation from historical median valuations
-
-#### Quality Features
-
-Quality assessment evaluates:
-
-1. **Profitability**: 
-   - Return on Equity (ROE)
-   - Return on Assets (ROA)
-   - Return on Invested Capital (ROIC)
-   - Gross profit to total assets
-
-2. **Financial Health**:
-   - Current ratio > 1
-   - Assets exceeding debt
-   - Leverage metrics
-
-3. **Consistency & Growth**:
-   - 5-year earnings consistency
-   - 10-year CAGR for equity, EPS, and revenue
-   - Cash flow generation quality (FCF > Net Income)
-
-4. **Quality Frameworks**:
-   - Piotroski F-Score components
-   - Greenblatt Magic Formula metrics
-   - Graham quality criteria
-   - Grantham quality rank
-   - Mohanram G-Score
-
-5. **Economic Environment**:
-   - Macroeconomic trend indicators
-   - Yield curve analysis
-   - Volatility metrics
-
-### Machine Learning Approach
-
-The system uses two model types:
-1. **Investment Grade Prediction**: Predicts stocks likely to achieve 20%+ returns
-2. **Severe Underperform Prediction**: Identifies stocks likely to decline 20%+ to be excluded
-
-Each model utilizes:
-- Random Forest and Gradient Boosting ensembles
-- Multiple tree depths and configurations
-- Precision-optimized classification thresholds
-
-The final stock selection requires:
-1. High probability score from the investment grade model
-2. Low probability score from the underperform model
-3. Sufficient valuation discount (margin of safety)
-
-## Dashboard Views
-
-### 1. Stock Recommendations
-The primary view presents current stock recommendations with:
-- Company identifiers and basic information
-- Probability scores for significant returns
-- Key valuation and quality metrics
-- Industry and size categories
-
-### 2. Feature Analysis
-This view reveals the most influential predictive factors:
-- Value feature importance (80-85% of model decisions)
-- Quality feature importance (15-20% of model decisions)
-- Feature ranking by SHAP values
-- Correlation analysis between features and outcomes
-
-### 3. Performance Metrics
-Track model effectiveness with:
-- Success rate in identifying 20%+ return stocks
-- Average returns of recommended stocks
-- Comparison to relevant benchmarks
-- Historical precision and recall metrics
-
-### 4. Market Environment
-Understand broader context with:
-- Current macroeconomic indicators
-- Industry valuation metrics
-- Market cycle positioning
-- Recommendation frequency relative to market conditions
-
-### 5. Percentile Analysis
-Examine feature distributions with:
-- Valuation metric percentiles
-- Quality metric percentiles
-- Combined score percentiles
-- Industry-relative rankings
-
-## Interpretation Guidelines
-
-### Reading the Recommendations
-- **High Probability Scores**: Stocks with higher investment grade probability scores have historically shown better performance
-- **Valuation Metrics**: Lower percentiles indicate more attractive valuations relative to history
-- **Quality Metrics**: Higher rankings indicate stronger fundamental characteristics
-- **Combined Metrics**: Focus on stocks showing both value and quality characteristics
-
-### Portfolio Considerations
-- **Diversification**: Consider spreading investments across industries and size categories
-- **Position Sizing**: Higher probability scores may warrant larger allocations
-- **Time Horizon**: Model is optimized for 1-3 year investment horizons
-- **Rebalancing**: Consider refreshing positions when stocks reach intrinsic value or quality deteriorates
-
-## Glossary of Key Metrics
-
-### Value Metrics
-- **Valuation Multiple Percentile**: Where current valuation stands in historical distribution (lower is better)
-- **Margin of Safety**: Discount to historical median valuation (higher is better)
-- **Alpha Correlation**: How often low valuations coincide with small market caps
-
-### Quality Metrics
-- **F-Score**: Piotroski's 9-point framework for financial strength (higher is better)
-- **ROIC**: Return on Invested Capital, measuring capital allocation efficiency
-- **Cash Flow Persistence**: Consistency of cash generation relative to earnings
-- **Growth Consistency**: Stability of growth across equity, earnings, and revenue
-
-### Combined Metrics
-- **Contrarian Sentiment**: Measures disagreement between valuation and quality indicators
-- **Neglected Stock Indicator**: Identifies overlooked smaller companies with strong fundamentals
-- **Quality-Value Composite**: Weighted combination of value and quality signals
-"""
-
-with open('documentation.md', 'w') as f:
-    f.write(documentation_content)
-
 # Create the template with Jinja2
-template_file = 'dashboard_template.html'
-with open(template_file, 'w') as f:
-    f.write(html_template)
-
-# Set up Jinja2 environment
-env = Environment(loader=FileSystemLoader('.'))
-template = env.get_template(template_file)
+template = env.from_string(template_string)
 
 # Create a directory for GitHub Pages deployment
 deploy_dir = 'docs'
 if not os.path.exists(deploy_dir):
     os.makedirs(deploy_dir)
 
-# Parse the documentation file and insert it into the template
-with open('documentation.md', 'r') as f:
-    doc_content = f.read()
-
-# Create HTML documentation from markdown
-# In a real-world scenario, you'd use a proper Markdown to HTML converter
-doc_html = doc_content.replace('# ', '<h2>').replace('## ', '<h3>').replace('### ', '<h4>')
-doc_html = doc_html.replace('\n\n', '</p><p>')
-doc_html = f'<p>{doc_html}</p>'
-
-# Render the template with the documentation
+# Render the template and write to docs/index.html
 html_content = template.render(
     header_text=config['header_text'],
     logo_url=config.get('logo_url', ''),
     tabs=config['tabs'],
-    documentation_content=doc_html
+    documentation_content=documentation_content
 )
 
-# Write the final index.html
 with open(os.path.join(deploy_dir, 'index.html'), 'w') as f:
     f.write(html_content)
 
