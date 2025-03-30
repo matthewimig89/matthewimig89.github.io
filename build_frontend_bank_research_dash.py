@@ -180,7 +180,7 @@ template_string = """
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Value & Quality Stock Selection Dashboard</title>
+    <title>{{ header_text }}</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -215,13 +215,9 @@ template_string = """
         /* HEADER STYLES */
         header {
             background: var(--primary-color);
-            background-image: linear-gradient(to right, var(--primary-color), var(--primary-dark)), 
-                              url('https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
-            background-blend-mode: multiply;
-            background-size: cover;
-            background-position: center;
+            background-image: linear-gradient(to right, var(--primary-color), var(--primary-dark));
             color: white;
-            padding: 2rem;
+            padding: 1.25rem 2rem;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -234,26 +230,10 @@ template_string = """
         header h1 {
             font-weight: 600;
             font-size: 1.5rem;
-            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
         }
 
-        .social-link {
-            display: flex;
-            align-items: center;
-            background: rgba(255, 255, 255, 0.2);
-            padding: 0.5rem;
-            border-radius: 50%;
-            transition: all 0.3s ease;
-        }
-
-        .social-link:hover {
-            background: rgba(255, 255, 255, 0.3);
-            transform: translateY(-2px);
-        }
-
-        .social-link i {
-            color: white;
-            font-size: 1.25rem;
+        header img {
+            height: 40px;
         }
 
         /* MAIN CONTAINER */
@@ -276,7 +256,6 @@ template_string = """
             flex-shrink: 0;
             border-right: 1px solid rgba(0, 0, 0, 0.1);
             z-index: 5;
-            background-image: url('https://www.transparenttextures.com/patterns/subtle-white-feathers.png');
         }
 
         .sidebar-collapsed {
@@ -357,8 +336,6 @@ template_string = """
             position: relative;
             display: flex;
             flex-direction: column;
-            background-image: url('https://www.transparenttextures.com/patterns/white-diamond-dark.png');
-            background-attachment: fixed;
         }
 
         .tab-buttons {
@@ -448,7 +425,6 @@ template_string = """
             padding: 2rem;
             max-height: 100%;
             overflow-y: auto;
-            background-color: var(--background-white);
         }
 
         .documentation h2 {
@@ -508,7 +484,6 @@ template_string = """
             box-shadow: var(--shadow-sm);
             padding: 1.5rem;
             transition: all 0.3s;
-            border-top: 4px solid var(--primary-color);
         }
 
         .feature-card:hover {
@@ -527,65 +502,6 @@ template_string = """
         .feature-card h4 i {
             margin-right: 0.75rem;
             font-size: 1.25rem;
-            width: 36px;
-            height: 36px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background-color: rgba(21, 101, 192, 0.1);
-            border-radius: 50%;
-        }
-
-        /* HERO SECTION */
-        .hero-section {
-            background-color: var(--background-white);
-            padding: 3rem 2rem;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 2;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .hero-section h2 {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-            color: var(--primary-text);
-        }
-
-        .hero-section p {
-            font-size: 1.1rem;
-            margin-bottom: 2rem;
-            color: var(--secondary-text);
-        }
-
-        .hero-image {
-            width: 100%;
-            max-width: 600px;
-            margin: 1rem auto;
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow-lg);
-        }
-
-        /* SECTION SEPARATORS */
-        .section-separator {
-            height: 3px;
-            background: linear-gradient(to right, var(--primary-light), var(--accent-color));
-            margin: 2rem 0;
-            border-radius: 2px;
-        }
-
-        /* CHART VISUAL */
-        .chart-preview {
-            max-width: 100%;
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow-md);
-            margin: 1.5rem 0;
         }
 
         /* DARK MODE TOGGLE */
@@ -637,19 +553,15 @@ template_string = """
             .feature-cards {
                 grid-template-columns: 1fr;
             }
-
-            .hero-section {
-                padding: 2rem 1rem;
-            }
         }
     </style>
 </head>
 <body>
     <header>
-        <h1>Value & Quality Stock Selection Dashboard</h1>
-        <a href="https://linkedin.com/in/your-profile" class="social-link" target="_blank" aria-label="LinkedIn Profile">
-            <i class="fab fa-linkedin-in"></i>
-        </a>
+        <h1>{{ header_text }}</h1>
+        {% if logo_url %}
+            <img src="{{ logo_url }}" alt="Dashboard Logo">
+        {% endif %}
     </header>
     
     <div class="main-container">
@@ -674,36 +586,14 @@ template_string = """
                         <span class="nav-text">Documentation</span>
                     </a>
                 </li>
+                {% for tab in tabs %}
                 <li class="nav-item">
-                    <a href="#" class="nav-link" data-tab="tab-1">
-                        <i class="fas fa-chart-line nav-icon"></i>
-                        <span class="nav-text">Stock Recommendations</span>
+                    <a href="#" class="nav-link" data-tab="tab-{{ loop.index }}">
+                        <i class="fas {% if loop.index == 1 %}fa-chart-line{% elif loop.index == 2 %}fa-landmark{% elif loop.index == 3 %}fa-chart-bar{% elif loop.index == 4 %}fa-calculator{% elif loop.index == 5 %}fa-balance-scale{% else %}fa-chart-pie{% endif %} nav-icon"></i>
+                        <span class="nav-text">{{ tab.label }}</span>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link" data-tab="tab-2">
-                        <i class="fas fa-search-dollar nav-icon"></i>
-                        <span class="nav-text">Feature Analysis</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link" data-tab="tab-3">
-                        <i class="fas fa-chart-bar nav-icon"></i>
-                        <span class="nav-text">Performance Metrics</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link" data-tab="tab-4">
-                        <i class="fas fa-globe-americas nav-icon"></i>
-                        <span class="nav-text">Market Environment</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link" data-tab="tab-5">
-                        <i class="fas fa-chart-pie nav-icon"></i>
-                        <span class="nav-text">Univariate Analysis</span>
-                    </a>
-                </li>
+                {% endfor %}
             </ul>
         </div>
         
@@ -711,26 +601,18 @@ template_string = """
             <div class="tab-buttons" role="tablist">
                 <button class="tab-btn active" data-tab="home">Overview</button>
                 <button class="tab-btn" data-tab="documentation">Documentation</button>
-                <button class="tab-btn" data-tab="tab-1">Stock Recommendations</button>
-                <button class="tab-btn" data-tab="tab-2">Feature Analysis</button>
-                <button class="tab-btn" data-tab="tab-3">Performance Metrics</button>
-                <button class="tab-btn" data-tab="tab-4">Market Environment</button>
-                <button class="tab-btn" data-tab="tab-5">Univariate Analysis</button>
+                {% for tab in tabs %}
+                <button class="tab-btn" data-tab="tab-{{ loop.index }}">{{ tab.label }}</button>
+                {% endfor %}
             </div>
             
             <div class="tab-content-container">
                 <!-- Home Tab -->
                 <div id="home" class="tab-content active">
-                    <div class="hero-section">
-                        <div class="hero-content">
-                            <h2>Value & Quality Stock Selection Dashboard</h2>
-                            <p>A machine learning-powered approach to identify potentially undervalued stocks with strong fundamentals</p>
-                            <img src="https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Financial data visualization" class="hero-image">
-                        </div>
-                    </div>
-                    
                     <div class="documentation">
-                        <div class="section-separator"></div>
+                        <h2>Value & Quality Stock Selection Dashboard</h2>
+                        
+                        <p>Welcome to the Value & Quality Stock Selection Dashboard, a machine learning-powered tool designed to identify potentially undervalued stocks with strong fundamentals.</p>
                         
                         <div class="feature-cards">
                             <div class="feature-card">
@@ -749,11 +631,7 @@ template_string = """
                             </div>
                         </div>
                         
-                        <div class="section-separator"></div>
-                        
                         <p>This dashboard implements a comprehensive approach to identifying valuable investment opportunities. Navigate through the tabs above to explore different aspects of the model and its recommendations.</p>
-                        
-                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Stock market analysis chart" class="chart-preview">
                         
                         <h3>Getting Started</h3>
                         <ol>
@@ -769,105 +647,27 @@ template_string = """
                 <!-- Documentation Tab -->
                 <div id="documentation" class="tab-content">
                     <div class="documentation">
-                        <h2>Value & Quality Stock Selection Documentation</h2>
-
-                        <h3>Background</h3>
-                        <p>This dashboard implements a machine learning approach to identify potentially undervalued stocks combining value investing principles with quality metrics. The methodology is inspired by research on machine learning-based stock picking using value investing and quality features, but with important modifications to optimize for practical use. Special thanks to Ronen Priel and Lior Rokach the author of the paper that inspired this work, you can find the paper for free here: <a href="https://link.springer.com/article/10.1007/s00521-024-09700-3" target="_blank">https://link.springer.com/article/10.1007/s00521-024-09700-3</a>.</p>
-
-                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Financial research and analysis" class="chart-preview">
-
-                        <p>The system analyzes thousands of US-listed companies on a quarterly basis to identify stocks that exhibit both value characteristics (trading below intrinsic value) and quality characteristics (strong fundamentals), with a focus on predicting significant future returns (20%+) while avoiding severe underperformers.</p>
-
-                        <h3>Investment Philosophy</h3>
-                        <p>The dashboard is built on three core investment principles:</p>
-
-                        <ol>
-                            <li><strong>Value Investing</strong>: Stocks occasionally trade below their intrinsic value due to market inefficiencies, providing opportunities for excess returns. This system uses multiple valuation metrics relative to industry-specific historical norms to identify potentially undervalued securities.</li>
-                            <li><strong>Quality Assessment</strong>: Not all cheap stocks represent good investments. Quality metrics help distinguish between temporarily undervalued high-quality businesses and structurally challenged companies trading at justifiably low valuations.</li>
-                            <li><strong>Margin of Safety</strong>: The greater the discount to intrinsic value, the larger the "margin of safety" protecting against valuation errors and providing higher potential returns.</li>
-                        </ol>
-
-                        <div class="section-separator"></div>
-
-                        <!-- Rest of documentation content would continue here -->
+                        {{ documentation_content|safe }}
                     </div>
                 </div>
                 
                 <!-- Dynamic Tabs for Dashboards -->
-                <div id="tab-1" class="tab-content">
-                    <a href="#" target="_blank" class="open-tab-btn">
+                {% for tab in tabs %}
+                <div id="tab-{{ loop.index }}" class="tab-content">
+                    <a href="{{ tab.url }}" target="_blank" class="open-tab-btn">
                         <i class="fas fa-external-link-alt"></i> Open in New Tab
                     </a>
                     <div class="dashboard-iframe-wrapper">
                         <iframe 
-                            src="about:blank" 
-                            title="Stock Recommendations" 
+                            src="{{ tab.url }}" 
+                            title="{{ tab.label }}" 
                             loading="lazy"
                             sandbox="allow-same-origin allow-scripts allow-popups allow-forms allow-storage-access-by-user-activation"
                             allow="fullscreen; clipboard-write; encrypted-media;">
                         </iframe>
                     </div>
                 </div>
-
-                <div id="tab-2" class="tab-content">
-                    <a href="#" target="_blank" class="open-tab-btn">
-                        <i class="fas fa-external-link-alt"></i> Open in New Tab
-                    </a>
-                    <div class="dashboard-iframe-wrapper">
-                        <iframe 
-                            src="about:blank" 
-                            title="Feature Analysis" 
-                            loading="lazy"
-                            sandbox="allow-same-origin allow-scripts allow-popups allow-forms allow-storage-access-by-user-activation"
-                            allow="fullscreen; clipboard-write; encrypted-media;">
-                        </iframe>
-                    </div>
-                </div>
-
-                <div id="tab-3" class="tab-content">
-                    <a href="#" target="_blank" class="open-tab-btn">
-                        <i class="fas fa-external-link-alt"></i> Open in New Tab
-                    </a>
-                    <div class="dashboard-iframe-wrapper">
-                        <iframe 
-                            src="about:blank" 
-                            title="Performance Metrics" 
-                            loading="lazy"
-                            sandbox="allow-same-origin allow-scripts allow-popups allow-forms allow-storage-access-by-user-activation"
-                            allow="fullscreen; clipboard-write; encrypted-media;">
-                        </iframe>
-                    </div>
-                </div>
-
-                <div id="tab-4" class="tab-content">
-                    <a href="#" target="_blank" class="open-tab-btn">
-                        <i class="fas fa-external-link-alt"></i> Open in New Tab
-                    </a>
-                    <div class="dashboard-iframe-wrapper">
-                        <iframe 
-                            src="about:blank" 
-                            title="Market Environment" 
-                            loading="lazy"
-                            sandbox="allow-same-origin allow-scripts allow-popups allow-forms allow-storage-access-by-user-activation"
-                            allow="fullscreen; clipboard-write; encrypted-media;">
-                        </iframe>
-                    </div>
-                </div>
-
-                <div id="tab-5" class="tab-content">
-                    <a href="#" target="_blank" class="open-tab-btn">
-                        <i class="fas fa-external-link-alt"></i> Open in New Tab
-                    </a>
-                    <div class="dashboard-iframe-wrapper">
-                        <iframe 
-                            src="about:blank" 
-                            title="Univariate Analysis" 
-                            loading="lazy"
-                            sandbox="allow-same-origin allow-scripts allow-popups allow-forms allow-storage-access-by-user-activation"
-                            allow="fullscreen; clipboard-write; encrypted-media;">
-                        </iframe>
-                    </div>
-                </div>
+                {% endfor %}
             </div>
         </div>
     </div>
