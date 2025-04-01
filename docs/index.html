@@ -501,6 +501,24 @@
                         </div>
                         
                         <p>This dashboard implements a comprehensive approach to identifying valuable investment opportunities. Navigate through the tabs above to explore different aspects of the model and its recommendations.</p>
+
+                        <h3>Similarities to Other Quantitative Value/Quality Strategies</h3>
+                        <ol>
+                            <li><strong>Combined Value and Quality Framework:</strong> The model follows the established practice of pairing value metrics with quality indicators, similar to many academic and professional approaches that recognize cheap stocks aren't necessarily good investments without quality considerations.</li>
+                            <li><strong>Multiple Valuation Metrics:</strong> The model employ multiple valuation metrics (P/E, P/B, P/FCF, EV/EBIT, etc.) rather than relying on a single ratio, which provides a more robust assessment.</li>
+                            <li><strong>Machine Learning Implementation:</strong> The use of gradient boosting classifiers with regularization is consistent with modern quantitative approaches that leverage machine learning to identify patterns in financial data.</li>
+                            <li><strong>Fundamental Factor Integration:</strong> The model incorporates established fundamental quality metrics like Piotroski F-Score, ROIC, and growth consistency, which are common in many quality-focused strategies.</li>
+                        </ol>
+
+                        <h3>What Makes the Model Unique</h3>
+                        <ol>
+                            <li><strong>Dynamic Valuation Metric Selection:</strong> The  system uniquely selects the most appropriate valuation metric for each company based on historical correlations between low valuations and market cap within their specific industry. This industry-specific, adaptive approach is more sophisticated than models that apply the same metrics uniformly across all companies.</li>
+                            <li><strong>Dual-Model Architecture:</strong> The approach of using two separate models—one to predict significant outperformers (20%+ returns) and another to identify severe underperformers to avoid—creates a more nuanced selection process than typical single-model approaches.</li>
+                            <li><strong>Alpha Correlation Analysis:</strong> The assessment of "valuation alpha correlations" that measure how often low valuations coincide with small market caps is an innovative feature that helps identify value traps.</li>
+                            <li><strong>Industry-Specific Historical Distributions:</strong> Rather than comparing valuations against the broad market, your model contextualizes each company's valuation within its industry-specific historical distribution, creating more relevant comparisons.</li>
+                            <li><strong>Comprehensive Quality Framework Integration:</strong>  Your model uniquely combines multiple established quality frameworks (Piotroski, Greenblatt, Graham, Grantham, Mohanram) rather than relying on just one approach, creating a more robust quality assessment.</li>
+                            <li><strong>Macroeconomic Context Integration:</strong> The inclusion of macroeconomic indicators and market cycle positioning provides important contextual awareness that many stock-specific models lack.</li>
+                        </ol>                        
                         
                         <h3>Getting Started</h3>
                         <ol>
