@@ -173,135 +173,100 @@ documentation_content = """
     <tr>
       <th>Period End Date</th>
       <th>Portfolio Size</th>
-      <th>Annual Return</th>
+      <th>Model Annual Return</th>
+      <th>S&P 500 Annual Return</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td>2020-03-31</td>
       <td>35</td>
-      <td>190.50%</td>
+      <td>191%</td>
+      <td>39%</td>
     </tr>
     <tr>
       <td>2020-06-30</td>
       <td>36</td>
-      <td>106.57%</td>
+      <td>107%</td>
+      <td>30%</td>
     </tr>
     <tr>
       <td>2020-09-30</td>
       <td>36</td>
-      <td>53.85%</td>
+      <td>54%</td>
+      <td>27%</td>
     </tr>
     <tr>
       <td>2020-12-31</td>
       <td>36</td>
-      <td>11.95%</td>
+      <td>12%</td>
+      <td>14%</td>
     </tr>
     <tr>
       <td>2021-03-31</td>
       <td>36</td>
-      <td>-15.09%</td>
+      <td>-15%</td>
+      <td>-12%</td>
     </tr>
     <tr>
       <td>2021-06-30</td>
       <td>36</td>
-      <td>27.89%</td>
+      <td>28%</td>
+      <td>-17%</td>
     </tr>
     <tr>
       <td>2021-09-30</td>
       <td>36</td>
-      <td>-7.76%</td>
+      <td>-8%</td>
+      <td>-19%</td>
     </tr>
     <tr>
       <td>2021-12-31</td>
       <td>36</td>
-      <td>-12.78%</td>
+      <td>-13%</td>
+      <td>-9%</td>
     </tr>
     <tr>
       <td>2022-03-31</td>
       <td>36</td>
-      <td>21.84%</td>
+      <td>22%</td>
+      <td>18%</td>
     </tr>
     <tr>
       <td>2022-06-30</td>
       <td>37</td>
-      <td>24.16%</td>
+      <td>24%</td>
+      <td>12%</td>
     </tr>
     <tr>
       <td>2022-09-30</td>
       <td>37</td>
-      <td>34.44%</td>
+      <td>34%</td>
+      <td>24%</td>
     </tr>
     <tr>
       <td>2022-12-31</td>
       <td>37</td>
-      <td>28.95%</td>
+      <td>29%</td>
+      <td>28%</td>
     </tr>
     <tr>
       <td>2023-03-31</td>
       <td>37</td>
-      <td>32.28%</td>
+      <td>32%</td>
+      <td>23%</td>
     </tr>
     <tr>
       <td>2023-06-30</td>
       <td>37</td>
-      <td>29.04%</td>
+      <td>29%</td>
+      <td>34%</td>
     </tr>
     <tr>
       <td>2023-09-30</td>
       <td>36</td>
-      <td>38.23%</td>
-    </tr>
-    <tr>
-      <td>2023-12-31</td>
-      <td>36</td>
-      <td>N/A</td>
-    </tr>
-  </tbody>
-</table>
-
-<h2>Comparison to S&P 500</h2>
-<p>When comparing the model's performance to the S&P 500 over the same period:</p>
-
-<table border="1" cellpadding="5" cellspacing="0">
-  <thead>
-    <tr>
-      <th>Year</th>
-      <th>Model Average Annual Return</th>
-      <th>S&P 500 Annual Return</th>
-      <th>Outperformance</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>2020</td>
-      <td>90.72%</td>
-      <td>18.40%</td>
-      <td>+72.32%</td>
-    </tr>
-    <tr>
-      <td>2021</td>
-      <td>-1.94%</td>
-      <td>28.71%</td>
-      <td>-30.65%</td>
-    </tr>
-    <tr>
-      <td>2022</td>
-      <td>27.35%</td>
-      <td>-19.44%</td>
-      <td>+46.79%</td>
-    </tr>
-    <tr>
-      <td>2023</td>
-      <td>33.18%</td>
-      <td>24.23%</td>
-      <td>+8.95%</td>
-    </tr>
-    <tr>
-      <td><strong>Overall</strong></td>
-      <td><strong>37.33%</strong> (average)</td>
-      <td><strong>12.98%</strong> (average)</td>
-      <td><strong>+24.35%</strong></td>
+      <td>38%</td>
+      <td>22%</td>
     </tr>
   </tbody>
 </table>
