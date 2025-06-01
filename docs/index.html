@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Value & Quality Investing</title>
+    <title>Quantamental Investment Strategy | Uncorrelated Alpha for Family Offices</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -117,220 +117,366 @@
             border-bottom: 1px solid var(--border);
         }
 
-        /* HERO SECTION */
-        .hero {
-            padding: 4rem 1.5rem;
-            text-align: center;
+        /* MODULE CONTAINER */
+        .module {
             max-width: 1200px;
             margin: 0 auto;
+            padding: 4rem 1.5rem;
+            text-align: center;
         }
 
-        .hero-title {
+        .module-title {
             font-size: 2.5rem;
             font-weight: 800;
-            line-height: 1.1;
             margin-bottom: 1.5rem;
             color: var(--text-primary);
         }
 
-        .hero-subtitle {
+        .module-subtitle {
             font-size: 1.25rem;
             color: var(--text-secondary);
-            margin-bottom: 2rem;
-            max-width: 600px;
+            margin-bottom: 3rem;
+            max-width: 800px;
             margin-left: auto;
             margin-right: auto;
         }
 
+        /* HERO MODULE */
+        .hero-module {
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
         .hero-stats {
-            display: flex;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 2rem;
-            justify-content: center;
-            margin-bottom: 3rem;
-            flex-wrap: wrap;
+            margin: 3rem 0;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .hero-stat {
-            text-align: center;
+            background: var(--background);
+            padding: 2rem;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow);
+            transition: transform 0.3s;
+        }
+
+        .hero-stat:hover {
+            transform: translateY(-5px);
         }
 
         .hero-stat-number {
-            font-size: 2rem;
+            font-size: 2.5rem;
             font-weight: 700;
             color: var(--primary-green);
             display: block;
+            margin-bottom: 0.5rem;
         }
 
         .hero-stat-label {
             font-size: 0.875rem;
             color: var(--text-muted);
-            margin-top: 0.25rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .hero-chart {
+            background: var(--background);
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            margin: 3rem 0;
+            box-shadow: var(--shadow);
+            min-height: 400px;
+        }
+
+        .hero-chart iframe {
+            width: 100%;
+            height: 400px;
+            border: none;
+            border-radius: var(--radius);
+        }
+
+        .cta-section {
+            background: linear-gradient(135deg, var(--primary-green) 0%, #00b885 100%);
+            color: white;
+            padding: 3rem 2rem;
+            border-radius: var(--radius-lg);
+            margin: 3rem 0;
+        }
+
+        .cta-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .cta-subtitle {
+            margin-bottom: 2rem;
+            opacity: 0.9;
         }
 
         .cta-button {
-            background: var(--primary-green);
-            color: var(--primary-white);
+            background: var(--background);
+            color: var(--primary-green);
             border: none;
             padding: 1rem 2rem;
             border-radius: var(--radius);
             font-size: 1rem;
             font-weight: 600;
             cursor: pointer;
-            transition: opacity 0.2s;
+            transition: all 0.3s;
             text-decoration: none;
             display: inline-block;
+            box-shadow: var(--shadow);
         }
 
         .cta-button:hover {
-            opacity: 0.9;
-        }
-
-        /* MAIN CONTENT */
-        .main-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 1.5rem 4rem;
-        }
-
-        /* CARD GRID */
-        .card-grid {
-            display: grid;
-            gap: 2rem;
-            margin-bottom: 4rem;
-        }
-
-        .card {
-            background: var(--background);
-            border: 1px solid var(--border);
-            border-radius: var(--radius-lg);
-            padding: 2rem;
-            transition: box-shadow 0.2s;
-        }
-
-        .card:hover {
+            transform: translateY(-2px);
             box-shadow: var(--shadow-lg);
         }
 
-        .card-icon {
-            width: 48px;
-            height: 48px;
+        /* PHILOSOPHY MODULE */
+        .philosophy-module {
             background: var(--background-secondary);
-            border-radius: var(--radius);
+        }
+
+        .philosophy-pillars {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .pillar-card {
+            background: var(--background);
+            padding: 2.5rem;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow);
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pillar-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--primary-green);
+        }
+
+        .pillar-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .pillar-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary-green) 0%, #00b885 100%);
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             margin-bottom: 1.5rem;
-            color: var(--primary-green);
+            color: white;
             font-size: 1.5rem;
         }
 
-        .card-title {
+        .pillar-title {
             font-size: 1.25rem;
             font-weight: 600;
             margin-bottom: 1rem;
             color: var(--text-primary);
         }
 
-        .card-description {
+        .pillar-description {
             color: var(--text-secondary);
             line-height: 1.6;
+            margin-bottom: 1.5rem;
         }
 
-        /* PERFORMANCE SECTION */
-        .performance-section {
+        .pillar-details {
             background: var(--background-secondary);
-            border-radius: var(--radius-lg);
-            padding: 3rem 2rem;
-            margin-bottom: 4rem;
-            text-align: center;
+            padding: 1.5rem;
+            border-radius: var(--radius);
+            margin-top: 1rem;
         }
 
-        .performance-title {
-            font-size: 2rem;
-            font-weight: 700;
+        .pillar-details h4 {
+            font-size: 1rem;
+            font-weight: 600;
             margin-bottom: 1rem;
             color: var(--text-primary);
         }
 
-        .performance-subtitle {
-            color: var(--text-secondary);
-            margin-bottom: 2rem;
-        }
-
-        .performance-chart {
-            background: var(--background);
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            padding: 2rem;
-            margin-bottom: 2rem;
-            min-height: 300px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-muted);
-        }
-
-        /* SIMPLE LIST */
-        .simple-list {
+        .pillar-details ul {
             list-style: none;
-            margin: 2rem 0;
+            margin: 0;
         }
 
-        .simple-list li {
-            padding: 1rem 0;
-            border-bottom: 1px solid var(--border);
-            display: flex;
-            align-items: center;
-            gap: 1rem;
+        .pillar-details li {
+            padding: 0.5rem 0;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            position: relative;
+            padding-left: 1.5rem;
         }
 
-        .simple-list li:last-child {
-            border-bottom: none;
+        .pillar-details li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--primary-green);
+            font-weight: 600;
         }
 
-        .list-icon {
-            width: 24px;
-            height: 24px;
-            background: var(--primary-green);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 0.75rem;
-            flex-shrink: 0;
+        /* MODEL SELECTION MODULE */
+        .model-selection-module {
+            background: var(--background);
         }
 
-        /* DASHBOARD EMBED */
         .dashboard-embed {
+            background: var(--background-secondary);
+            padding: 2rem;
+            border-radius: var(--radius-lg);
             margin: 3rem 0;
         }
 
         .dashboard-embed iframe {
             width: 100%;
             height: 600px;
-            border: 1px solid var(--border);
-            border-radius: var(--radius-lg);
+            border: none;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
         }
 
-        /* FOOTER */
-        .footer {
+        /* PERFORMANCE MODULE */
+        .performance-module {
             background: var(--background-secondary);
-            padding: 3rem 1.5rem 2rem;
-            margin-top: 4rem;
+        }
+
+        .performance-highlights {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .performance-card {
+            background: var(--background);
+            padding: 2rem;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow);
             text-align: center;
-            border-top: 1px solid var(--border);
         }
 
-        .footer-content {
-            max-width: 1200px;
+        .performance-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-green);
+            margin-bottom: 0.5rem;
+        }
+
+        .performance-label {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* RECOMMENDATIONS MODULE */
+        .recommendations-module {
+            background: var(--background);
+        }
+
+        /* LEAD FORM MODULE */
+        .lead-form-module {
+            background: linear-gradient(135deg, #1f2937 0%, #374151 100%);
+            color: white;
+        }
+
+        .lead-form-container {
+            max-width: 600px;
             margin: 0 auto;
+            text-align: left;
         }
 
-        .footer-text {
-            color: var(--text-muted);
-            font-size: 0.875rem;
-            line-height: 1.6;
+        .lead-form {
+            background: var(--background);
+            padding: 3rem;
+            border-radius: var(--radius-lg);
+            color: var(--text-primary);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 1rem;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--primary-green);
+            box-shadow: 0 0 0 3px rgba(0, 208, 156, 0.1);
+        }
+
+        .form-textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .form-select {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+            background-position: right 0.5rem center;
+            background-repeat: no-repeat;
+            background-size: 1.5em 1.5em;
+            padding-right: 2.5rem;
+        }
+
+        .submit-button {
+            width: 100%;
+            background: linear-gradient(135deg, var(--primary-green) 0%, #00b885 100%);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: var(--radius);
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .submit-button:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .submit-button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
         }
 
         /* RESPONSIVE DESIGN */
@@ -343,30 +489,22 @@
                 display: none;
             }
             
-            .hero-title {
-                font-size: 3.5rem;
+            .module-title {
+                font-size: 3rem;
             }
             
             .hero-stats {
-                gap: 4rem;
-            }
-            
-            .card-grid {
-                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            }
-            
-            .performance-chart {
-                min-height: 400px;
+                grid-template-columns: repeat(3, 1fr);
             }
         }
 
         @media (min-width: 1024px) {
-            .hero {
+            .module {
                 padding: 6rem 1.5rem;
             }
             
-            .hero-title {
-                font-size: 4rem;
+            .module-title {
+                font-size: 3.5rem;
             }
         }
 
@@ -381,9 +519,26 @@
 
         /* FOCUS STYLES */
         button:focus,
-        a:focus {
+        a:focus,
+        input:focus,
+        select:focus,
+        textarea:focus {
             outline: 2px solid var(--primary-green);
             outline-offset: 2px;
+        }
+
+        /* SUCCESS MESSAGE */
+        .success-message {
+            background: #10B981;
+            color: white;
+            padding: 1rem;
+            border-radius: var(--radius);
+            margin-bottom: 1rem;
+            display: none;
+        }
+
+        .success-message.show {
+            display: block;
         }
     </style>
 </head>
@@ -394,9 +549,9 @@
             <a href="#" class="logo">Imig Investments</a>
             <nav class="nav">
                 <a href="#overview" class="active">Overview</a>
+                <a href="#philosophy">Philosophy</a>
                 <a href="#performance">Performance</a>
-                <a href="#research">Research</a>
-                <a href="#methodology">How it Works</a>
+                <a href="#contact">Contact</a>
             </nav>
             <button class="mobile-menu-btn" aria-label="Menu">
                 <i class="fas fa-bars"></i>
@@ -407,159 +562,248 @@
     <!-- MOBILE MENU -->
     <nav class="mobile-menu" id="mobile-menu">
         <a href="#overview">Overview</a>
+        <a href="#philosophy">Philosophy</a>
         <a href="#performance">Performance</a>
-        <a href="#research">Research</a>
-        <a href="#methodology">How it Works</a>
+        <a href="#contact">Contact</a>
     </nav>
 
-    <!-- HERO SECTION -->
-    <section class="hero" id="overview">
-        <h1 class="hero-title">Invest smarter with AI</h1>
-        <p class="hero-subtitle">Our machine learning system identifies quality stocks trading below value, delivering consistent outperformance for everyday investors.</p>
+    <!-- HERO MODULE -->
+    <section class="module hero-module" id="overview">
+        <h1 class="module-title">Uncorrelated Alpha for Family Offices</h1>
+        <p class="module-subtitle">Our quantamental strategy combines machine learning with value investing principles to deliver consistent outperformance with low correlation to traditional markets.</p>
         
         <div class="hero-stats">
             <div class="hero-stat">
-                <span class="hero-stat-number">191%</span>
-                <span class="hero-stat-label">Best year return</span>
+                <span class="hero-stat-number">Low</span>
+                <span class="hero-stat-label">S&P 500 Correlation</span>
             </div>
             <div class="hero-stat">
-                <span class="hero-stat-number">89%</span>
-                <span class="hero-stat-label">Success rate</span>
+                <span class="hero-stat-number">50</span>
+                <span class="hero-stat-label">Stock Portfolio</span>
             </div>
             <div class="hero-stat">
-                <span class="hero-stat-number">4 years</span>
-                <span class="hero-stat-label">Proven track record</span>
+                <span class="hero-stat-number">4+ Years</span>
+                <span class="hero-stat-label">Track Record</span>
             </div>
         </div>
 
-        <a href="#research" class="cta-button">See Live Recommendations</a>
-    </section>
-
-    <!-- MAIN CONTENT -->
-    <main class="main-content">
-        <!-- FEATURE CARDS -->
-        <section class="card-grid">
-            <div class="card">
-                <div class="card-icon">
-                    <i class="fas fa-brain"></i>
-                </div>
-                <h3 class="card-title">AI-Powered Selection</h3>
-                <p class="card-description">Advanced machine learning analyzes thousands of stocks quarterly to identify the best opportunities.</p>
-            </div>
-            
-            <div class="card">
-                <div class="card-icon">
-                    <i class="fas fa-shield-check"></i>
-                </div>
-                <h3 class="card-title">Quality Focus</h3>
-                <p class="card-description">We only recommend companies with strong fundamentals and proven business models.</p>
-            </div>
-            
-            <div class="card">
-                <div class="card-icon">
-                    <i class="fas fa-chart-line"></i>
-                </div>
-                <h3 class="card-title">Proven Results</h3>
-                <p class="card-description">Consistent outperformance across market cycles with transparent, verified results.</p>
-            </div>
-        </section>
-
-        <!-- PERFORMANCE SECTION -->
-        <section class="performance-section" id="performance">
-            <h2 class="performance-title">Track record that speaks for itself</h2>
-            <p class="performance-subtitle">Our systematic approach has delivered superior returns while managing downside risk.</p>
-            
-            <div class="performance-chart">
-                <img src="image.png" alt="Performance Chart 2020-2023" style="max-width: 100%; height: auto;" />
-            </div>
-            
-            <ul class="simple-list">
-                <li>
-                    <div class="list-icon">✓</div>
-                    <span>Outperformed S&P 500 in 3 out of 4 years average 28% returns</span>
-                </li>
-                <li>
-                    <div class="list-icon">✓</div>
-                    <span>Average portfolio of 50 high-conviction picks</span>
-                </li>
-                <li>
-                    <div class="list-icon">✓</div>
-                    <span>Quarterly rebalancing with 12-month hold periods</span>
-                </li>
-                <li>
-                    <div class="list-icon">✓</div>
-                    <span>Transparent methodology with verified results</span>
-                </li>
-            </ul>
-        </section>
-
-        <!-- RESEARCH DASHBOARD -->
-        <section class="dashboard-embed" id="research">
-            <h2 style="text-align: center; margin-bottom: 2rem; font-size: 2rem; font-weight: 700;">Live Research Dashboard</h2>
+        <div class="hero-chart">
             <iframe 
-                src="https://lookerstudio.google.com/embed/reporting/eb4da8db-96e9-48d6-af5a-300d0dd1e5dc/page/bMsBF"
-                title="Stock Recommendations Dashboard"
+                src="https://lookerstudio.google.com/embed/reporting/eb4da8db-96e9-48d6-af5a-300d0dd1e5dc/page/p_n9aakyw2qd"
+                title="Performance vs S&P 500"
                 loading="lazy">
             </iframe>
-        </section>
-
-        <!-- HOW IT WORKS -->
-        <section id="methodology">
-            <h2 style="text-align: center; margin-bottom: 3rem; font-size: 2rem; font-weight: 700;">How it works</h2>
-            
-            <div class="card-grid">
-                <div class="card">
-                    <div class="card-icon">1</div>
-                    <h3 class="card-title">Screen thousands of stocks</h3>
-                    <p class="card-description">Our AI analyzes financial data, market trends, and quality metrics across the entire US stock market.</p>
-                </div>
-                
-                <div class="card">
-                    <div class="card-icon">2</div>
-                    <h3 class="card-title">Identify value opportunities</h3>
-                    <p class="card-description">Machine learning models detect companies trading below intrinsic value with strong fundamentals.</p>
-                </div>
-                
-                <div class="card">
-                    <div class="card-icon">3</div>
-                    <h3 class="card-title">Deliver recommendations</h3>
-                    <p class="card-description">Top 50 picks updated quarterly with detailed analysis and conviction scores.</p>
-                </div>
-            </div>
-
-            <div style="background: var(--background-secondary); border-radius: var(--radius-lg); padding: 2rem; margin-top: 3rem;">
-                <h3 style="margin-bottom: 1rem; color: var(--text-primary);">Key differentiators</h3>
-                <ul class="simple-list">
-                    <li>
-                        <div class="list-icon">✓</div>
-                        <span>Dynamic valuation selection optimized per industry</span>
-                    </li>
-                    <li>
-                        <div class="list-icon">✓</div>
-                        <span>Dual-model approach: identify winners, avoid losers</span>
-                    </li>
-                    <li>
-                        <div class="list-icon">✓</div>
-                        <span>Out-of-time validation prevents overfitting</span>
-                    </li>
-                    <li>
-                        <div class="list-icon">✓</div>
-                        <span>Macroeconomic cycle integration</span>
-                    </li>
-                </ul>
-            </div>
-        </section>
-    </main>
-
-    <!-- FOOTER -->
-    <footer class="footer">
-        <div class="footer-content">
-            <p class="footer-text">
-                Investing involves risk, including potential loss of principal. Past performance does not guarantee future results. 
-                This analysis is for informational purposes only and should not be considered personalized investment advice.
-            </p>
         </div>
-    </footer>
+
+        <div class="cta-section">
+            <h2 class="cta-title">Considering a Quantamental Allocation?</h2>
+            <p class="cta-subtitle">Join family offices achieving uncorrelated returns through systematic value investing enhanced by machine learning.</p>
+            <a href="#contact" class="cta-button">Contact Us Below</a>
+        </div>
+    </section>
+
+    <!-- PHILOSOPHY MODULE -->
+    <section class="module philosophy-module" id="philosophy">
+        <h2 class="module-title">Investment Philosophy</h2>
+        <p class="module-subtitle">Our approach is built on three core principles that have driven consistent outperformance across market cycles.</p>
+        
+        <div class="philosophy-pillars">
+            <div class="pillar-card">
+                <div class="pillar-icon">
+                    <i class="fas fa-search-dollar"></i>
+                </div>
+                <h3 class="pillar-title">Dynamic Value Assessment</h3>
+                <p class="pillar-description">Stocks occasionally trade below intrinsic value due to market inefficiencies. Our system identifies these opportunities through sophisticated analysis.</p>
+                <div class="pillar-details">
+                    <h4>Key Components:</h4>
+                    <ul>
+                        <li>Multi-horizon valuation percentiles</li>
+                        <li>Industry-specific historical distributions</li>
+                        <li>Company-specific correlation analysis</li>
+                        <li>Alpha correlation metrics</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="pillar-card">
+                <div class="pillar-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h3 class="pillar-title">Quality-Filtered Selection</h3>
+                <p class="pillar-description">Not all cheap stocks represent good investments. We distinguish between temporarily undervalued businesses and value traps.</p>
+                <div class="pillar-details">
+                    <h4>Quality Framework:</h4>
+                    <ul>
+                        <li>Enhanced Piotroski F-Score</li>
+                        <li>Industry-ranked metrics (ROIC, ROE)</li>
+                        <li>Multi-period growth consistency</li>
+                        <li>Cash flow persistence scoring</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="pillar-card">
+                <div class="pillar-icon">
+                    <i class="fas fa-cogs"></i>
+                </div>
+                <h3 class="pillar-title">Regime-Aware Factor Weighting</h3>
+                <p class="pillar-description">Our model adapts factor emphasis based on macroeconomic conditions and market cycles for optimal performance.</p>
+                <div class="pillar-details">
+                    <h4>Adaptive Elements:</h4>
+                    <ul>
+                        <li>Economic cycle positioning</li>
+                        <li>Interest rate sensitivity analysis</li>
+                        <li>Volatility-adjusted weighting</li>
+                        <li>Dynamic regime classification</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MODEL SELECTION MODULE -->
+    <section class="module model-selection-module">
+        <h2 class="module-title">Model Selection Methodology</h2>
+        <p class="module-subtitle">Our 10-model ensemble uses advanced machine learning to identify the most predictive factors across different market environments.</p>
+        
+        <div class="dashboard-embed">
+            <iframe 
+                src="https://lookerstudio.google.com/embed/reporting/eb4da8db-96e9-48d6-af5a-300d0dd1e5dc/page/p_yjbdako2qd"
+                title="Top Predictors Analysis"
+                loading="lazy">
+            </iframe>
+        </div>
+        
+        <div class="philosophy-pillars">
+            <div class="pillar-card">
+                <div class="pillar-icon">1</div>
+                <h3 class="pillar-title">Ensemble Architecture</h3>
+                <p class="pillar-description">10-model ensemble with investment grade and underperform prediction using gradient boosted tree classifiers optimized for ROC-AUC.</p>
+            </div>
+            
+            <div class="pillar-card">
+                <div class="pillar-icon">2</div>
+                <h3 class="pillar-title">Temporal Validation</h3>
+                <p class="pillar-description">6-fold temporal cross-validation with strict time ordering prevents data leakage and ensures robust out-of-sample performance.</p>
+            </div>
+            
+            <div class="pillar-card">
+                <div class="pillar-icon">3</div>
+                <h3 class="pillar-title">Dynamic Selection</h3>
+                <p class="pillar-description">Optimal valuation metrics selected per company/industry based on historical predictive power and alpha correlation analysis.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- PERFORMANCE MODULE -->
+    <section class="module performance-module" id="performance">
+        <h2 class="module-title">Proven Performance</h2>
+        <p class="module-subtitle">Our systematic approach has demonstrated consistent outperformance with rigorous out-of-time validation across multiple market cycles.</p>
+        
+        <div class="performance-highlights">
+            <div class="performance-card">
+                <div class="performance-number">4/4</div>
+                <div class="performance-label">Years of Positive Alpha</div>
+            </div>
+            <div class="performance-card">
+                <div class="performance-number">50</div>
+                <div class="performance-label">Stocks Per Quarter</div>
+            </div>
+            <div class="performance-card">
+                <div class="performance-number">89%</div>
+                <div class="performance-label">Model Precision</div>
+            </div>
+            <div class="performance-card">
+                <div class="performance-number">0.71</div>
+                <div class="performance-label">ROC AUC Score</div>
+            </div>
+        </div>
+
+        <div class="dashboard-embed">
+            <iframe 
+                src="https://lookerstudio.google.com/embed/reporting/eb4da8db-96e9-48d6-af5a-300d0dd1e5dc/page/p_n9aakyw2qd"
+                title="Historical Performance vs S&P 500"
+                loading="lazy">
+            </iframe>
+        </div>
+    </section>
+
+    <!-- RECOMMENDATIONS MODULE -->
+    <section class="module recommendations-module">
+        <h2 class="module-title">Current Recommendations</h2>
+        <p class="module-subtitle">Live dashboard showing our top 50 stock picks with detailed analysis and conviction scores updated quarterly.</p>
+        
+        <div class="dashboard-embed">
+            <iframe 
+                src="https://lookerstudio.google.com/embed/reporting/eb4da8db-96e9-48d6-af5a-300d0dd1e5dc/page/bMsBF"
+                title="Current Stock Recommendations"
+                loading="lazy">
+            </iframe>
+        </div>
+    </section>
+
+    <!-- LEAD FORM MODULE -->
+    <section class="module lead-form-module" id="contact">
+        <h2 class="module-title">Ready to Explore Uncorrelated Alpha?</h2>
+        <p class="module-subtitle">Connect with us to discuss how our quantamental strategy can enhance your family office portfolio.</p>
+        
+        <div class="lead-form-container">
+            <form class="lead-form" id="leadForm">
+                <div class="success-message" id="successMessage">
+                    Thank you for your interest! We'll be in touch within 24 hours.
+                </div>
+                
+                <div class="form-group">
+                    <label for="name" class="form-label">Full Name *</label>
+                    <input type="text" id="name" name="name" class="form-input" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email" class="form-label">Email Address *</label>
+                    <input type="email" id="email" name="email" class="form-input" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="company" class="form-label">Organization</label>
+                    <input type="text" id="company" name="company" class="form-input">
+                </div>
+                
+                <div class="form-group">
+                    <label for="role" class="form-label">Role *</label>
+                    <select id="role" name="role" class="form-input form-select" required>
+                        <option value="">Select your role</option>
+                        <option value="Family Office Principal">Family Office Principal</option>
+                        <option value="Investment Committee Member">Investment Committee Member</option>
+                        <option value="Chief Investment Officer">Chief Investment Officer</option>
+                        <option value="Portfolio Manager">Portfolio Manager</option>
+                        <option value="Investment Advisor">Investment Advisor</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="aum" class="form-label">Assets Under Management</label>
+                    <select id="aum" name="aum" class="form-input form-select">
+                        <option value="">Select AUM range</option>
+                        <option value="$10M - $50M">$10M - $50M</option>
+                        <option value="$50M - $100M">$50M - $100M</option>
+                        <option value="$100M - $500M">$100M - $500M</option>
+                        <option value="$500M - $1B">$500M - $1B</option>
+                        <option value="$1B+">$1B+</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="interest" class="form-label">Areas of Interest</label>
+                    <textarea id="interest" name="interest" class="form-input form-textarea" placeholder="Tell us about your investment objectives and interest in quantamental strategies..."></textarea>
+                </div>
+                
+                <button type="submit" class="submit-button" id="submitButton">
+                    Schedule Consultation
+                </button>
+            </form>
+        </div>
+    </section>
 
     <script>
         // Mobile menu toggle
@@ -625,9 +869,4 @@
         }
 
         window.addEventListener('scroll', updateActiveNav);
-        updateActiveNav(); // Initial call
-    </script>
-</body>
-</html>
-</body>
-</html>
+        updateActiveNav();
