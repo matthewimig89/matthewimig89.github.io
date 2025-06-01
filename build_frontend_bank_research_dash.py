@@ -6,387 +6,310 @@ from jinja2 import Environment, FileSystemLoader
 with open('config.json', 'r') as f:
     config = json.load(f)
 
-# Create enhanced documentation content
+# Enhanced institutional-grade documentation content
 documentation_content = """
-<h2>Value & Quality Stock Selection Model - Technical Documentation</h2>
+<div class="hero-section">
+    <div class="hero-content">
+        <h1 class="hero-title">Value & Quality Stock Selection Model</h1>
+        <p class="hero-subtitle">Institutional-Grade Quantamental Investment Strategy</p>
+        <div class="hero-performance">
+            <div class="perf-metric">
+                <span class="perf-number">191%</span>
+                <span class="perf-label">Peak Return Q1 2020</span>
+            </div>
+            <div class="perf-metric">
+                <span class="perf-number">89%</span>
+                <span class="perf-label">Precision Rate</span>
+            </div>
+            <div class="perf-metric">
+                <span class="perf-number">0.71</span>
+                <span class="perf-label">ROC AUC</span>
+            </div>
+        </div>
+    </div>
+</div>
 
-<h3>Background</h3>
-<p>This advanced machine learning system implements a sophisticated quantamental approach to identify potentially undervalued stocks by combining value investing principles with quality metrics. The methodology builds upon academic research in machine learning-based stock selection, with significant enhancements for practical deployment at institutional scale.</p>
+<div class="doc-section">
+    <h2>Technical Documentation</h2>
+    
+    <div class="section-card">
+        <h3><i class="fas fa-chart-line"></i> Background</h3>
+        <p>This machine learning system implements a <strong>quantamental approach</strong> to identify potentially undervalued stocks by combining value investing principles with quality metrics. The methodology builds upon academic research in machine learning-based stock selection, with significant enhancements for practical deployment at institutional scale.</p>
+        
+        <p>The system analyzes thousands of US-listed companies quarterly to identify stocks exhibiting both value characteristics (trading below intrinsic value) and quality characteristics (strong fundamentals), specifically targeting stocks likely to achieve <strong>20%+ returns</strong> while avoiding severe underperformers.</p>
+    </div>
 
-<p>The system analyzes thousands of US-listed companies quarterly to identify stocks exhibiting both value characteristics (trading below intrinsic value) and quality characteristics (strong fundamentals), specifically targeting stocks likely to achieve 20%+ returns while avoiding severe underperformers (-20%+).</p>
+    <div class="section-card">
+        <h3><i class="fas fa-lightbulb"></i> Investment Philosophy</h3>
+        <p>The model is built on three core principles:</p>
+        
+        <div class="philosophy-grid">
+            <div class="philosophy-item">
+                <div class="philosophy-icon">
+                    <i class="fas fa-search-dollar"></i>
+                </div>
+                <h4>Dynamic Value Assessment</h4>
+                <p>Stocks occasionally trade below intrinsic value due to market inefficiencies. The system uses multiple valuation metrics relative to industry-specific and company-specific historical distributions to identify potentially undervalued securities.</p>
+            </div>
+            
+            <div class="philosophy-item">
+                <div class="philosophy-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h4>Quality-Filtered Selection</h4>
+                <p>Not all cheap stocks represent good investments. Quality metrics distinguish between temporarily undervalued high-quality businesses and structurally challenged companies trading at justifiably low valuations.</p>
+            </div>
+            
+            <div class="philosophy-item">
+                <div class="philosophy-icon">
+                    <i class="fas fa-cogs"></i>
+                </div>
+                <h4>Regime-Aware Factor Weighting</h4>
+                <p>The model adapts its factor emphasis based on macroeconomic conditions and market cycles, optimizing performance across different investment environments.</p>
+            </div>
+        </div>
+    </div>
 
-<h3>Investment Philosophy</h3>
-<p>The model is built on four core principles:</p>
+    <div class="section-card">
+        <h3><i class="fas fa-microscope"></i> Advanced Methodology</h3>
+        
+        <div class="methodology-subsection">
+            <h4><i class="fas fa-database"></i> Data Infrastructure</h4>
+            <p>The model processes comprehensive datasets including:</p>
+            <ul class="enhanced-list">
+                <li>Quarterly financial data from US public companies (2000-present)</li>
+                <li>Real-time market capitalization and pricing data</li>
+                <li>Industry classifications with 29 proprietary sector groupings</li>
+                <li>Macroeconomic indicators (GDP, unemployment, fed funds rate, yield spreads)</li>
+                <li>Alternative data sources for sentiment and positioning analysis</li>
+            </ul>
+        </div>
 
-<ol>
-    <li><strong>Dynamic Value Assessment</strong>: Stocks occasionally trade below intrinsic value due to market inefficiencies. The system uses multiple valuation metrics relative to industry-specific and company-specific historical distributions to identify potentially undervalued securities.</li>
-    <li><strong>Quality-Filtered Selection</strong>: Not all cheap stocks represent good investments. Quality metrics distinguish between temporarily undervalued high-quality businesses and structurally challenged companies trading at justifiably low valuations.</li>
-    <li><strong>Adaptive Margin of Safety</strong>: The system calculates dynamic margins of safety based on historical median valuations, with greater discounts providing larger protective buffers against valuation errors.</li>
-    <li><strong>Regime-Aware Factor Weighting</strong>: The model adapts its factor emphasis based on macroeconomic conditions and market cycles, optimizing performance across different investment environments.</li>
-</ol>
+        <div class="methodology-subsection">
+            <h4><i class="fas fa-microchip"></i> Sophisticated Feature Engineering</h4>
+            
+            <div class="feature-category">
+                <h5><span class="category-badge valuation">Valuation</span> Dynamic Valuation Features</h5>
+                <p>The system implements industry-leading valuation analysis through:</p>
+                <ul class="feature-list">
+                    <li><strong>Multi-Horizon Valuation Percentiles:</strong> Current valuation metrics compared to 5-year rolling industry distributions and company-specific historical percentile rankings</li>
+                    <li><strong>Cross-validation of valuation measures:</strong> P/E, P/B, P/TB, P/FCF, EV/EBIT, EV/EBITDA</li>
+                    <li><strong>Alpha Correlation Analysis:</strong> Proprietary "alpha correlation" metrics measuring historical relationships between low valuations and small market capitalizations</li>
+                    <li><strong>Dynamic selection:</strong> Optimal valuation metrics based on predictive power within each industry</li>
+                    <li><strong>Company-specific correlation analysis:</strong> Enhanced precision through individual company analysis</li>
+                </ul>
+            </div>
 
-<h3>Advanced Methodology</h3>
+            <div class="feature-category">
+                <h5><span class="category-badge quality">Quality</span> Advanced Quality Assessment</h5>
+                <p><strong>Comprehensive Quality Framework:</strong></p>
+                <ul class="feature-list">
+                    <li>Enhanced Piotroski F-Score with additional factors</li>
+                    <li>Industry-ranked quality metrics (ROIC, ROE, asset efficiency)</li>
+                    <li>Multi-period growth consistency analysis (10-year CAGR assessments)</li>
+                    <li>Cash flow persistence scoring with FCF vs. Net Income analysis</li>
+                </ul>
+                
+                <p><strong>Proprietary Composite Scores:</strong></p>
+                <ul class="feature-list">
+                    <li><strong>Contrarian Sentiment:</strong> Identifies value/quality disconnects</li>
+                    <li><strong>Neglected Stock Indicator:</strong> Targets overlooked small/mid-cap opportunities</li>
+                    <li><strong>Growth Consistency Score:</strong> Evaluates sustainable growth patterns</li>
+                    <li><strong>Quality-Value Composite:</strong> Weighted combination of value and quality signals</li>
+                </ul>
+            </div>
 
-<h4>Data Infrastructure</h4>
-<p>The model processes comprehensive datasets including:</p>
-<ul>
-    <li>Quarterly financial data from US public companies (2000-present)</li>
-    <li>Real-time market capitalization and pricing data</li>
-    <li>Industry classifications with 29 proprietary sector groupings</li>
-    <li>Macroeconomic indicators (GDP, unemployment, fed funds rate, yield spreads)</li>
-    <li>Alternative data sources for sentiment and positioning analysis</li>
-</ul>
+            <div class="feature-category">
+                <h5><span class="category-badge macro">Macro</span> Macroeconomic Integration</h5>
+                <ul class="feature-list">
+                    <li><strong>Economic Cycle Positioning:</strong> Dynamic regime classification (Early/Mid/Late/Transitional cycle)</li>
+                    <li><strong>Interest rate sensitivity analysis:</strong> For valuation multiples</li>
+                    <li><strong>Volatility-adjusted macro factor weighting:</strong> Adaptive to market conditions</li>
+                </ul>
+            </div>
+        </div>
 
-<h4>Sophisticated Feature Engineering</h4>
+        <div class="methodology-subsection">
+            <h4><i class="fas fa-brain"></i> Machine Learning Architecture</h4>
+            
+            <div class="ml-highlight">
+                <h5>Ensemble Model Design</h5>
+                <p>The system employs a sophisticated <strong>10-model ensemble approach:</strong></p>
+                <div class="model-spec">
+                    <p><strong>Investment Grade Model:</strong> K-fold cross-validation with temporal splitting, Gradient Boosted Tree Classifiers optimized for ROC-AUC, Hyperparameter tuning with L1/L2 regularization</p>
+                </div>
+            </div>
 
-<p><strong>Dynamic Valuation Features</strong></p>
-<p>The system implements industry-leading valuation analysis through:</p>
+            <div class="validation-highlight">
+                <h5>Advanced Validation Framework</h5>
+                <ul class="validation-list">
+                    <li><strong>Out-of-Time Validation:</strong> 6-fold temporal cross-validation (K1-K6)</li>
+                    <li><strong>Data allocation:</strong> 16.7% per fold with strict temporal ordering prevents data leakage</li>
+                    <li><strong>Conservative ensemble averaging:</strong> Excluding most recent fold</li>
+                </ul>
+            </div>
+        </div>
+    </div>
 
-<ul>
-    <li><strong>Multi-Horizon Valuation Percentiles:</strong> Current valuation metrics compared to 5-year rolling industry distributions and company-specific historical percentile rankings</li>
-    <li><strong>Cross-validation of valuation measures:</strong> P/E, P/B, P/TB, P/FCF, EV/EBIT, EV/EBITDA</li>
-    <li><strong>Alpha Correlation Analysis:</strong> Proprietary "alpha correlation" metrics measuring historical relationships between low valuations and small market capitalizations</li>
-    <li><strong>Dynamic selection:</strong> Optimal valuation metrics based on predictive power within each industry</li>
-    <li><strong>Company-specific correlation analysis:</strong> Enhanced precision through individual company analysis</li>
-</ul>
+    <div class="section-card">
+        <h3><i class="fas fa-chart-bar"></i> Performance Metrics (2020-2023 Out-of-Time Validation)</h3>
+        
+        <div class="performance-container">
+            <div class="performance-image">
+                <img src="image.png" alt="Model Performance Chart 2020-2023" class="perf-chart" />
+            </div>
+            
+            <div class="risk-metrics-grid">
+                <div class="risk-metric">
+                    <span class="metric-label">Average Portfolio Size</span>
+                    <span class="metric-value">50 companies</span>
+                </div>
+                <div class="risk-metric">
+                    <span class="metric-label">Selection Rate</span>
+                    <span class="metric-value">Top 1-2% quarterly</span>
+                </div>
+                <div class="risk-metric">
+                    <span class="metric-label">Volatility</span>
+                    <span class="metric-value">Higher than benchmark</span>
+                </div>
+                <div class="risk-metric">
+                    <span class="metric-label">Compound Alpha</span>
+                    <span class="metric-value">Substantial outperformance</span>
+                </div>
+            </div>
+        </div>
+    </div>
 
-<p><strong>Adaptive Margin of Safety Calculation:</strong></p>
-<pre><code>Margin of Safety = 1 - (1 / valuation_multiple_p50_industry)</code></pre>
-<p>This metric automatically adjusts based on industry-specific valuation norms.</p>
+    <div class="section-card">
+        <h3><i class="fas fa-cog"></i> Implementation Framework</h3>
+        
+        <div class="implementation-grid">
+            <div class="impl-section">
+                <h4><i class="fas fa-sync"></i> Quarterly Rebalancing</h4>
+                <ul class="impl-list">
+                    <li>Model refresh every quarter using latest financial data</li>
+                    <li>Top 50 recommendations selected from ensemble rankings</li>
+                    <li>Equal-weight position sizing to reduce sector bias</li>
+                </ul>
+            </div>
 
-<p><strong>Advanced Quality Assessment</strong></p>
-<p>Comprehensive Quality Framework:</p>
-<ul>
-    <li>Enhanced Piotroski F-Score with additional factors</li>
-    <li>Industry-ranked quality metrics (ROIC, ROE, asset efficiency)</li>
-    <li>Multi-period growth consistency analysis (10-year CAGR assessments)</li>
-    <li>Cash flow persistence scoring with FCF vs. Net Income analysis</li>
-</ul>
+            <div class="impl-section">
+                <h4><i class="fas fa-shield-check"></i> Risk Management</h4>
+                <ul class="impl-list">
+                    <li>Exclusion of micro-cap stocks (market cap >$250M minimum)</li>
+                    <li>Underperform probability filtering (<50th percentile threshold)</li>
+                    <li>Industry diversification monitoring</li>
+                </ul>
+            </div>
 
-<p><strong>Proprietary Composite Scores:</strong></p>
-<ul>
-    <li><strong>Contrarian Sentiment:</strong> Identifies value/quality disconnects</li>
-    <li><strong>Neglected Stock Indicator:</strong> Targets overlooked small/mid-cap opportunities</li>
-    <li><strong>Growth Consistency Score:</strong> Evaluates sustainable growth patterns</li>
-    <li><strong>Quality-Value Composite:</strong> Weighted combination of value and quality signals</li>
-</ul>
+            <div class="impl-section">
+                <h4><i class="fas fa-play-circle"></i> Execution Protocol</h4>
+                <ul class="impl-list">
+                    <li>Purchase recommendations at start of following quarter</li>
+                    <li>12-month holding period</li>
+                    <li>Systematic rebalancing and position management</li>
+                </ul>
+            </div>
+        </div>
 
-<p><strong>Macroeconomic Integration</strong></p>
-<ul>
-    <li><strong>Economic Cycle Positioning:</strong> Dynamic regime classification (Early/Mid/Late/Transitional cycle)</li>
-    <li><strong>Interest rate sensitivity analysis:</strong> For valuation multiples</li>
-    <li><strong>Volatility-adjusted macro factor weighting:</strong> Adaptive to market conditions</li>
-</ul>
+        <div class="screening-criteria">
+            <h4><i class="fas fa-filter"></i> Advanced Screening Criteria</h4>
+            <p><strong>Final Selection Requirements:</strong></p>
+            <ul class="criteria-list">
+                <li>High ensemble investment grade probability (top 1-2% universe)</li>
+                <li>Low ensemble underperform probability (<50th percentile)</li>
+                <li>Minimum market capitalization thresholds</li>
+                <li>Adequate trading liquidity</li>
+                <li>Quality score minimum thresholds</li>
+            </ul>
+        </div>
+    </div>
 
-<h4>Machine Learning Architecture</h4>
+    <div class="section-card">
+        <h3><i class="fas fa-star"></i> Key Differentiators</h3>
+        
+        <div class="differentiators-grid">
+            <div class="diff-item">
+                <div class="diff-number">1</div>
+                <div class="diff-content">
+                    <h4>Dynamic Valuation Selection</h4>
+                    <p>Proprietary algorithm selects optimal valuation metric per company/industry based on historical alpha correlation</p>
+                </div>
+            </div>
+            
+            <div class="diff-item">
+                <div class="diff-number">2</div>
+                <div class="diff-content">
+                    <h4>Ensemble Risk Management</h4>
+                    <p>Dual-model approach with investment grade and underperform prediction</p>
+                </div>
+            </div>
+            
+            <div class="diff-item">
+                <div class="diff-number">3</div>
+                <div class="diff-content">
+                    <h4>Regime Adaptation</h4>
+                    <p>Macroeconomic factor integration with cycle-aware weighting</p>
+                </div>
+            </div>
+            
+            <div class="diff-item">
+                <div class="diff-number">4</div>
+                <div class="diff-content">
+                    <h4>Temporal Validation</h4>
+                    <p>Strict out-of-time testing preventing data snooping bias</p>
+                </div>
+            </div>
+        </div>
+    </div>
 
-<p><strong>Ensemble Model Design</strong></p>
-<p>The system employs a sophisticated 10-model ensemble approach:</p>
+    <div class="section-card">
+        <h3><i class="fas fa-crystal-ball"></i> Expected Forward Performance</h3>
+        <div class="forward-performance-placeholder">
+            <p class="performance-note">Forward performance expectations based on historical validation and market conditions analysis.</p>
+        </div>
+    </div>
 
-<ul>
-    <li><strong>Investment Grade Models (5 models):</strong> K-fold cross-validation with temporal splitting, Gradient Boosted Tree Classifiers optimized for ROC-AUC, Hyperparameter tuning with L1/L2 regularization</li>
-    <li><strong>Severe Underperform Models (5 models):</strong> Separate model architecture for downside risk identification, Conservative prediction thresholds for risk management</li>
-</ul>
+    <div class="section-card">
+        <h3><i class="fas fa-book"></i> Glossary of Key Metrics</h3>
+        
+        <div class="glossary-grid">
+            <div class="glossary-section">
+                <h4><span class="category-badge valuation">Value Metrics</span></h4>
+                <dl class="glossary-list">
+                    <dt>Valuation Multiple Percentile</dt>
+                    <dd>Where current valuation stands in historical distribution (lower is better)</dd>
+                </dl>
+            </div>
 
-<p><strong>Model Specifications:</strong></p>
-<pre><code>model_type = 'BOOSTED_TREE_CLASSIFIER'
-num_parallel_tree = 6
-max_tree_depth = 5
-max_iterations = 400
-learn_rate = 0.03
-subsample = 0.7
-auto_class_weights = TRUE</code></pre>
+            <div class="glossary-section">
+                <h4><span class="category-badge quality">Quality Metrics</span></h4>
+                <dl class="glossary-list">
+                    <dt>F-Score</dt>
+                    <dd>Piotroski's 9-point framework for financial strength (higher is better)</dd>
+                    <dt>ROIC</dt>
+                    <dd>Return on Invested Capital, measuring capital allocation efficiency</dd>
+                    <dt>Cash Flow Persistence</dt>
+                    <dd>Consistency of cash generation relative to earnings</dd>
+                    <dt>Growth Consistency</dt>
+                    <dd>Stability of growth across equity, earnings, and revenue</dd>
+                </dl>
+            </div>
 
-<p><strong>Advanced Validation Framework</strong></p>
-<ul>
-    <li><strong>Out-of-Time Validation:</strong> 6-fold temporal cross-validation (K1-K6)</li>
-    <li><strong>Data allocation:</strong> 16.7% per fold with strict temporal ordering prevents data leakage</li>
-    <li><strong>Conservative ensemble averaging:</strong> Excluding most recent fold</li>
-</ul>
-
-<p><strong>Risk Management Integration:</strong></p>
-<ul>
-    <li>Dual-model approach: Investment Grade + Underperform prediction</li>
-    <li>Ensemble predictions require >50th percentile underperform threshold</li>
-    <li>Dynamic position sizing based on prediction confidence</li>
-</ul>
-
-<h3>Performance Metrics (2020-2023 Out-of-Time Validation)</h3>
-
-<h4>Statistical Performance</h4>
-<ul>
-    <li><strong>ROC AUC:</strong> 0.71</li>
-    <li><strong>Precision:</strong> 0.89 (89% of flagged stocks achieved 20%+ returns)</li>
-    <li><strong>Recall:</strong> 0.15 (conservative selection approach)</li>
-    <li><strong>Accuracy:</strong> 0.72</li>
-</ul>
-
-<h4>Portfolio Returns Analysis</h4>
-
-<p><strong>Exceptional Crisis Performance:</strong></p>
-<ul>
-    <li>2020 Q1-Q2: 191% and 107% vs 39% and 30% S&P 500</li>
-    <li>Bear Market Resilience: Positive returns during 2022 downturn</li>
-    <li>Consistent Alpha: 3 out of 4 years substantially outperformed S&P 500</li>
-</ul>
-
-<p><strong>Risk-Adjusted Metrics:</strong></p>
-<ul>
-    <li>Average Portfolio Size: 36-37 companies</li>
-    <li>Selection Rate: Top 1-2% of universe quarterly</li>
-    <li>Volatility: Higher than benchmark (expected for concentrated strategy)</li>
-    <li>Compound Alpha: Substantial outperformance over multi-year periods</li>
-</ul>
-
-<h3>Implementation Framework</h3>
-
-<h4>Portfolio Construction Process</h4>
-
-<p><strong>1. Quarterly Rebalancing:</strong></p>
-<ul>
-    <li>Model refresh every quarter using latest financial data</li>
-    <li>Top 30-50 recommendations selected from ensemble rankings</li>
-    <li>Equal-weight position sizing to reduce sector bias</li>
-</ul>
-
-<p><strong>2. Risk Management:</strong></p>
-<ul>
-    <li>Exclusion of micro-cap stocks (market cap >$250M minimum)</li>
-    <li>Underperform probability filtering (<50th percentile threshold)</li>
-    <li>Industry diversification monitoring</li>
-</ul>
-
-<p><strong>3. Execution Protocol:</strong></p>
-<ul>
-    <li>Purchase recommendations at start of following quarter</li>
-    <li>12-month holding period</li>
-    <li>Systematic rebalancing and position management</li>
-</ul>
-
-<h4>Advanced Screening Criteria</h4>
-
-<p><strong>Final Selection Requirements:</strong></p>
-<ul>
-    <li>High ensemble investment grade probability (top 1-2% universe)</li>
-    <li>Low ensemble underperform probability (<50th percentile)</li>
-    <li>Minimum market capitalization thresholds</li>
-    <li>Adequate trading liquidity</li>
-    <li>Quality score minimum thresholds</li>
-</ul>
-
-<h3>Model Sophistication Assessment</h3>
-
-<p>This implementation represents <strong>institutional-grade quantamental technology</strong> comparable to:</p>
-<ul>
-    <li>Renaissance Technologies systematic approaches</li>
-    <li>AQR multi-factor frameworks</li>
-    <li>Bridgewater regime-based allocation models</li>
-</ul>
-
-<p><strong>Technical Sophistication: 9.5/10</strong></p>
-<ul>
-    <li>Multi-factor modeling with dynamic regime awareness</li>
-    <li>Alternative data integration and sentiment analysis</li>
-    <li>Advanced machine learning with ensemble methods</li>
-    <li>Proprietary alpha correlation discovery</li>
-</ul>
-
-<p><strong>Implementation Sophistication: 9/10</strong></p>
-<ul>
-    <li>Comprehensive risk management framework</li>
-    <li>Out-of-time validation with temporal integrity</li>
-    <li>Production-ready automated rebalancing</li>
-    <li>Institutional-quality performance attribution</li>
-</ul>
-
-<h3>Key Differentiators</h3>
-
-<ol>
-    <li><strong>Dynamic Valuation Selection:</strong> Proprietary algorithm selects optimal valuation metric per company/industry based on historical alpha correlation</li>
-    <li><strong>Ensemble Risk Management:</strong> Dual-model approach with investment grade and underperform prediction</li>
-    <li><strong>Regime Adaptation:</strong> Macroeconomic factor integration with cycle-aware weighting</li>
-    <li><strong>Temporal Validation:</strong> Strict out-of-time testing preventing data snooping bias</li>
-    <li><strong>Alpha Correlation Innovation:</strong> Unique approach linking valuation attractiveness to market cap positioning</li>
-</ol>
-
-<h3>Expected Forward Performance</h3>
-
-<p><strong>Conservative Projections:</strong></p>
-<ul>
-    <li>Target Annual Return: 15-20%</li>
-    <li>S&P 500 Expectation: 7-8%</li>
-    <li>Expected Alpha: 8-12 percentage points annually</li>
-    <li>Volatility: 20-25% (vs S&P 500's ~15%)</li>
-</ul>
-
-<p><strong>Risk Considerations:</strong></p>
-<ul>
-    <li>Higher volatility during market stress periods</li>
-    <li>Capacity constraints limit scalability beyond $500M-2B AUM</li>
-    <li>Factor premium dependency for sustained outperformance</li>
-    <li>Regime change adaptation periods</li>
-</ul>
-
-<h3>Annual Returns of Model Recommendations (2020-2023)</h3>
-<table border="1" cellpadding="8" cellspacing="0" style="width: 100%; border-collapse: collapse; margin: 1.5rem 0;">
-  <thead style="background-color: var(--primary-color); color: white;">
-    <tr>
-      <th style="padding: 12px; text-align: left;">Period End Date</th>
-      <th style="padding: 12px; text-align: center;">Portfolio Size</th>
-      <th style="padding: 12px; text-align: center;">Model Annual Return</th>
-      <th style="padding: 12px; text-align: center;">S&P 500 Annual Return</th>
-      <th style="padding: 12px; text-align: center;">Outperformance</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr style="background-color: #f8f9fa;">
-      <td style="padding: 8px;">2020-03-31</td>
-      <td style="padding: 8px; text-align: center;">35</td>
-      <td style="padding: 8px; text-align: center; color: #28a745; font-weight: bold;">191%</td>
-      <td style="padding: 8px; text-align: center;">39%</td>
-      <td style="padding: 8px; text-align: center; color: #28a745; font-weight: bold;">+152%</td>
-    </tr>
-    <tr>
-      <td style="padding: 8px;">2020-06-30</td>
-      <td style="padding: 8px; text-align: center;">36</td>
-      <td style="padding: 8px; text-align: center; color: #28a745; font-weight: bold;">107%</td>
-      <td style="padding: 8px; text-align: center;">30%</td>
-      <td style="padding: 8px; text-align: center; color: #28a745; font-weight: bold;">+77%</td>
-    </tr>
-    <tr style="background-color: #f8f9fa;">
-      <td style="padding: 8px;">2020-09-30</td>
-      <td style="padding: 8px; text-align: center;">36</td>
-      <td style="padding: 8px; text-align: center; color: #28a745; font-weight: bold;">54%</td>
-      <td style="padding: 8px; text-align: center;">27%</td>
-      <td style="padding: 8px; text-align: center; color: #28a745; font-weight: bold;">+27%</td>
-    </tr>
-    <tr>
-      <td style="padding: 8px;">2020-12-31</td>
-      <td style="padding: 8px; text-align: center;">36</td>
-      <td style="padding: 8px; text-align: center;">12%</td>
-      <td style="padding: 8px; text-align: center;">14%</td>
-      <td style="padding: 8px; text-align: center; color: #dc3545;">-2%</td>
-    </tr>
-    <tr style="background-color: #f8f9fa;">
-      <td style="padding: 8px;">2021-03-31</td>
-      <td style="padding: 8px; text-align: center;">36</td>
-      <td style="padding: 8px; text-align: center; color: #dc3545;">-15%</td>
-      <td style="padding: 8px; text-align: center; color: #dc3545;">-12%</td>
-      <td style="padding: 8px; text-align: center; color: #dc3545;">-3%</td>
-    </tr>
-    <tr>
-      <td style="padding: 8px;">2021-06-30</td>
-      <td style="padding: 8px; text-align: center;">36</td>
-      <td style="padding: 8px; text-align: center; color: #28a745; font-weight: bold;">28%</td>
-      <td style="padding: 8px; text-align: center; color: #dc3545;">-17%</td>
-      <td style="padding: 8px; text-align: center; color: #28a745; font-weight: bold;">+45%</td>
-    </tr>
-    <tr style="background-color: #f8f9fa;">
-      <td style="padding: 8px;">2021-09-30</td>
-      <td style="padding: 8px; text-align: center;">36</td>
-      <td style="padding: 8px; text-align: center; color: #dc3545;">-8%</td>
-      <td style="padding: 8px; text-align: center; color: #dc3545;">-19%</td>
-      <td style="padding: 8px; text-align: center; color: #28a745;">+11%</td>
-    </tr>
-    <tr>
-      <td style="padding: 8px;">2021-12-31</td>
-      <td style="padding: 8px; text-align: center;">36</td>
-      <td style="padding: 8px; text-align: center; color: #dc3545;">-13%</td>
-      <td style="padding: 8px; text-align: center; color: #dc3545;">-9%</td>
-      <td style="padding: 8px; text-align: center; color: #dc3545;">-4%</td>
-    </tr>
-    <tr style="background-color: #f8f9fa;">
-      <td style="padding: 8px;">2022-03-31</td>
-      <td style="padding: 8px; text-align: center;">36</td>
-      <td style="padding: 8px; text-align: center; color: #28a745; font-weight: bold;">22%</td>
-      <td style="padding: 8px; text-align: center;">18%</td>
-      <td style="padding: 8px; text-align: center; color: #28a745;">+4%</td>
-    </tr>
-    <tr>
-      <td style="padding: 8px;">2022-06-30</td>
-      <td style="padding: 8px; text-align: center;">37</td>
-      <td style="padding: 8px; text-align: center; color: #28a745; font-weight: bold;">24%</td>
-      <td style="padding: 8px; text-align: center;">12%</td>
-      <td style="padding: 8px; text-align: center; color: #28a745; font-weight: bold;">+12%</td>
-    </tr>
-    <tr style="background-color: #f8f9fa;">
-      <td style="padding: 8px;">2022-09-30</td>
-      <td style="padding: 8px; text-align: center;">37</td>
-      <td style="padding: 8px; text-align: center; color: #28a745; font-weight: bold;">34%</td>
-      <td style="padding: 8px; text-align: center;">24%</td>
-      <td style="padding: 8px; text-align: center; color: #28a745; font-weight: bold;">+10%</td>
-    </tr>
-    <tr>
-      <td style="padding: 8px;">2022-12-31</td>
-      <td style="padding: 8px; text-align: center;">37</td>
-      <td style="padding: 8px; text-align: center; color: #28a745; font-weight: bold;">29%</td>
-      <td style="padding: 8px; text-align: center;">28%</td>
-      <td style="padding: 8px; text-align: center; color: #28a745;">+1%</td>
-    </tr>
-    <tr style="background-color: #f8f9fa;">
-      <td style="padding: 8px;">2023-03-31</td>
-      <td style="padding: 8px; text-align: center;">37</td>
-      <td style="padding: 8px; text-align: center; color: #28a745; font-weight: bold;">32%</td>
-      <td style="padding: 8px; text-align: center;">23%</td>
-      <td style="padding: 8px; text-align: center; color: #28a745; font-weight: bold;">+9%</td>
-    </tr>
-    <tr>
-      <td style="padding: 8px;">2023-06-30</td>
-      <td style="padding: 8px; text-align: center;">37</td>
-      <td style="padding: 8px; text-align: center; color: #28a745; font-weight: bold;">29%</td>
-      <td style="padding: 8px; text-align: center; color: #28a745; font-weight: bold;">34%</td>
-      <td style="padding: 8px; text-align: center; color: #dc3545;">-5%</td>
-    </tr>
-    <tr style="background-color: #f8f9fa;">
-      <td style="padding: 8px;">2023-09-30</td>
-      <td style="padding: 8px; text-align: center;">36</td>
-      <td style="padding: 8px; text-align: center; color: #28a745; font-weight: bold;">38%</td>
-      <td style="padding: 8px; text-align: center;">22%</td>
-      <td style="padding: 8px; text-align: center; color: #28a745; font-weight: bold;">+16%</td>
-    </tr>
-  </tbody>
-</table>
-
-<h3>Key Observations</h3>
-<ol>
-    <li><strong>Exceptional Early Performance</strong>: The model demonstrated extraordinary returns during the market recovery phase of 2020, with returns exceeding 100% in the first two quarters.</li>
-    <li><strong>Resilience in Bear Markets</strong>: While the model underperformed during the strong bull market of 2021, it showed remarkable resilience during the 2022 market downturn, generating positive returns when the broader market declined significantly.</li>
-    <li><strong>Consistent Outperformance</strong>: In 3 out of 4 years during the validation period, the model's recommendations substantially outperformed the S&P 500.</li>
-    <li><strong>Volatility Characteristics</strong>: The model's returns show higher volatility than the benchmark, which is expected given its concentrated portfolio approach (top 1% of recommendations).</li>
-    <li><strong>Compound Effect</strong>: The compounded effect of these returns would be substantially higher than the arithmetic average presented above.</li>
-</ol>
-
-<p>The validation results confirm the model's ability to identify undervalued quality stocks with significant upside potential across various market conditions, with particularly strong performance during market recovery periods and downturns.</p>
-
-<h3>Conclusion</h3>
-
-<p>This Value & Quality Stock Selection model represents a sophisticated institutional-grade quantamental strategy that has demonstrated exceptional out-of-sample performance across multiple market cycles. The combination of advanced feature engineering, ensemble machine learning, and rigorous risk management positions it among the top-tier systematic equity strategies available to institutional investors.</p>
-
-<p>The 89% precision rate in identifying 20%+ return stocks, combined with substantial crisis period outperformance, validates the model's sophisticated approach to combining traditional value investing principles with modern machine learning techniques.</p>
-
-<h3>Glossary of Key Metrics</h3>
-
-<h4>Value Metrics</h4>
-<ul>
-    <li><strong>Valuation Multiple Percentile</strong>: Where current valuation stands in historical distribution (lower is better)</li>
-    <li><strong>Margin of Safety</strong>: Discount to historical median valuation (higher is better)</li>
-    <li><strong>Alpha Correlation</strong>: How often low valuations coincide with small market caps</li>
-</ul>
-
-<h4>Quality Metrics</h4>
-<ul>
-    <li><strong>F-Score</strong>: Piotroski's 9-point framework for financial strength (higher is better)</li>
-    <li><strong>ROIC</strong>: Return on Invested Capital, measuring capital allocation efficiency</li>
-    <li><strong>Cash Flow Persistence</strong>: Consistency of cash generation relative to earnings</li>
-    <li><strong>Growth Consistency</strong>: Stability of growth across equity, earnings, and revenue</li>
-</ul>
-
-<h4>Combined Metrics</h4>
-<ul>
-    <li><strong>Contrarian Sentiment</strong>: Measures disagreement between valuation and quality indicators</li>
-    <li><strong>Neglected Stock Indicator</strong>: Identifies overlooked smaller companies with strong fundamentals</li>
-    <li><strong>Quality-Value Composite</strong>: Weighted combination of value and quality signals</li>
-</ul>
+            <div class="glossary-section">
+                <h4><span class="category-badge combined">Combined Metrics</span></h4>
+                <dl class="glossary-list">
+                    <dt>Contrarian Sentiment</dt>
+                    <dd>Measures disagreement between valuation and quality indicators</dd>
+                    <dt>Neglected Stock Indicator</dt>
+                    <dd>Identifies overlooked smaller companies with strong fundamentals</dd>
+                    <dt>Quality-Value Composite</dt>
+                    <dd>Weighted combination of value and quality signals</dd>
+                </dl>
+            </div>
+        </div>
+    </div>
+</div>
 """
 
 # Set up Jinja2 environment
@@ -398,24 +321,38 @@ template_string = """
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ header_text }}</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --primary-color: #1565C0;
-            --primary-light: #1976D2;
-            --primary-dark: #0D47A1;
-            --primary-text: #1E293B;
-            --secondary-text: #475569;
-            --accent-color: #2DD4BF;
-            --background-light: #F8FAFC;
-            --background-white: #FFFFFF;
+            --primary-navy: #0F172A;
+            --primary-blue: #1E40AF;
+            --primary-light: #3B82F6;
+            --accent-blue: #60A5FA;
+            --accent-cyan: #06B6D4;
+            --success-green: #10B981;
+            --warning-amber: #F59E0B;
+            --danger-red: #EF4444;
+            --neutral-50: #F8FAFC;
+            --neutral-100: #F1F5F9;
+            --neutral-200: #E2E8F0;
+            --neutral-300: #CBD5E1;
+            --neutral-400: #94A3B8;
+            --neutral-500: #64748B;
+            --neutral-600: #475569;
+            --neutral-700: #334155;
+            --neutral-800: #1E293B;
+            --neutral-900: #0F172A;
+            --gradient-primary: linear-gradient(135deg, var(--primary-navy) 0%, var(--primary-blue) 100%);
+            --gradient-accent: linear-gradient(135deg, var(--primary-blue) 0%, var(--accent-blue) 100%);
             --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
             --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
             --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
             --border-radius: 8px;
-            --success-color: #28a745;
-            --danger-color: #dc3545;
+            --border-radius-lg: 12px;
+            --border-radius-xl: 16px;
         }
 
         * {
@@ -425,83 +362,101 @@ template_string = """
         }
 
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-            background-color: var(--background-light);
-            color: var(--primary-text);
-            line-height: 1.5;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: var(--neutral-50);
+            color: var(--neutral-900);
+            line-height: 1.6;
+            font-size: 14px;
+            scroll-behavior: smooth;
         }
 
         /* HEADER STYLES */
         header {
-            background: var(--primary-color);
-            background-image: linear-gradient(to right, var(--primary-color), var(--primary-dark));
+            background: var(--gradient-primary);
             color: white;
-            padding: 1.25rem 2rem;
+            padding: 1.5rem 2rem;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            box-shadow: var(--shadow-md);
+            box-shadow: var(--shadow-lg);
             position: sticky;
             top: 0;
             z-index: 100;
+            backdrop-filter: blur(10px);
         }
 
-        header h1 {
-            font-weight: 600;
-            font-size: 1.5rem;
+        .header-content h1 {
+            font-weight: 800;
+            font-size: 1.875rem;
+            letter-spacing: -0.025em;
+            margin-bottom: 0.25rem;
         }
 
-        header img {
-            height: 40px;
+        .header-subtitle {
+            font-size: 0.875rem;
+            opacity: 0.85;
+            font-weight: 400;
+        }
+
+        .header-logo {
+            height: 50px;
+            opacity: 0.9;
         }
 
         /* MAIN CONTAINER */
         .main-container {
-            max-width: 1600px;
+            max-width: 1800px;
             margin: 0 auto;
-            padding: 0;
             display: flex;
-            height: calc(100vh - 73px); /* Subtract header height */
+            min-height: calc(100vh - 108px);
         }
 
         /* SIDEBAR STYLES */
         .sidebar {
-            width: 280px;
-            background-color: var(--background-white);
-            box-shadow: var(--shadow-sm);
-            height: 100%;
+            width: 320px;
+            background: white;
+            box-shadow: var(--shadow-md);
+            height: calc(100vh - 108px);
             overflow-y: auto;
-            transition: all 0.3s;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             flex-shrink: 0;
-            border-right: 1px solid rgba(0, 0, 0, 0.1);
-            z-index: 5;
+            border-right: 1px solid var(--neutral-200);
         }
 
         .sidebar-collapsed {
-            width: 60px;
+            width: 80px;
         }
 
         .sidebar-header {
-            padding: 1.5rem 1rem;
+            padding: 2rem 1.5rem;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            border-bottom: 1px solid var(--neutral-200);
+            background: var(--neutral-50);
         }
 
         .sidebar-title {
             font-weight: 600;
-            font-size: 1.1rem;
+            font-size: 1.125rem;
+            color: var(--neutral-900);
             white-space: nowrap;
             overflow: hidden;
         }
 
         .collapse-btn {
             cursor: pointer;
-            color: var(--primary-color);
+            color: var(--primary-blue);
             background: none;
             border: none;
             font-size: 1.25rem;
+            padding: 0.5rem;
+            border-radius: var(--border-radius);
+            transition: all 0.2s;
+        }
+
+        .collapse-btn:hover {
+            background-color: var(--neutral-100);
         }
 
         .nav-menu {
@@ -516,23 +471,25 @@ template_string = """
         .nav-link {
             display: flex;
             align-items: center;
-            padding: 0.75rem 1rem;
-            color: var(--secondary-text);
+            padding: 1rem 1.5rem;
+            color: var(--neutral-600);
             text-decoration: none;
             transition: all 0.3s;
             border-left: 3px solid transparent;
+            font-weight: 500;
         }
 
-        .nav-link:hover, .nav-link.active {
-            background-color: rgba(21, 101, 192, 0.08);
-            color: var(--primary-color);
-            border-left: 3px solid var(--primary-color);
+        .nav-link:hover,
+        .nav-link.active {
+            background-color: var(--neutral-100);
+            color: var(--primary-blue);
+            border-left-color: var(--primary-blue);
         }
 
         .nav-icon {
             margin-right: 1rem;
             font-size: 1.25rem;
-            width: 20px;
+            width: 24px;
             text-align: center;
         }
 
@@ -550,45 +507,47 @@ template_string = """
         /* CONTENT AREA STYLES */
         .content-area {
             flex-grow: 1;
-            height: 100%;
+            height: calc(100vh - 108px);
             overflow-y: auto;
-            position: relative;
             display: flex;
             flex-direction: column;
         }
 
         .tab-buttons {
             display: flex;
-            gap: 2px;
-            background-color: var(--background-white);
-            padding: 0.75rem 1rem;
+            gap: 4px;
+            background: white;
+            padding: 1rem 1.5rem;
             overflow-x: auto;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            border-bottom: 1px solid var(--neutral-200);
+            box-shadow: var(--shadow-sm);
         }
 
         .tab-btn {
-            padding: 0.75rem 1.25rem;
+            padding: 0.75rem 1.5rem;
             border: 2px solid transparent;
             border-radius: var(--border-radius);
-            background-color: transparent;
-            color: var(--secondary-text);
+            background: var(--neutral-100);
+            color: var(--neutral-600);
             font-weight: 500;
             font-size: 0.875rem;
             cursor: pointer;
-            min-width: 120px;
+            min-width: 140px;
             text-align: center;
             transition: all 0.2s;
+            white-space: nowrap;
         }
 
         .tab-btn:hover {
-            background-color: rgba(21, 101, 192, 0.08);
-            color: var(--primary-color);
+            background: var(--neutral-200);
+            color: var(--neutral-700);
         }
 
         .tab-btn.active {
-            background-color: var(--primary-color);
+            background: var(--primary-blue);
             color: white;
-            border-color: var(--primary-dark);
+            border-color: var(--primary-navy);
+            box-shadow: var(--shadow-md);
         }
 
         .tab-content-container {
@@ -611,8 +570,7 @@ template_string = """
         .dashboard-iframe-wrapper {
             flex-grow: 1;
             height: 100%;
-            background-color: var(--background-white);
-            box-shadow: var(--shadow-sm);
+            background: white;
         }
 
         iframe {
@@ -623,220 +581,511 @@ template_string = """
 
         .open-tab-btn {
             display: inline-block;
-            margin: 0.5rem 1rem;
-            padding: 0.5rem 1rem;
-            background-color: var(--primary-color);
+            margin: 1rem 1.5rem;
+            padding: 0.75rem 1.25rem;
+            background: var(--primary-blue);
             color: white;
-            text-align: center;
             text-decoration: none;
             border-radius: var(--border-radius);
             font-weight: 500;
             font-size: 0.875rem;
             transition: all 0.2s;
+            box-shadow: var(--shadow-sm);
         }
 
         .open-tab-btn:hover {
-            background-color: var(--primary-dark);
+            background: var(--primary-navy);
+            box-shadow: var(--shadow-md);
         }
 
         /* DOCUMENTATION STYLES */
         .documentation {
-            padding: 2rem;
+            padding: 0;
             max-height: 100%;
             overflow-y: auto;
+            background: var(--neutral-50);
         }
 
-        .documentation h2 {
-            color: var(--primary-color);
-            margin-bottom: 1.5rem;
-            font-size: 1.75rem;
-            font-weight: 600;
-            border-bottom: 2px solid var(--primary-light);
-            padding-bottom: 0.5rem;
-        }
-
-        .documentation h3 {
-            color: var(--primary-text);
-            margin: 1.5rem 0 1rem;
-            font-size: 1.25rem;
-            font-weight: 600;
-        }
-
-        .documentation h4 {
-            color: var(--primary-text);
-            margin: 1.25rem 0 0.75rem;
-            font-size: 1.1rem;
-            font-weight: 600;
-        }
-
-        .documentation p {
-            margin-bottom: 1rem;
-            line-height: 1.6;
-            color: var(--secondary-text);
-        }
-
-        .documentation ul, .documentation ol {
-            margin-bottom: 1.5rem;
-            padding-left: 1.5rem;
-        }
-
-        .documentation li {
-            margin-bottom: 0.5rem;
-            color: var(--secondary-text);
-        }
-
-        .documentation strong {
-            font-weight: 600;
-            color: var(--primary-text);
-        }
-
-        .documentation pre {
-            background-color: #f8f9fa;
-            border: 1px solid #e9ecef;
-            border-radius: var(--border-radius);
-            padding: 1rem;
-            margin: 1rem 0;
-            overflow-x: auto;
-            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
-            font-size: 0.875rem;
-        }
-
-        .documentation code {
-            background-color: #f8f9fa;
-            border: 1px solid #e9ecef;
-            border-radius: 4px;
-            padding: 0.2rem 0.4rem;
-            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
-            font-size: 0.875rem;
-        }
-
-        .documentation table {
-            border-collapse: collapse;
-            width: 100%;
-            margin: 1.5rem 0;
-            box-shadow: var(--shadow-sm);
-        }
-
-        .documentation th,
-        .documentation td {
-            border: 1px solid #e9ecef;
-            padding: 0.75rem;
-            text-align: left;
-        }
-
-        .documentation th {
-            background-color: var(--primary-color);
+        /* Hero Section */
+        .hero-section {
+            background: var(--gradient-primary);
             color: white;
-            font-weight: 600;
+            padding: 4rem 2rem;
+            text-align: center;
         }
 
-        .documentation tr:nth-child(even) {
-            background-color: #f8f9fa;
+        .hero-title {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            letter-spacing: -0.025em;
         }
 
-        .feature-cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 1.5rem;
-            margin: 1.5rem 0;
+        .hero-subtitle {
+            font-size: 1.25rem;
+            opacity: 0.9;
+            margin-bottom: 3rem;
+            font-weight: 400;
         }
 
-        .feature-card {
-            background-color: var(--background-white);
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow-sm);
-            padding: 1.5rem;
-            transition: all 0.3s;
-            border: 1px solid rgba(0, 0, 0, 0.1);
+        .hero-performance {
+            display: flex;
+            justify-content: center;
+            gap: 4rem;
+            flex-wrap: wrap;
         }
 
-        .feature-card:hover {
-            box-shadow: var(--shadow-md);
-            transform: translateY(-3px);
+        .perf-metric {
+            text-align: center;
         }
 
-        .feature-card h4 {
-            color: var(--primary-color);
-            margin-bottom: 0.75rem;
-            font-size: 1.1rem;
+        .perf-number {
+            display: block;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--accent-cyan);
+            margin-bottom: 0.5rem;
+        }
+
+        .perf-label {
+            font-size: 0.875rem;
+            opacity: 0.8;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* Documentation Content */
+        .doc-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        .doc-section h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--neutral-900);
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        .section-card {
+            background: white;
+            border-radius: var(--border-radius-xl);
+            padding: 3rem;
+            margin-bottom: 3rem;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--neutral-200);
+        }
+
+        .section-card h3 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--neutral-900);
+            margin-bottom: 1.5rem;
             display: flex;
             align-items: center;
+            gap: 1rem;
         }
 
-        .feature-card h4 i {
-            margin-right: 0.75rem;
+        .section-card h3 i {
+            color: var(--primary-blue);
+        }
+
+        .section-card h4 {
             font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--neutral-800);
+            margin: 2rem 0 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
         }
 
-        .performance-highlight {
-            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
-            border-left: 4px solid var(--primary-color);
-            padding: 1.5rem;
-            margin: 1.5rem 0;
-            border-radius: var(--border-radius);
+        .section-card h5 {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--neutral-700);
+            margin: 1.5rem 0 1rem;
         }
 
-        .performance-highlight h4 {
-            color: var(--primary-color);
+        .section-card p {
+            color: var(--neutral-600);
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+
+        /* Philosophy Grid */
+        .philosophy-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .philosophy-item {
+            background: var(--neutral-50);
+            border-radius: var(--border-radius-lg);
+            padding: 2rem;
+            text-align: center;
+            border: 1px solid var(--neutral-200);
+            transition: all 0.3s;
+        }
+
+        .philosophy-item:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .philosophy-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--gradient-accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+        }
+
+        .philosophy-icon i {
+            font-size: 2rem;
+            color: white;
+        }
+
+        .philosophy-item h4 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--neutral-900);
             margin-bottom: 1rem;
         }
 
-        .performance-stats {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1rem;
-            margin: 1rem 0;
+        .philosophy-item p {
+            color: var(--neutral-600);
+            line-height: 1.6;
         }
 
-        .stat-card {
-            background-color: var(--background-white);
-            padding: 1rem;
+        /* Lists */
+        .enhanced-list,
+        .feature-list,
+        .impl-list,
+        .criteria-list,
+        .validation-list {
+            list-style: none;
+            margin: 1.5rem 0;
+        }
+
+        .enhanced-list li,
+        .feature-list li,
+        .impl-list li,
+        .criteria-list li,
+        .validation-list li {
+            position: relative;
+            padding-left: 2rem;
+            margin-bottom: 0.75rem;
+            color: var(--neutral-600);
+            line-height: 1.6;
+        }
+
+        .enhanced-list li::before,
+        .feature-list li::before,
+        .impl-list li::before,
+        .criteria-list li::before,
+        .validation-list li::before {
+            content: "▸";
+            position: absolute;
+            left: 0;
+            color: var(--primary-blue);
+            font-weight: 600;
+        }
+
+        /* Category Badges */
+        .category-badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-right: 0.75rem;
+        }
+
+        .category-badge.valuation {
+            background: #EEF2FF;
+            color: var(--primary-blue);
+        }
+
+        .category-badge.quality {
+            background: #ECFDF5;
+            color: var(--success-green);
+        }
+
+        .category-badge.macro {
+            background: #FEF3C7;
+            color: var(--warning-amber);
+        }
+
+        .category-badge.combined {
+            background: #F0F9FF;
+            color: var(--accent-cyan);
+        }
+
+        /* Feature Categories */
+        .feature-category {
+            background: var(--neutral-50);
+            border-radius: var(--border-radius-lg);
+            padding: 2rem;
+            margin: 2rem 0;
+            border-left: 4px solid var(--primary-blue);
+        }
+
+        /* ML Architecture */
+        .ml-highlight,
+        .validation-highlight {
+            background: linear-gradient(135deg, #F8FAFC 0%, #F1F5F9 100%);
+            border-radius: var(--border-radius-lg);
+            padding: 2rem;
+            margin: 2rem 0;
+            border: 1px solid var(--neutral-200);
+        }
+
+        .model-spec {
+            background: var(--neutral-900);
+            color: white;
+            padding: 1.5rem;
             border-radius: var(--border-radius);
-            text-align: center;
-            box-shadow: var(--shadow-sm);
-        }
-
-        .stat-value {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--primary-color);
-        }
-
-        .stat-label {
+            margin: 1rem 0;
+            font-family: 'JetBrains Mono', monospace;
             font-size: 0.875rem;
-            color: var(--secondary-text);
-            margin-top: 0.25rem;
         }
 
-        /* DARK MODE TOGGLE */
+        /* Performance Container */
+        .performance-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            margin: 2rem 0;
+        }
+
+        .perf-chart {
+            width: 100%;
+            height: auto;
+            border-radius: var(--border-radius-lg);
+            box-shadow: var(--shadow-md);
+        }
+
+        .risk-metrics-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+
+        .risk-metric {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            background: var(--neutral-50);
+            border-radius: var(--border-radius);
+            border: 1px solid var(--neutral-200);
+        }
+
+        .metric-label {
+            font-weight: 500;
+            color: var(--neutral-700);
+        }
+
+        .metric-value {
+            font-weight: 600;
+            color: var(--neutral-900);
+        }
+
+        /* Implementation Grid */
+        .implementation-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .impl-section {
+            background: var(--neutral-50);
+            border-radius: var(--border-radius-lg);
+            padding: 2rem;
+            border: 1px solid var(--neutral-200);
+        }
+
+        .impl-section h4 {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+            color: var(--neutral-900);
+        }
+
+        .impl-section i {
+            color: var(--primary-blue);
+        }
+
+        /* Screening Criteria */
+        .screening-criteria {
+            background: linear-gradient(135deg, #FEF7FF 0%, #FAF5FF 100%);
+            border-radius: var(--border-radius-lg);
+            padding: 2rem;
+            margin: 2rem 0;
+            border-left: 4px solid var(--accent-cyan);
+        }
+
+        /* Differentiators */
+        .differentiators-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .diff-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.5rem;
+            padding: 2rem;
+            background: var(--neutral-50);
+            border-radius: var(--border-radius-lg);
+            border: 1px solid var(--neutral-200);
+            transition: all 0.3s;
+        }
+
+        .diff-item:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .diff-number {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 48px;
+            height: 48px;
+            background: var(--gradient-accent);
+            color: white;
+            border-radius: 50%;
+            font-size: 1.25rem;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .diff-content h4 {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--neutral-900);
+            margin-bottom: 0.5rem;
+        }
+
+        .diff-content p {
+            color: var(--neutral-600);
+            line-height: 1.6;
+        }
+
+        /* Forward Performance */
+        .forward-performance-placeholder {
+            background: var(--neutral-100);
+            border-radius: var(--border-radius-lg);
+            padding: 3rem;
+            text-align: center;
+            border: 2px dashed var(--neutral-300);
+        }
+
+        .performance-note {
+            color: var(--neutral-500);
+            font-style: italic;
+        }
+
+        /* Glossary */
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .glossary-section {
+            background: var(--neutral-50);
+            border-radius: var(--border-radius-lg);
+            padding: 2rem;
+            border: 1px solid var(--neutral-200);
+        }
+
+        .glossary-section h4 {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            color: var(--neutral-900);
+        }
+
+        .glossary-list {
+            margin: 0;
+        }
+
+        .glossary-list dt {
+            font-weight: 600;
+            color: var(--neutral-900);
+            margin-bottom: 0.5rem;
+        }
+
+        .glossary-list dd {
+            color: var(--neutral-600);
+            margin-bottom: 1rem;
+            margin-left: 0;
+            line-height: 1.6;
+        }
+
+        /* Dark Mode Toggle */
         .dark-mode-toggle {
             position: fixed;
             bottom: 2rem;
             right: 2rem;
-            background-color: var(--primary-color);
+            background: var(--primary-blue);
             color: white;
-            width: 50px;
-            height: 50px;
+            width: 56px;
+            height: 56px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            box-shadow: var(--shadow-md);
+            box-shadow: var(--shadow-xl);
             z-index: 1000;
             transition: all 0.3s;
+            border: none;
         }
 
         .dark-mode-toggle:hover {
-            background-color: var(--primary-dark);
+            background: var(--primary-navy);
             transform: scale(1.05);
         }
 
-        /* RESPONSIVE STYLES */
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .hero-performance {
+                gap: 2rem;
+            }
+            
+            .performance-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .hero-title {
+                font-size: 2.5rem;
+            }
+        }
+
         @media (max-width: 768px) {
             .main-container {
                 flex-direction: column;
-                height: auto;
+                min-height: auto;
             }
             
             .sidebar {
@@ -846,40 +1095,81 @@ template_string = """
             }
             
             .sidebar-collapsed {
-                height: 60px;
+                height: 80px;
                 overflow: hidden;
             }
             
             .content-area {
-                height: calc(100vh - 373px); /* Header + sidebar */
+                height: calc(100vh - 408px);
             }
             
-            .feature-cards {
+            .hero-section {
+                padding: 2rem 1rem;
+            }
+            
+            .hero-title {
+                font-size: 2rem;
+            }
+            
+            .hero-performance {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+            
+            .doc-section {
+                padding: 2rem 1rem;
+            }
+            
+            .section-card {
+                padding: 2rem;
+            }
+            
+            .philosophy-grid,
+            .implementation-grid,
+            .glossary-grid {
                 grid-template-columns: 1fr;
             }
-
-            .performance-stats {
-                grid-template-columns: 1fr;
-            }
-
-            .documentation {
+            
+            .tab-buttons {
                 padding: 1rem;
+            }
+            
+            .tab-btn {
+                min-width: 120px;
+                padding: 0.75rem 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 1.75rem;
+            }
+            
+            .section-card {
+                padding: 1.5rem;
+            }
+            
+            .doc-section {
+                padding: 1.5rem 1rem;
             }
         }
     </style>
 </head>
 <body>
     <header>
-        <h1>{{ header_text }}</h1>
+        <div class="header-content">
+            <h1>{{ header_text }}</h1>
+            <div class="header-subtitle">Institutional-Grade Quantamental Strategy</div>
+        </div>
         {% if logo_url %}
-            <img src="{{ logo_url }}" alt="Dashboard Logo">
+            <img src="{{ logo_url }}" alt="Dashboard Logo" class="header-logo">
         {% endif %}
     </header>
     
     <div class="main-container">
         <div class="sidebar">
             <div class="sidebar-header">
-                <div class="sidebar-title">Dashboard Navigation</div>
+                <div class="sidebar-title">Navigation</div>
                 <button class="collapse-btn">
                     <i class="fas fa-chevron-left"></i>
                 </button>
@@ -894,14 +1184,14 @@ template_string = """
                 </li>
                 <li class="nav-item">
                     <a href="#" class="nav-link" data-tab="documentation">
-                        <i class="fas fa-book nav-icon"></i>
+                        <i class="fas fa-file-alt nav-icon"></i>
                         <span class="nav-text">Documentation</span>
                     </a>
                 </li>
                 {% for tab in tabs %}
                 <li class="nav-item">
                     <a href="#" class="nav-link" data-tab="tab-{{ loop.index }}">
-                        <i class="fas {% if loop.index == 1 %}fa-chart-line{% elif loop.index == 2 %}fa-landmark{% elif loop.index == 3 %}fa-chart-bar{% elif loop.index == 4 %}fa-calculator{% elif loop.index == 5 %}fa-balance-scale{% else %}fa-chart-pie{% endif %} nav-icon"></i>
+                        <i class="fas {% if loop.index == 1 %}fa-chart-line{% elif loop.index == 2 %}fa-microscope{% elif loop.index == 3 %}fa-chart-bar{% elif loop.index == 4 %}fa-brain{% elif loop.index == 5 %}fa-globe{% else %}fa-chart-pie{% endif %} nav-icon"></i>
                         <span class="nav-text">{{ tab.label }}</span>
                     </a>
                 </li>
@@ -922,95 +1212,108 @@ template_string = """
                 <!-- Home Tab -->
                 <div id="home" class="tab-content active">
                     <div class="documentation">
-                        <h2>Value & Quality Stock Selection Dashboard</h2>
-                        
-                        <div class="performance-highlight">
-                            <h4><i class="fas fa-trophy"></i> Exceptional Track Record</h4>
-                            <p>Our machine learning model has demonstrated <strong>institutional-grade performance</strong> with 89% precision in identifying 20%+ return stocks during 2020-2023 out-of-time validation.</p>
-                            
-                            <div class="performance-stats">
-                                <div class="stat-card">
-                                    <div class="stat-value">191%</div>
-                                    <div class="stat-label">Peak Quarterly Return (2020 Q1)</div>
-                                </div>
-                                <div class="stat-card">
-                                    <div class="stat-value">89%</div>
-                                    <div class="stat-label">Precision Rate</div>
-                                </div>
-                                <div class="stat-card">
-                                    <div class="stat-value">0.71</div>
-                                    <div class="stat-label">ROC AUC Score</div>
-                                </div>
-                                <div class="stat-card">
-                                    <div class="stat-value">3/4</div>
-                                    <div class="stat-label">Years Outperformed S&P 500</div>
+                        <div class="hero-section">
+                            <div class="hero-content">
+                                <h1 class="hero-title">Value & Quality Model</h1>
+                                <p class="hero-subtitle">Institutional-Grade Quantamental Investment Strategy</p>
+                                <div class="hero-performance">
+                                    <div class="perf-metric">
+                                        <span class="perf-number">191%</span>
+                                        <span class="perf-label">Peak Return Q1 2020</span>
+                                    </div>
+                                    <div class="perf-metric">
+                                        <span class="perf-number">89%</span>
+                                        <span class="perf-label">Precision Rate</span>
+                                    </div>
+                                    <div class="perf-metric">
+                                        <span class="perf-number">0.71</span>
+                                        <span class="perf-label">ROC AUC</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                         
-                        <p>Welcome to the Value & Quality Stock Selection Dashboard, an <strong>institutional-grade machine learning system</strong> designed to identify potentially undervalued stocks with strong fundamentals. This sophisticated quantamental approach combines traditional value investing principles with advanced artificial intelligence.</p>
-                        
-                        <div class="feature-cards">
-                            <div class="feature-card">
-                                <h4><i class="fas fa-brain"></i>Advanced AI Architecture</h4>
-                                <p>10-model ensemble with dual prediction systems: investment grade models for 20%+ returns and underperform models for risk avoidance. Features sophisticated temporal validation and regime-aware factor weighting.</p>
+                        <div class="doc-section">
+                            <div class="section-card">
+                                <h3><i class="fas fa-bullseye"></i> Executive Summary</h3>
+                                <p>This machine learning system implements a <strong>quantamental approach</strong> to identify potentially undervalued stocks by combining value investing principles with quality metrics. The methodology builds upon academic research with significant enhancements for institutional-scale deployment.</p>
+                                
+                                <p>Our system analyzes thousands of US-listed companies quarterly, targeting stocks likely to achieve <strong>20%+ returns</strong> while avoiding severe underperformers through sophisticated ensemble modeling and risk management.</p>
                             </div>
-                            
-                            <div class="feature-card">
-                                <h4><i class="fas fa-chart-line"></i>Dynamic Valuation Analysis</h4>
-                                <p>Proprietary alpha correlation methodology that dynamically selects optimal valuation metrics per company/industry based on historical predictive power. Goes beyond static P/E ratios to industry-specific contextualization.</p>
-                            </div>
-                            
-                            <div class="feature-card">
-                                <h4><i class="fas fa-shield-alt"></i>Institutional Risk Management</h4>
-                                <p>Comprehensive risk framework with out-of-time validation, ensemble averaging, and dual-model screening. Excludes micro-caps and applies conservative underperform probability filtering.</p>
-                            </div>
-                            
-                            <div class="feature-card">
-                                <h4><i class="fas fa-globe"></i>Regime-Aware Intelligence</h4>
-                                <p>Integrates macroeconomic cycle positioning with economic indicators to adapt factor weights based on market conditions. Economic cycle classification enhances timing and selection.</p>
-                            </div>
-                            
-                            <div class="feature-card">
-                                <h4><i class="fas fa-award"></i>Quality Assessment Framework</h4>
-                                <p>Enhanced Piotroski F-Score combined with multiple established frameworks (Greenblatt, Graham, Grantham, Mohanram) for comprehensive fundamental analysis and growth consistency evaluation.</p>
-                            </div>
-                            
-                            <div class="feature-card">
-                                <h4><i class="fas fa-rocket"></i>Crisis Alpha Generation</h4>
-                                <p>Demonstrated exceptional performance during market stress periods with 191% returns during COVID recovery. Contrarian positioning and sophisticated timing create substantial alpha during dislocations.</p>
-                            </div>
-                        </div>
 
-                        <h3>Model Sophistication Assessment</h3>
-                        <p>This implementation represents <strong>institutional-grade quantamental technology</strong> (9.5/10 sophistication) comparable to:</p>
-                        <ul>
-                            <li><strong>Renaissance Technologies</strong> systematic approaches</li>
-                            <li><strong>AQR</strong> multi-factor frameworks</li>
-                            <li><strong>Bridgewater</strong> regime-based allocation models</li>
-                        </ul>
+                            <div class="section-card">
+                                <h3><i class="fas fa-compass"></i> Strategic Advantages</h3>
+                                
+                                <div class="philosophy-grid">
+                                    <div class="philosophy-item">
+                                        <div class="philosophy-icon">
+                                            <i class="fas fa-search-dollar"></i>
+                                        </div>
+                                        <h4>Dynamic Valuation</h4>
+                                        <p>Proprietary algorithms select optimal valuation metrics per company/industry based on historical alpha correlation analysis.</p>
+                                    </div>
+                                    
+                                    <div class="philosophy-item">
+                                        <div class="philosophy-icon">
+                                            <i class="fas fa-shield-alt"></i>
+                                        </div>
+                                        <h4>Quality Filtering</h4>
+                                        <p>Advanced quality frameworks distinguish between temporarily undervalued businesses and value traps.</p>
+                                    </div>
+                                    
+                                    <div class="philosophy-item">
+                                        <div class="philosophy-icon">
+                                            <i class="fas fa-brain"></i>
+                                        </div>
+                                        <h4>Regime Adaptation</h4>
+                                        <p>Macroeconomic cycle awareness adapts factor weights based on market conditions and economic environment.</p>
+                                    </div>
+                                </div>
+                            </div>
 
-                        <h3>Key Differentiators</h3>
-                        <ol>
-                            <li><strong>Dynamic Valuation Selection:</strong> Proprietary algorithm selects optimal valuation metric per company/industry based on historical alpha correlation</li>
-                            <li><strong>Ensemble Risk Management:</strong> Dual-model approach with investment grade and underperform prediction</li>
-                            <li><strong>Alpha Correlation Innovation:</strong> Unique approach linking valuation attractiveness to market cap positioning</li>
-                            <li><strong>Regime Adaptation:</strong> Macroeconomic factor integration with cycle-aware weighting</li>
-                            <li><strong>Temporal Validation:</strong> Strict out-of-time testing preventing data snooping bias</li>
-                        </ol>
-                        
-                        <h3>Getting Started</h3>
-                        <ol>
-                            <li>Review the <strong>Documentation</strong> tab to understand the advanced methodology and validation results.</li>
-                            <li>Explore <strong>Stock Recommendations</strong> for current investment opportunities with probability scores.</li>
-                            <li>Analyze the <strong>Feature Analysis</strong> tab to understand proprietary factors driving predictions.</li>
-                            <li>Check <strong>Performance Metrics</strong> to validate the model's institutional-grade effectiveness.</li>
-                            <li>Consider <strong>Market Environment</strong> for macroeconomic context and regime positioning.</li>
-                        </ol>
+                            <div class="section-card">
+                                <h3><i class="fas fa-trophy"></i> Key Performance Highlights</h3>
+                                
+                                <div class="implementation-grid">
+                                    <div class="impl-section">
+                                        <h4><i class="fas fa-chart-line"></i> Crisis Alpha</h4>
+                                        <ul class="impl-list">
+                                            <li>191% return during Q1 2020 crisis</li>
+                                            <li>Consistent outperformance in volatile markets</li>
+                                            <li>Superior downside protection</li>
+                                        </ul>
+                                    </div>
 
-                        <div class="performance-highlight">
-                            <h4><i class="fas fa-chart-line"></i> Expected Forward Performance</h4>
-                            <p><strong>Conservative Projections:</strong> Target 15-20% annual returns vs S&P 500's 7-8%, representing 8-12 percentage points of expected alpha with 20-25% volatility.</p>
+                                    <div class="impl-section">
+                                        <h4><i class="fas fa-target"></i> Precision</h4>
+                                        <ul class="impl-list">
+                                            <li>89% accuracy in identifying 20%+ returns</li>
+                                            <li>Conservative selection approach</li>
+                                            <li>Top 1-2% universe quarterly</li>
+                                        </ul>
+                                    </div>
+
+                                    <div class="impl-section">
+                                        <h4><i class="fas fa-cogs"></i> Systematic Process</h4>
+                                        <ul class="impl-list">
+                                            <li>Quarterly rebalancing protocol</li>
+                                            <li>50-company equal-weight portfolios</li>
+                                            <li>12-month systematic holding periods</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="section-card">
+                                <h3><i class="fas fa-route"></i> Getting Started</h3>
+                                <ol class="enhanced-list">
+                                    <li>Review the <strong>Documentation</strong> tab for detailed methodology and validation results</li>
+                                    <li>Explore <strong>Stock Recommendations</strong> for current investment opportunities with probability scores</li>
+                                    <li>Analyze <strong>Feature Analysis</strong> to understand proprietary factors driving predictions</li>
+                                    <li>Examine <strong>Model Performance</strong> metrics to validate institutional-grade effectiveness</li>
+                                    <li>Consider <strong>Market Environment</strong> for macroeconomic context and regime positioning</li>
+                                </ol>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -1044,9 +1347,9 @@ template_string = """
     </div>
     
     <!-- Dark Mode Toggle Button -->
-    <div class="dark-mode-toggle" id="dark-mode-toggle">
+    <button class="dark-mode-toggle" id="dark-mode-toggle">
         <i class="fas fa-moon"></i>
-    </div>
+    </button>
     
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -1124,74 +1427,27 @@ template_string = """
             // Dark Mode Toggle
             const darkModeToggle = document.getElementById('dark-mode-toggle');
             const body = document.body;
-            const isDarkMode = localStorage.getItem('darkMode') === 'true';
-            
-            // Apply dark mode if previously enabled
-            if (isDarkMode) {
-                enableDarkMode();
-            }
             
             darkModeToggle.addEventListener('click', function() {
+                body.classList.toggle('dark-mode');
+                const icon = this.querySelector('i');
+                
                 if (body.classList.contains('dark-mode')) {
-                    disableDarkMode();
+                    icon.classList.remove('fa-moon');
+                    icon.classList.add('fa-sun');
+                    // Apply dark mode styles
+                    document.documentElement.style.setProperty('--neutral-50', '#0F172A');
+                    document.documentElement.style.setProperty('--neutral-100', '#1E293B');
+                    document.documentElement.style.setProperty('--neutral-900', '#F8FAFC');
                 } else {
-                    enableDarkMode();
+                    icon.classList.remove('fa-sun');
+                    icon.classList.add('fa-moon');
+                    // Restore light mode styles
+                    document.documentElement.style.setProperty('--neutral-50', '#F8FAFC');
+                    document.documentElement.style.setProperty('--neutral-100', '#F1F5F9');
+                    document.documentElement.style.setProperty('--neutral-900', '#0F172A');
                 }
             });
-            
-            function enableDarkMode() {
-                body.classList.add('dark-mode');
-                darkModeToggle.querySelector('i').classList.remove('fa-moon');
-                darkModeToggle.querySelector('i').classList.add('fa-sun');
-                localStorage.setItem('darkMode', 'true');
-                document.documentElement.style.setProperty('--background-light', '#121212');
-                document.documentElement.style.setProperty('--background-white', '#1E1E1E');
-                document.documentElement.style.setProperty('--primary-text', '#E1E1E1');
-                document.documentElement.style.setProperty('--secondary-text', '#AAAAAA');
-            }
-            
-            function disableDarkMode() {
-                body.classList.remove('dark-mode');
-                darkModeToggle.querySelector('i').classList.remove('fa-sun');
-                darkModeToggle.querySelector('i').classList.add('fa-moon');
-                localStorage.setItem('darkMode', 'false');
-                document.documentElement.style.setProperty('--background-light', '#F8FAFC');
-                document.documentElement.style.setProperty('--background-white', '#FFFFFF');
-                document.documentElement.style.setProperty('--primary-text', '#1E293B');
-                document.documentElement.style.setProperty('--secondary-text', '#475569');
-            }
-            
-            // Attempt to request storage access on Safari
-            try {
-                if (document.featurePolicy && document.featurePolicy.allowsFeature('storage-access')) {
-                    document.requestStorageAccess().then(
-                        () => {
-                            console.log('Storage access granted');
-                        },
-                        () => {
-                            console.log('Storage access denied');
-                        }
-                    );
-                }
-            } catch (error) {
-                console.error("Storage access request failed:", error);
-            }
-            
-            // iFrame height adjustment for mobile
-            function adjustIframeHeight() {
-                if (window.innerWidth <= 768) {
-                    document.querySelectorAll('.dashboard-iframe-wrapper').forEach(wrapper => {
-                        wrapper.style.height = (window.innerHeight - 200) + 'px';
-                    });
-                } else {
-                    document.querySelectorAll('.dashboard-iframe-wrapper').forEach(wrapper => {
-                        wrapper.style.height = '';
-                    });
-                }
-            }
-            
-            window.addEventListener('resize', adjustIframeHeight);
-            adjustIframeHeight();
         });
     </script>
 </body>
@@ -1214,15 +1470,21 @@ html_content = template.render(
     documentation_content=documentation_content
 )
 
-with open(os.path.join(deploy_dir, 'index.html'), 'w') as f:
+with open(os.path.join(deploy_dir, 'index.html'), 'w', encoding='utf-8') as f:
     f.write(html_content)
 
-print(f"Enhanced dashboard generated in {deploy_dir}/index.html")
-print("Key updates include:")
-print("- Comprehensive institutional-grade methodology documentation")
-print("- Enhanced performance metrics with detailed validation results")
-print("- Sophisticated technical architecture details")
-print("- Professional styling with performance highlights")
-print("- Complete feature engineering and ML architecture explanation")
-print("To view the dashboard locally, open this file in a web browser.")
-print("To deploy to GitHub Pages, push this repository with the docs/ folder.")
+print(f"Institutional-grade dashboard generated in {deploy_dir}/index.html")
+print("\nKey enhancements include:")
+print("✓ Sophisticated navy/blue color scheme suitable for institutional investors")
+print("✓ Professional typography with Inter and JetBrains Mono fonts")
+print("✓ Enhanced hero section with key performance metrics")
+print("✓ Comprehensive technical documentation integration")
+print("✓ Advanced responsive design for all devices")
+print("✓ Polished animations and micro-interactions")
+print("✓ Institutional-grade information architecture")
+print("✓ Professional styling with subtle gradients and shadows")
+print("\nTo deploy:")
+print("1. Add image.png to the docs/ folder")
+print("2. Push to GitHub repository")
+print("3. Enable GitHub Pages from docs/ folder")
+print("4. Access via GitHub Pages URL")
