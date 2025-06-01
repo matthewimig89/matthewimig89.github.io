@@ -3,1110 +3,631 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Value & Quality Stock Selection Model</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <title>Value & Quality Investing</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        :root {
-            --primary-navy: #0F172A;
-            --primary-blue: #1E40AF;
-            --primary-light: #3B82F6;
-            --accent-blue: #60A5FA;
-            --accent-cyan: #06B6D4;
-            --success-green: #10B981;
-            --warning-amber: #F59E0B;
-            --danger-red: #EF4444;
-            --neutral-50: #F8FAFC;
-            --neutral-100: #F1F5F9;
-            --neutral-200: #E2E8F0;
-            --neutral-300: #CBD5E1;
-            --neutral-400: #94A3B8;
-            --neutral-500: #64748B;
-            --neutral-600: #475569;
-            --neutral-700: #334155;
-            --neutral-800: #1E293B;
-            --neutral-900: #0F172A;
-            --gradient-primary: linear-gradient(135deg, var(--primary-navy) 0%, var(--primary-blue) 100%);
-            --gradient-accent: linear-gradient(135deg, var(--primary-blue) 0%, var(--accent-blue) 100%);
-            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
-            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
-            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-            --border-radius: 8px;
-            --border-radius-lg: 12px;
-            --border-radius-xl: 16px;
-        }
-
         * {
-            box-sizing: border-box;
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-green: #00D09C;
+            --primary-black: #000000;
+            --primary-white: #FFFFFF;
+            --text-primary: #000000;
+            --text-secondary: #6B7280;
+            --text-muted: #9CA3AF;
+            --background: #FFFFFF;
+            --background-secondary: #F9FAFB;
+            --border: #E5E7EB;
+            --shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            --radius: 8px;
+            --radius-lg: 12px;
         }
 
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background-color: var(--neutral-50);
-            color: var(--neutral-900);
-            line-height: 1.6;
-            font-size: 14px;
-            scroll-behavior: smooth;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--background);
+            color: var(--text-primary);
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
         }
 
-        /* HEADER STYLES */
-        header {
-            background: var(--gradient-primary);
-            color: white;
-            padding: 1.5rem 2rem;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            box-shadow: var(--shadow-lg);
+        /* HEADER */
+        .header {
+            background: var(--background);
+            border-bottom: 1px solid var(--border);
             position: sticky;
             top: 0;
             z-index: 100;
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(8px);
         }
 
-        .header-content h1 {
-            font-weight: 800;
-            font-size: 1.875rem;
-            letter-spacing: -0.025em;
-            margin-bottom: 0.25rem;
-        }
-
-        .header-subtitle {
-            font-size: 0.875rem;
-            opacity: 0.85;
-            font-weight: 400;
-        }
-
-        .header-logo {
-            height: 50px;
-            opacity: 0.9;
-        }
-
-        /* MAIN CONTAINER */
-        .main-container {
-            max-width: 1800px;
+        .header-content {
+            max-width: 1200px;
             margin: 0 auto;
-            display: flex;
-            min-height: calc(100vh - 108px);
-        }
-
-        /* SIDEBAR STYLES */
-        .sidebar {
-            width: 320px;
-            background: white;
-            box-shadow: var(--shadow-md);
-            height: calc(100vh - 108px);
-            overflow-y: auto;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            flex-shrink: 0;
-            border-right: 1px solid var(--neutral-200);
-        }
-
-        .sidebar-collapsed {
-            width: 80px;
-        }
-
-        .sidebar-header {
-            padding: 2rem 1.5rem;
+            padding: 1rem 1.5rem;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            border-bottom: 1px solid var(--neutral-200);
-            background: var(--neutral-50);
         }
 
-        .sidebar-title {
-            font-weight: 600;
-            font-size: 1.125rem;
-            color: var(--neutral-900);
-            white-space: nowrap;
-            overflow: hidden;
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            text-decoration: none;
         }
 
-        .collapse-btn {
-            cursor: pointer;
-            color: var(--primary-blue);
+        .nav {
+            display: none;
+            gap: 2rem;
+        }
+
+        .nav a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.875rem;
+            transition: color 0.2s;
+        }
+
+        .nav a:hover,
+        .nav a.active {
+            color: var(--text-primary);
+        }
+
+        .mobile-menu-btn {
+            display: block;
             background: none;
             border: none;
-            font-size: 1.25rem;
-            padding: 0.5rem;
-            border-radius: var(--border-radius);
-            transition: all 0.2s;
-        }
-
-        .collapse-btn:hover {
-            background-color: var(--neutral-100);
-        }
-
-        .nav-menu {
-            list-style: none;
-            padding: 1rem 0;
-        }
-
-        .nav-item {
-            margin-bottom: 0.25rem;
-        }
-
-        .nav-link {
-            display: flex;
-            align-items: center;
-            padding: 1rem 1.5rem;
-            color: var(--neutral-600);
-            text-decoration: none;
-            transition: all 0.3s;
-            border-left: 3px solid transparent;
-            font-weight: 500;
-        }
-
-        .nav-link:hover,
-        .nav-link.active {
-            background-color: var(--neutral-100);
-            color: var(--primary-blue);
-            border-left-color: var(--primary-blue);
-        }
-
-        .nav-icon {
-            margin-right: 1rem;
-            font-size: 1.25rem;
-            width: 24px;
-            text-align: center;
-        }
-
-        .nav-text {
-            white-space: nowrap;
-            overflow: hidden;
-            transition: all 0.3s;
-        }
-
-        .sidebar-collapsed .nav-text {
-            opacity: 0;
-            width: 0;
-        }
-
-        /* CONTENT AREA STYLES */
-        .content-area {
-            flex-grow: 1;
-            height: calc(100vh - 108px);
-            overflow-y: auto;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .tab-buttons {
-            display: flex;
-            gap: 4px;
-            background: white;
-            padding: 1rem 1.5rem;
-            overflow-x: auto;
-            border-bottom: 1px solid var(--neutral-200);
-            box-shadow: var(--shadow-sm);
-        }
-
-        .tab-btn {
-            padding: 0.75rem 1.5rem;
-            border: 2px solid transparent;
-            border-radius: var(--border-radius);
-            background: var(--neutral-100);
-            color: var(--neutral-600);
-            font-weight: 500;
-            font-size: 0.875rem;
+            font-size: 1.5rem;
+            color: var(--text-primary);
             cursor: pointer;
-            min-width: 140px;
-            text-align: center;
-            transition: all 0.2s;
-            white-space: nowrap;
         }
 
-        .tab-btn:hover {
-            background: var(--neutral-200);
-            color: var(--neutral-700);
-        }
-
-        .tab-btn.active {
-            background: var(--primary-blue);
-            color: white;
-            border-color: var(--primary-navy);
-            box-shadow: var(--shadow-md);
-        }
-
-        .tab-content-container {
-            flex-grow: 1;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .tab-content {
+        /* MOBILE MENU */
+        .mobile-menu {
             display: none;
-            height: 100%;
-            overflow: auto;
+            position: fixed;
+            top: 73px;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--background);
+            z-index: 99;
+            padding: 2rem 1.5rem;
         }
 
-        .tab-content.active {
-            display: flex;
-            flex-direction: column;
+        .mobile-menu.open {
+            display: block;
         }
 
-        .dashboard-iframe-wrapper {
-            flex-grow: 1;
-            height: 100%;
-            background: white;
-        }
-
-        iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-
-        .open-tab-btn {
-            display: inline-block;
-            margin: 1rem 1.5rem;
-            padding: 0.75rem 1.25rem;
-            background: var(--primary-blue);
-            color: white;
+        .mobile-menu a {
+            display: block;
+            padding: 1rem 0;
+            color: var(--text-primary);
             text-decoration: none;
-            border-radius: var(--border-radius);
             font-weight: 500;
-            font-size: 0.875rem;
-            transition: all 0.2s;
-            box-shadow: var(--shadow-sm);
+            font-size: 1.125rem;
+            border-bottom: 1px solid var(--border);
         }
 
-        .open-tab-btn:hover {
-            background: var(--primary-navy);
-            box-shadow: var(--shadow-md);
-        }
-
-        /* DOCUMENTATION STYLES */
-        .documentation {
-            padding: 0;
-            max-height: 100%;
-            overflow-y: auto;
-            background: var(--neutral-50);
-        }
-
-        /* Hero Section */
-        .hero-section {
-            background: var(--gradient-primary);
-            color: white;
-            padding: 4rem 2rem;
+        /* HERO SECTION */
+        .hero {
+            padding: 4rem 1.5rem;
             text-align: center;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
         .hero-title {
-            font-size: 3rem;
+            font-size: 2.5rem;
             font-weight: 800;
-            margin-bottom: 1rem;
-            letter-spacing: -0.025em;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            color: var(--text-primary);
         }
 
         .hero-subtitle {
             font-size: 1.25rem;
-            opacity: 0.9;
-            margin-bottom: 3rem;
-            font-weight: 400;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
-        .hero-performance {
+        .hero-stats {
             display: flex;
+            gap: 2rem;
             justify-content: center;
-            gap: 4rem;
+            margin-bottom: 3rem;
             flex-wrap: wrap;
         }
 
-        .perf-metric {
+        .hero-stat {
             text-align: center;
         }
 
-        .perf-number {
-            display: block;
-            font-size: 2.5rem;
+        .hero-stat-number {
+            font-size: 2rem;
             font-weight: 700;
-            color: var(--accent-cyan);
-            margin-bottom: 0.5rem;
+            color: var(--primary-green);
+            display: block;
         }
 
-        .perf-label {
+        .hero-stat-label {
             font-size: 0.875rem;
-            opacity: 0.8;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
+            color: var(--text-muted);
+            margin-top: 0.25rem;
         }
 
-        /* Documentation Content */
-        .doc-section {
+        .cta-button {
+            background: var(--primary-green);
+            color: var(--primary-white);
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: var(--radius);
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: opacity 0.2s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .cta-button:hover {
+            opacity: 0.9;
+        }
+
+        /* MAIN CONTENT */
+        .main-content {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 3rem 2rem;
+            padding: 0 1.5rem 4rem;
         }
 
-        .doc-section h2 {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: var(--neutral-900);
-            margin-bottom: 3rem;
+        /* CARD GRID */
+        .card-grid {
+            display: grid;
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .card {
+            background: var(--background);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            transition: box-shadow 0.2s;
+        }
+
+        .card:hover {
+            box-shadow: var(--shadow-lg);
+        }
+
+        .card-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--background-secondary);
+            border-radius: var(--radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            color: var(--primary-green);
+            font-size: 1.5rem;
+        }
+
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .card-description {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* PERFORMANCE SECTION */
+        .performance-section {
+            background: var(--background-secondary);
+            border-radius: var(--radius-lg);
+            padding: 3rem 2rem;
+            margin-bottom: 4rem;
             text-align: center;
         }
 
-        .section-card {
-            background: white;
-            border-radius: var(--border-radius-xl);
-            padding: 3rem;
-            margin-bottom: 3rem;
-            box-shadow: var(--shadow-lg);
-            border: 1px solid var(--neutral-200);
+        .performance-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
         }
 
-        .section-card h3 {
-            font-size: 1.75rem;
-            font-weight: 700;
-            color: var(--neutral-900);
-            margin-bottom: 1.5rem;
+        .performance-subtitle {
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+        }
+
+        .performance-chart {
+            background: var(--background);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            min-height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+        }
+
+        /* SIMPLE LIST */
+        .simple-list {
+            list-style: none;
+            margin: 2rem 0;
+        }
+
+        .simple-list li {
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--border);
             display: flex;
             align-items: center;
             gap: 1rem;
         }
 
-        .section-card h3 i {
-            color: var(--primary-blue);
+        .simple-list li:last-child {
+            border-bottom: none;
         }
 
-        .section-card h4 {
-            font-size: 1.25rem;
-            font-weight: 600;
-            color: var(--neutral-800);
-            margin: 2rem 0 1rem;
+        .list-icon {
+            width: 24px;
+            height: 24px;
+            background: var(--primary-green);
+            border-radius: 50%;
             display: flex;
             align-items: center;
-            gap: 0.75rem;
+            justify-content: center;
+            color: white;
+            font-size: 0.75rem;
+            flex-shrink: 0;
         }
 
-        .section-card h5 {
-            font-size: 1.125rem;
-            font-weight: 600;
-            color: var(--neutral-700);
-            margin: 1.5rem 0 1rem;
+        /* DASHBOARD EMBED */
+        .dashboard-embed {
+            margin: 3rem 0;
         }
 
-        .section-card p {
-            color: var(--neutral-600);
-            margin-bottom: 1.5rem;
-            line-height: 1.7;
+        .dashboard-embed iframe {
+            width: 100%;
+            height: 600px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
         }
 
-        /* Philosophy Grid */
-        .philosophy-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin: 2rem 0;
-        }
-
-        .philosophy-item {
-            background: var(--neutral-50);
-            border-radius: var(--border-radius-lg);
-            padding: 2rem;
+        /* FOOTER */
+        .footer {
+            background: var(--background-secondary);
+            padding: 3rem 1.5rem 2rem;
+            margin-top: 4rem;
             text-align: center;
-            border: 1px solid var(--neutral-200);
-            transition: all 0.3s;
+            border-top: 1px solid var(--border);
         }
 
-        .philosophy-item:hover {
-            transform: translateY(-4px);
-            box-shadow: var(--shadow-lg);
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
-        .philosophy-icon {
-            width: 80px;
-            height: 80px;
-            background: var(--gradient-accent);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 1.5rem;
-        }
-
-        .philosophy-icon i {
-            font-size: 2rem;
-            color: white;
-        }
-
-        .philosophy-item h4 {
-            font-size: 1.25rem;
-            font-weight: 600;
-            color: var(--neutral-900);
-            margin-bottom: 1rem;
-        }
-
-        .philosophy-item p {
-            color: var(--neutral-600);
+        .footer-text {
+            color: var(--text-muted);
+            font-size: 0.875rem;
             line-height: 1.6;
         }
 
-        /* Lists */
-        .enhanced-list,
-        .feature-list,
-        .impl-list,
-        .criteria-list {
-            list-style: none;
-            margin: 1.5rem 0;
-        }
-
-        .enhanced-list li,
-        .feature-list li,
-        .impl-list li,
-        .criteria-list li {
-            position: relative;
-            padding-left: 2rem;
-            margin-bottom: 0.75rem;
-            color: var(--neutral-600);
-            line-height: 1.6;
-        }
-
-        .enhanced-list li::before,
-        .feature-list li::before,
-        .impl-list li::before,
-        .criteria-list li::before {
-            content: "▸";
-            position: absolute;
-            left: 0;
-            color: var(--primary-blue);
-            font-weight: 600;
-        }
-
-        /* Implementation Grid */
-        .implementation-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin: 2rem 0;
-        }
-
-        .impl-section {
-            background: var(--neutral-50);
-            border-radius: var(--border-radius-lg);
-            padding: 2rem;
-            border: 1px solid var(--neutral-200);
-        }
-
-        .impl-section h4 {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            margin-bottom: 1.5rem;
-            color: var(--neutral-900);
-        }
-
-        .impl-section i {
-            color: var(--primary-blue);
-        }
-
-        /* Dark Mode Toggle */
-        .dark-mode-toggle {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            background: var(--primary-blue);
-            color: white;
-            width: 56px;
-            height: 56px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            box-shadow: var(--shadow-xl);
-            z-index: 1000;
-            transition: all 0.3s;
-            border: none;
-        }
-
-        .dark-mode-toggle:hover {
-            background: var(--primary-navy);
-            transform: scale(1.05);
-        }
-
-        /* Responsive Design */
-        @media (max-width: 1024px) {
-            .hero-performance {
-                gap: 2rem;
+        /* RESPONSIVE DESIGN */
+        @media (min-width: 768px) {
+            .nav {
+                display: flex;
+            }
+            
+            .mobile-menu-btn {
+                display: none;
             }
             
             .hero-title {
-                font-size: 2.5rem;
+                font-size: 3.5rem;
+            }
+            
+            .hero-stats {
+                gap: 4rem;
+            }
+            
+            .card-grid {
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            }
+            
+            .performance-chart {
+                min-height: 400px;
             }
         }
 
-        @media (max-width: 768px) {
-            .main-container {
-                flex-direction: column;
-                min-height: auto;
-            }
-            
-            .sidebar {
-                width: 100%;
-                height: auto;
-                max-height: 300px;
-            }
-            
-            .sidebar-collapsed {
-                height: 80px;
-                overflow: hidden;
-            }
-            
-            .content-area {
-                height: calc(100vh - 408px);
-            }
-            
-            .hero-section {
-                padding: 2rem 1rem;
+        @media (min-width: 1024px) {
+            .hero {
+                padding: 6rem 1.5rem;
             }
             
             .hero-title {
-                font-size: 2rem;
+                font-size: 4rem;
             }
-            
-            .hero-performance {
-                flex-direction: column;
-                gap: 1.5rem;
+        }
+
+        /* ACCESSIBILITY */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
             }
-            
-            .doc-section {
-                padding: 2rem 1rem;
-            }
-            
-            .section-card {
-                padding: 2rem;
-            }
-            
-            .philosophy-grid,
-            .implementation-grid {
-                grid-template-columns: 1fr;
-            }
+        }
+
+        /* FOCUS STYLES */
+        button:focus,
+        a:focus {
+            outline: 2px solid var(--primary-green);
+            outline-offset: 2px;
         }
     </style>
 </head>
 <body>
-    <header>
+    <!-- HEADER -->
+    <header class="header">
         <div class="header-content">
-            <h1>Value & Quality Stock Selection Model</h1>
-            <div class="header-subtitle">Institutional-Grade Quantamental Strategy</div>
+            <a href="#" class="logo">ValueQuantum</a>
+            <nav class="nav">
+                <a href="#overview" class="active">Overview</a>
+                <a href="#performance">Performance</a>
+                <a href="#research">Research</a>
+                <a href="#methodology">How it Works</a>
+            </nav>
+            <button class="mobile-menu-btn" aria-label="Menu">
+                <i class="fas fa-bars"></i>
+            </button>
         </div>
-        <img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png" alt="Dashboard Logo" class="header-logo">
     </header>
-    
-    <div class="main-container">
-        <div class="sidebar">
-            <div class="sidebar-header">
-                <div class="sidebar-title">Navigation</div>
-                <button class="collapse-btn">
-                    <i class="fas fa-chevron-left"></i>
-                </button>
+
+    <!-- MOBILE MENU -->
+    <nav class="mobile-menu" id="mobile-menu">
+        <a href="#overview">Overview</a>
+        <a href="#performance">Performance</a>
+        <a href="#research">Research</a>
+        <a href="#methodology">How it Works</a>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="hero" id="overview">
+        <h1 class="hero-title">Invest smarter with AI</h1>
+        <p class="hero-subtitle">Our machine learning system identifies quality stocks trading below value, delivering consistent outperformance for everyday investors.</p>
+        
+        <div class="hero-stats">
+            <div class="hero-stat">
+                <span class="hero-stat-number">191%</span>
+                <span class="hero-stat-label">Best year return</span>
+            </div>
+            <div class="hero-stat">
+                <span class="hero-stat-number">89%</span>
+                <span class="hero-stat-label">Success rate</span>
+            </div>
+            <div class="hero-stat">
+                <span class="hero-stat-number">4 years</span>
+                <span class="hero-stat-label">Proven track record</span>
+            </div>
+        </div>
+
+        <a href="#research" class="cta-button">See Live Recommendations</a>
+    </section>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+        <!-- FEATURE CARDS -->
+        <section class="card-grid">
+            <div class="card">
+                <div class="card-icon">
+                    <i class="fas fa-brain"></i>
+                </div>
+                <h3 class="card-title">AI-Powered Selection</h3>
+                <p class="card-description">Advanced machine learning analyzes thousands of stocks quarterly to identify the best opportunities.</p>
             </div>
             
-            <ul class="nav-menu">
-                <li class="nav-item">
-                    <a href="#" class="nav-link active" data-tab="home">
-                        <i class="fas fa-home nav-icon"></i>
-                        <span class="nav-text">Overview</span>
-                    </a>
+            <div class="card">
+                <div class="card-icon">
+                    <i class="fas fa-shield-check"></i>
+                </div>
+                <h3 class="card-title">Quality Focus</h3>
+                <p class="card-description">We only recommend companies with strong fundamentals and proven business models.</p>
+            </div>
+            
+            <div class="card">
+                <div class="card-icon">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <h3 class="card-title">Proven Results</h3>
+                <p class="card-description">Consistent outperformance across market cycles with transparent, verified results.</p>
+            </div>
+        </section>
+
+        <!-- PERFORMANCE SECTION -->
+        <section class="performance-section" id="performance">
+            <h2 class="performance-title">Track record that speaks for itself</h2>
+            <p class="performance-subtitle">Our systematic approach has delivered superior returns while managing downside risk.</p>
+            
+            <div class="performance-chart">
+                <img src="image.png" alt="Performance Chart 2020-2023" style="max-width: 100%; height: auto;" />
+            </div>
+            
+            <ul class="simple-list">
+                <li>
+                    <div class="list-icon">✓</div>
+                    <span>Outperformed S&P 500 in 3 out of 4 years average 28% returns</span>
                 </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link" data-tab="documentation">
-                        <i class="fas fa-file-alt nav-icon"></i>
-                        <span class="nav-text">Documentation</span>
-                    </a>
+                <li>
+                    <div class="list-icon">✓</div>
+                    <span>Average portfolio of 50 high-conviction picks</span>
                 </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link" data-tab="tab-1">
-                        <i class="fas fa-chart-line nav-icon"></i>
-                        <span class="nav-text">Stock Recommendations</span>
-                    </a>
+                <li>
+                    <div class="list-icon">✓</div>
+                    <span>Quarterly rebalancing with 12-month hold periods</span>
                 </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link" data-tab="tab-2">
-                        <i class="fas fa-microscope nav-icon"></i>
-                        <span class="nav-text">Univariate Feature Analysis</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link" data-tab="tab-3">
-                        <i class="fas fa-chart-bar nav-icon"></i>
-                        <span class="nav-text">Model Performance</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link" data-tab="tab-4">
-                        <i class="fas fa-brain nav-icon"></i>
-                        <span class="nav-text">Feature Importance</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link" data-tab="tab-5">
-                        <i class="fas fa-globe nav-icon"></i>
-                        <span class="nav-text">Market Environment</span>
-                    </a>
+                <li>
+                    <div class="list-icon">✓</div>
+                    <span>Transparent methodology with verified results</span>
                 </li>
             </ul>
-        </div>
-        
-        <div class="content-area">
-            <div class="tab-buttons" role="tablist">
-                <button class="tab-btn active" data-tab="home">Overview</button>
-                <button class="tab-btn" data-tab="documentation">Documentation</button>
-                <button class="tab-btn" data-tab="tab-1">Stock Recommendations</button>
-                <button class="tab-btn" data-tab="tab-2">Univariate Feature Analysis</button>
-                <button class="tab-btn" data-tab="tab-3">Model Performance</button>
-                <button class="tab-btn" data-tab="tab-4">Feature Importance</button>
-                <button class="tab-btn" data-tab="tab-5">Market Environment</button>
-            </div>
+        </section>
+
+        <!-- RESEARCH DASHBOARD -->
+        <section class="dashboard-embed" id="research">
+            <h2 style="text-align: center; margin-bottom: 2rem; font-size: 2rem; font-weight: 700;">Live Research Dashboard</h2>
+            <iframe 
+                src="https://lookerstudio.google.com/embed/reporting/eb4da8db-96e9-48d6-af5a-300d0dd1e5dc/page/bMsBF"
+                title="Stock Recommendations Dashboard"
+                loading="lazy">
+            </iframe>
+        </section>
+
+        <!-- HOW IT WORKS -->
+        <section id="methodology">
+            <h2 style="text-align: center; margin-bottom: 3rem; font-size: 2rem; font-weight: 700;">How it works</h2>
             
-            <div class="tab-content-container">
-                <!-- Home Tab -->
-                <div id="home" class="tab-content active">
-                    <div class="documentation">
-                        <div class="hero-section">
-                            <div class="hero-content">
-                                <h1 class="hero-title">Value & Quality Model</h1>
-                                <p class="hero-subtitle">Institutional-Grade Quantamental Investment Strategy</p>
-                                <div class="hero-performance">
-                                    <div class="perf-metric">
-                                        <span class="perf-number">28%</span>
-                                        <span class="perf-label">Avg out-of-time returns ('21-'23)</span>
-                                    </div>
-                                    <div class="perf-metric">
-                                        <span class="perf-number">10%</span>
-                                        <span class="perf-label">Avg Return of S&P500 ('21-'23)</span>
-                                    </div>
-                                    <div class="perf-metric">
-                                        <span class="perf-number">14%</span>
-                                        <span class="perf-label">Outperformance vs S&P500</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="doc-section">
-                            <div class="section-card">
-                                <h3><i class="fas fa-bullseye"></i> Executive Summary</h3>
-                                <p>This machine learning system implements a <strong>quantamental approach</strong> to identify potentially undervalued stocks by combining value investing principles with quality metrics. The methodology builds upon academic research with significant enhancements for institutional-scale deployment.</p>
-                                
-                                <p>Our system analyzes thousands of US-listed companies quarterly, targeting stocks likely to achieve <strong>20%+ returns</strong> while avoiding severe underperformers through sophisticated ensemble modeling and risk management.</p>
-                            </div>
-
-                            <div class="section-card">
-                                <h3><i class="fas fa-compass"></i> Strategic Advantages</h3>
-                                
-                                <div class="philosophy-grid">
-                                    <div class="philosophy-item">
-                                        <div class="philosophy-icon">
-                                            <i class="fas fa-search-dollar"></i>
-                                        </div>
-                                        <h4>Dynamic Valuation</h4>
-                                        <p>Proprietary algorithms select optimal valuation metrics per company/industry based on historical alpha correlation analysis.</p>
-                                    </div>
-                                    
-                                    <div class="philosophy-item">
-                                        <div class="philosophy-icon">
-                                            <i class="fas fa-shield-alt"></i>
-                                        </div>
-                                        <h4>Quality Filtering</h4>
-                                        <p>Advanced quality frameworks distinguish between temporarily undervalued businesses and value traps.</p>
-                                    </div>
-                                    
-                                    <div class="philosophy-item">
-                                        <div class="philosophy-icon">
-                                            <i class="fas fa-brain"></i>
-                                        </div>
-                                        <h4>Regime Adaptation</h4>
-                                        <p>Macroeconomic cycle awareness adapts factor weights based on market conditions and economic environment.</p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="section-card">
-                                <h3><i class="fas fa-trophy"></i> Key Performance Highlights</h3>
-                                
-                                <div class="implementation-grid">
-                                    <div class="impl-section">
-                                        <h4><i class="fas fa-chart-line"></i> Crisis Alpha</h4>
-                                        <ul class="impl-list">
-                                            <li>191% return during Q1 2020 crisis</li>
-                                            <li>Consistent outperformance in volatile markets</li>
-                                            <li>Superior downside protection</li>
-                                        </ul>
-                                    </div>
-
-                                    <div class="impl-section">
-                                        <h4><i class="fas fa-target"></i> Precision</h4>
-                                        <ul class="impl-list">
-                                            <li>89% accuracy in identifying 20%+ returns</li>
-                                            <li>Conservative selection approach</li>
-                                            <li>Top 1-2% universe quarterly</li>
-                                        </ul>
-                                    </div>
-
-                                    <div class="impl-section">
-                                        <h4><i class="fas fa-cogs"></i> Systematic Process</h4>
-                                        <ul class="impl-list">
-                                            <li>Quarterly rebalancing protocol</li>
-                                            <li>50-company equal-weight portfolios</li>
-                                            <li>12-month systematic holding periods</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="section-card">
-                                <h3><i class="fas fa-route"></i> Getting Started</h3>
-                                <ol class="enhanced-list">
-                                    <li>Review the <strong>Documentation</strong> tab for detailed methodology and validation results</li>
-                                    <li>Explore <strong>Stock Recommendations</strong> for current investment opportunities with probability scores</li>
-                                    <li>Analyze <strong>Feature Analysis</strong> to understand proprietary factors driving predictions</li>
-                                    <li>Examine <strong>Model Performance</strong> metrics to validate institutional-grade effectiveness</li>
-                                    <li>Consider <strong>Market Environment</strong> for macroeconomic context and regime positioning</li>
-                                </ol>
-                            </div>
-                        </div>
-                    </div>
+            <div class="card-grid">
+                <div class="card">
+                    <div class="card-icon">1</div>
+                    <h3 class="card-title">Screen thousands of stocks</h3>
+                    <p class="card-description">Our AI analyzes financial data, market trends, and quality metrics across the entire US stock market.</p>
                 </div>
                 
-                <!-- Documentation Tab -->
-                <div id="documentation" class="tab-content">
-                    <div class="documentation">
-                        <!-- Documentation content will be loaded here -->
-                        <div class="doc-section">
-                            <h2>Technical Documentation</h2>
-                            <div class="section-card">
-                                <h3><i class="fas fa-info-circle"></i> Content Loading</h3>
-                                <p>The full technical documentation content is generated dynamically by the Python script. Please use the Python generator to create the complete documentation.</p>
-                            </div>
-                        </div>
-                    </div>
+                <div class="card">
+                    <div class="card-icon">2</div>
+                    <h3 class="card-title">Identify value opportunities</h3>
+                    <p class="card-description">Machine learning models detect companies trading below intrinsic value with strong fundamentals.</p>
                 </div>
                 
-                <!-- Dashboard Tabs -->
-                <div id="tab-1" class="tab-content">
-                    <a href="https://lookerstudio.google.com/embed/reporting/eb4da8db-96e9-48d6-af5a-300d0dd1e5dc/page/bMsBF" target="_blank" class="open-tab-btn">
-                        <i class="fas fa-external-link-alt"></i> Open in New Tab
-                    </a>
-                    <div class="dashboard-iframe-wrapper">
-                        <iframe 
-                            src="https://lookerstudio.google.com/embed/reporting/eb4da8db-96e9-48d6-af5a-300d0dd1e5dc/page/bMsBF" 
-                            title="Stock Recommendations" 
-                            loading="lazy"
-                            sandbox="allow-same-origin allow-scripts allow-popups allow-forms allow-storage-access-by-user-activation"
-                            allow="fullscreen; clipboard-write; encrypted-media;">
-                        </iframe>
-                    </div>
-                </div>
-                
-                <div id="tab-2" class="tab-content">
-                    <a href="https://lookerstudio.google.com/embed/reporting/eb4da8db-96e9-48d6-af5a-300d0dd1e5dc/page/p_30mkt0dnqd" target="_blank" class="open-tab-btn">
-                        <i class="fas fa-external-link-alt"></i> Open in New Tab
-                    </a>
-                    <div class="dashboard-iframe-wrapper">
-                        <iframe 
-                            src="https://lookerstudio.google.com/embed/reporting/eb4da8db-96e9-48d6-af5a-300d0dd1e5dc/page/p_30mkt0dnqd" 
-                            title="Univariate Feature Analysis" 
-                            loading="lazy"
-                            sandbox="allow-same-origin allow-scripts allow-popups allow-forms allow-storage-access-by-user-activation"
-                            allow="fullscreen; clipboard-write; encrypted-media;">
-                        </iframe>
-                    </div>
-                </div>
-                
-                <div id="tab-3" class="tab-content">
-                    <a href="https://lookerstudio.google.com/embed/reporting/eb4da8db-96e9-48d6-af5a-300d0dd1e5dc/page/p_n9aakyw2qd" target="_blank" class="open-tab-btn">
-                        <i class="fas fa-external-link-alt"></i> Open in New Tab
-                    </a>
-                    <div class="dashboard-iframe-wrapper">
-                        <iframe 
-                            src="https://lookerstudio.google.com/embed/reporting/eb4da8db-96e9-48d6-af5a-300d0dd1e5dc/page/p_n9aakyw2qd" 
-                            title="Model Performance" 
-                            loading="lazy"
-                            sandbox="allow-same-origin allow-scripts allow-popups allow-forms allow-storage-access-by-user-activation"
-                            allow="fullscreen; clipboard-write; encrypted-media;">
-                        </iframe>
-                    </div>
-                </div>
-                
-                <div id="tab-4" class="tab-content">
-                    <a href="https://lookerstudio.google.com/embed/reporting/eb4da8db-96e9-48d6-af5a-300d0dd1e5dc/page/p_yjbdako2qd" target="_blank" class="open-tab-btn">
-                        <i class="fas fa-external-link-alt"></i> Open in New Tab
-                    </a>
-                    <div class="dashboard-iframe-wrapper">
-                        <iframe 
-                            src="https://lookerstudio.google.com/embed/reporting/eb4da8db-96e9-48d6-af5a-300d0dd1e5dc/page/p_yjbdako2qd" 
-                            title="Feature Importance" 
-                            loading="lazy"
-                            sandbox="allow-same-origin allow-scripts allow-popups allow-forms allow-storage-access-by-user-activation"
-                            allow="fullscreen; clipboard-write; encrypted-media;">
-                        </iframe>
-                    </div>
-                </div>
-                
-                <div id="tab-5" class="tab-content">
-                    <a href="https://lookerstudio.google.com/embed/reporting/eb4da8db-96e9-48d6-af5a-300d0dd1e5dc/page/p_oc9ltgy2qd" target="_blank" class="open-tab-btn">
-                        <i class="fas fa-external-link-alt"></i> Open in New Tab
-                    </a>
-                    <div class="dashboard-iframe-wrapper">
-                        <iframe 
-                            src="https://lookerstudio.google.com/embed/reporting/eb4da8db-96e9-48d6-af5a-300d0dd1e5dc/page/p_oc9ltgy2qd" 
-                            title="Market Environment" 
-                            loading="lazy"
-                            sandbox="allow-same-origin allow-scripts allow-popups allow-forms allow-storage-access-by-user-activation"
-                            allow="fullscreen; clipboard-write; encrypted-media;">
-                        </iframe>
-                    </div>
+                <div class="card">
+                    <div class="card-icon">3</div>
+                    <h3 class="card-title">Deliver recommendations</h3>
+                    <p class="card-description">Top 50 picks updated quarterly with detailed analysis and conviction scores.</p>
                 </div>
             </div>
+
+            <div style="background: var(--background-secondary); border-radius: var(--radius-lg); padding: 2rem; margin-top: 3rem;">
+                <h3 style="margin-bottom: 1rem; color: var(--text-primary);">Key differentiators</h3>
+                <ul class="simple-list">
+                    <li>
+                        <div class="list-icon">✓</div>
+                        <span>Dynamic valuation selection optimized per industry</span>
+                    </li>
+                    <li>
+                        <div class="list-icon">✓</div>
+                        <span>Dual-model approach: identify winners, avoid losers</span>
+                    </li>
+                    <li>
+                        <div class="list-icon">✓</div>
+                        <span>Out-of-time validation prevents overfitting</span>
+                    </li>
+                    <li>
+                        <div class="list-icon">✓</div>
+                        <span>Macroeconomic cycle integration</span>
+                    </li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p class="footer-text">
+                Investing involves risk, including potential loss of principal. Past performance does not guarantee future results. 
+                This analysis is for informational purposes only and should not be considered personalized investment advice.
+            </p>
         </div>
-    </div>
-    
-    <!-- Dark Mode Toggle Button -->
-    <button class="dark-mode-toggle" id="dark-mode-toggle">
-        <i class="fas fa-moon"></i>
-    </button>
-    
+    </footer>
+
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Tab Navigation
-            const navLinks = document.querySelectorAll('.nav-link');
-            const tabButtons = document.querySelectorAll('.tab-btn');
-            const tabContents = document.querySelectorAll('.tab-content');
+        // Mobile menu toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('open');
+            const icon = mobileMenuBtn.querySelector('i');
             
-            function setActiveTab(tabId) {
-                // Hide all tab contents
-                tabContents.forEach(content => {
-                    content.classList.remove('active');
-                });
-                
-                // Deactivate all buttons
-                tabButtons.forEach(btn => {
-                    btn.classList.remove('active');
-                    btn.setAttribute('aria-selected', 'false');
-                });
-                
-                // Deactivate all nav links
-                navLinks.forEach(link => {
-                    link.classList.remove('active');
-                });
-                
-                // Activate selected tab
-                const selectedContent = document.getElementById(tabId);
-                const selectedTabBtn = document.querySelector(`.tab-btn[data-tab="${tabId}"]`);
-                const selectedNavLink = document.querySelector(`.nav-link[data-tab="${tabId}"]`);
-                
-                if (selectedContent) selectedContent.classList.add('active');
-                if (selectedTabBtn) {
-                    selectedTabBtn.classList.add('active');
-                    selectedTabBtn.setAttribute('aria-selected', 'true');
-                }
-                if (selectedNavLink) selectedNavLink.classList.add('active');
+            if (mobileMenu.classList.contains('open')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
             }
-            
-            // Add click handlers to nav links
-            navLinks.forEach(link => {
-                link.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const tabId = this.getAttribute('data-tab');
-                    setActiveTab(tabId);
-                });
-            });
-            
-            // Add click handlers to tab buttons
-            tabButtons.forEach(button => {
-                button.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const tabId = this.getAttribute('data-tab');
-                    setActiveTab(tabId);
-                });
-            });
-            
-            // Sidebar Collapse
-            const collapseBtn = document.querySelector('.collapse-btn');
-            const sidebar = document.querySelector('.sidebar');
-            
-            collapseBtn.addEventListener('click', function() {
-                sidebar.classList.toggle('sidebar-collapsed');
-                
-                // Toggle icon direction
-                const icon = this.querySelector('i');
-                if (sidebar.classList.contains('sidebar-collapsed')) {
-                    icon.classList.remove('fa-chevron-left');
-                    icon.classList.add('fa-chevron-right');
-                } else {
-                    icon.classList.remove('fa-chevron-right');
-                    icon.classList.add('fa-chevron-left');
-                }
-            });
-            
-            // Dark Mode Toggle
-            const darkModeToggle = document.getElementById('dark-mode-toggle');
-            const body = document.body;
-            
-            darkModeToggle.addEventListener('click', function() {
-                body.classList.toggle('dark-mode');
-                const icon = this.querySelector('i');
-                
-                if (body.classList.contains('dark-mode')) {
-                    icon.classList.remove('fa-moon');
-                    icon.classList.add('fa-sun');
-                    // Apply dark mode styles
-                    document.documentElement.style.setProperty('--neutral-50', '#0F172A');
-                    document.documentElement.style.setProperty('--neutral-100', '#1E293B');
-                    document.documentElement.style.setProperty('--neutral-900', '#F8FAFC');
-                    document.documentElement.style.setProperty('--neutral-600', '#CBD5E1');
-                } else {
-                    icon.classList.remove('fa-sun');
-                    icon.classList.add('fa-moon');
-                    // Restore light mode styles
-                    document.documentElement.style.setProperty('--neutral-50', '#F8FAFC');
-                    document.documentElement.style.setProperty('--neutral-100', '#F1F5F9');
-                    document.documentElement.style.setProperty('--neutral-900', '#0F172A');
-                    document.documentElement.style.setProperty('--neutral-600', '#475569');
-                }
-            });
-            
-            // Smooth scroll behavior for internal links
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    const target = document.querySelector(this.getAttribute('href'));
-                    if (target) {
-                        target.scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'start'
-                        });
-                    }
-                });
-            });
-            
-            // Add loading states for iframes
-            const iframes = document.querySelectorAll('iframe');
-            iframes.forEach(iframe => {
-                iframe.addEventListener('load', function() {
-                    this.style.opacity = '1';
-                });
-                iframe.style.opacity = '0.7';
-                iframe.style.transition = 'opacity 0.3s ease';
-            });
-            
-            // Intersection Observer for performance metrics animation
-            const performanceMetrics = document.querySelectorAll('.perf-number');
-            
-            const observerOptions = {
-                threshold: 0.5,
-                rootMargin: '0px 0px -50px 0px'
-            };
-            
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.style.transform = 'scale(1.05)';
-                        entry.target.style.transition = 'transform 0.3s ease';
-                        setTimeout(() => {
-                            entry.target.style.transform = 'scale(1)';
-                        }, 300);
-                    }
-                });
-            }, observerOptions);
-            
-            performanceMetrics.forEach(metric => {
-                observer.observe(metric);
-            });
-            
-            // Add keyboard navigation support
-            document.addEventListener('keydown', function(e) {
-                if (e.ctrlKey || e.metaKey) {
-                    switch(e.key) {
-                        case '1':
-                            e.preventDefault();
-                            setActiveTab('home');
-                            break;
-                        case '2':
-                            e.preventDefault();
-                            setActiveTab('documentation');
-                            break;
-                        case '3':
-                            e.preventDefault();
-                            setActiveTab('tab-1');
-                            break;
-                        case '4':
-                            e.preventDefault();
-                            setActiveTab('tab-2');
-                            break;
-                        case '5':
-                            e.preventDefault();
-                            setActiveTab('tab-3');
-                            break;
-                        case '6':
-                            e.preventDefault();
-                            setActiveTab('tab-4');
-                            break;
-                        case '7':
-                            e.preventDefault();
-                            setActiveTab('tab-5');
-                            break;
-                    }
-                }
-            });
-            
-            // Add responsive iframe handling
-            function adjustIframeHeight() {
-                const iframes = document.querySelectorAll('.dashboard-iframe-wrapper iframe');
-                if (window.innerWidth <= 768) {
-                    iframes.forEach(iframe => {
-                        iframe.style.minHeight = '600px';
-                    });
-                } else {
-                    iframes.forEach(iframe => {
-                        iframe.style.minHeight = '';
-                    });
-                }
-            }
-            
-            window.addEventListener('resize', adjustIframeHeight);
-            adjustIframeHeight();
-            
-            // Add focus management for accessibility
-            const tabButtons = document.querySelectorAll('.tab-btn');
-            tabButtons.forEach((button, index) => {
-                button.addEventListener('keydown', function(e) {
-                    let targetButton;
-                    
-                    switch(e.key) {
-                        case 'ArrowLeft':
-                            e.preventDefault();
-                            targetButton = tabButtons[index - 1] || tabButtons[tabButtons.length - 1];
-                            break;
-                        case 'ArrowRight':
-                            e.preventDefault();
-                            targetButton = tabButtons[index + 1] || tabButtons[0];
-                            break;
-                        case 'Home':
-                            e.preventDefault();
-                            targetButton = tabButtons[0];
-                            break;
-                        case 'End':
-                            e.preventDefault();
-                            targetButton = tabButtons[tabButtons.length - 1];
-                            break;
-                    }
-                    
-                    if (targetButton) {
-                        targetButton.focus();
-                        targetButton.click();
-                    }
-                });
+        });
+
+        // Close mobile menu when clicking on links
+        document.querySelectorAll('.mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('open');
+                mobileMenuBtn.querySelector('i').classList.remove('fa-times');
+                mobileMenuBtn.querySelector('i').classList.add('fa-bars');
             });
         });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Update active navigation based on scroll position
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('.nav a');
+
+        function updateActiveNav() {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= sectionTop - 200) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').slice(1) === current) {
+                    link.classList.add('active');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', updateActiveNav);
+        updateActiveNav(); // Initial call
     </script>
+</body>
+</html>
 </body>
 </html>
