@@ -870,3 +870,103 @@
 
         window.addEventListener('scroll', updateActiveNav);
         updateActiveNav();
+
+        // Lead form submission
+        document.getElementById('leadForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const submitButton = document.getElementById('submitButton');
+            const successMessage = document.getElementById('successMessage');
+            
+            // Disable submit button
+            submitButton.disabled = true;
+            submitButton.textContent = 'Submitting...';
+            
+            // Get form data
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData.entries());
+            
+            try {
+                // Send email using EmailJS or similar service
+                // For now, we'll simulate the submission
+                await new Promise(resolve => setTimeout(resolve, 1000));
+                
+                // Show success message
+                successMessage.classList.add('show');
+                
+                // Reset form
+                this.reset();
+                
+                // Hide success message after 5 seconds
+                setTimeout(() => {
+                    successMessage.classList.remove('show');
+                }, 5000);
+                
+                // You can replace this with actual email sending logic
+                console.log('Form submission data:', data);
+                
+                // Example: Send to your email service
+                // await sendEmail(data);
+                
+            } catch (error) {
+                console.error('Error submitting form:', error);
+                alert('There was an error submitting your form. Please try again.');
+            } finally {
+                // Re-enable submit button
+                submitButton.disabled = false;
+                submitButton.textContent = 'Schedule Consultation';
+            }
+        });
+
+        // Optional: Integrate with EmailJS for actual email sending
+        function sendEmail(formData) {
+            // You would need to include EmailJS library and configure it
+            // Example implementation:
+            /*
+            emailjs.send('your_service_id', 'your_template_id', {
+                from_name: formData.name,
+                from_email: formData.email,
+                company: formData.company,
+                role: formData.role,
+                aum: formData.aum,
+                interest: formData.interest,
+                to_email: 'your-gmail@gmail.com'
+            });
+            */
+        }
+
+        // Add intersection observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all cards and modules for animation
+        document.querySelectorAll('.pillar-card, .performance-card, .hero-stat').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+
+    <!-- EmailJS Integration (Optional) -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script>
+        // Initialize EmailJS (you'll need to replace with your own keys)
+        // emailjs.init('YOUR_PUBLIC_KEY');
+        
+        // Alternative: Use a simple form submission service
+        // You can integrate with services like Formspree, Netlify Forms, or Google Forms
+    </script>
+</body>
+</html>
