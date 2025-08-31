@@ -636,47 +636,82 @@
         </section>
 
         <!-- Methodology Section -->
-        <section id="methodology" class="section">
+        <!-- Regime-Adaptive Model Section -->
+        <section id="regime-model" class="section">
             <div class="container">
-                <h2>Modeling Methodology</h2>
+                <h2>Regime-Adaptive Stock Selection Model</h2>
                 
-                <p>The stock prediction model leverages a combination of fundamental, technical, and market-driven factors to forecast stock performance. Our comprehensive approach integrates multiple data sources and analytical techniques:</p>
-                
-                <h3>Core Components</h3>
-                
-                <div class="features-grid">
-                    <div class="feature-card">
-                        <h4>Valuation Metrics</h4>
-                        <p>Price-to-earnings, price-to-book, and other ratios relative to historical and peer benchmarks provide insight into relative value opportunities.</p>
-                    </div>
+                <div class="philosophy-box">
+                    <h3>Multi-Stage Quantitative Framework</h3>
+                    <p><strong>Business Objective:</strong> Generate consistent alpha across market cycles by dynamically adjusting stock selection criteria based on prevailing economic conditions. This approach addresses the critical limitation of traditional factor models that fail to account for structural breaks in factor relationships across different economic environments.</p>
                     
-                    <div class="feature-card">
-                        <h4>Momentum Indicators</h4>
-                        <p>Recent price trends, relative strength, and short-term vs. long-term performance help identify stocks with positive price dynamics.</p>
-                    </div>
-                    
-                    <div class="feature-card">
-                        <h4>Quality and Profitability Measures</h4>
-                        <p>Return on equity, profit margins, and earnings consistency ensure focus on fundamentally strong companies.</p>
-                    </div>
-                    
-                    <div class="feature-card">
-                        <h4>Sentiment and Market Signals</h4>
-                        <p>Trading volume anomalies, analyst ratings, and news sentiment scores capture market psychology and institutional behavior.</p>
-                    </div>
-                    
-                    <div class="feature-card">
-                        <h4>Risk and Volatility Metrics</h4>
-                        <p>Historical price volatility, beta, and drawdown patterns help manage portfolio risk and position sizing.</p>
-                    </div>
-                    
-                    <div class="feature-card">
-                        <h4>Regime Recognition</h4>
-                        <p>Economic regime segmentation ensures the model adapts to changing market conditions dynamically.</p>
+                    <div class="features-grid" style="margin: 30px 0;">
+                        <div class="feature-card" style="text-align: center; padding: 20px;">
+                            <h4 style="color: var(--accent-color); margin-bottom: 10px;">1. Economic Data</h4>
+                            <p style="margin: 0; font-size: 0.9rem;">Macro Variables<br>(GDP, Unemployment, Yield Curve)</p>
+                        </div>
+                        <div style="display: flex; align-items: center; justify-content: center; color: var(--accent-color); font-size: 1.5rem; font-weight: bold;">→</div>
+                        <div class="feature-card" style="text-align: center; padding: 20px;">
+                            <h4 style="color: var(--accent-color); margin-bottom: 10px;">2. Regime Classification</h4>
+                            <p style="margin: 0; font-size: 0.9rem;">K-Means Clustering<br>(4 Economic Regimes)</p>
+                        </div>
+                        <div style="display: flex; align-items: center; justify-content: center; color: var(--accent-color); font-size: 1.5rem; font-weight: bold;">→</div>
+                        <div class="feature-card" style="text-align: center; padding: 20px;">
+                            <h4 style="color: var(--accent-color); margin-bottom: 10px;">3. Feature Engineering</h4>
+                            <p style="margin: 0; font-size: 0.9rem;">Value/Quality Metrics<br>(P/E, P/B, ROE, etc.)</p>
+                        </div>
+                        <div style="display: flex; align-items: center; justify-content: center; color: var(--accent-color); font-size: 1.5rem; font-weight: bold;">→</div>
+                        <div class="feature-card" style="text-align: center; padding: 20px;">
+                            <h4 style="color: var(--accent-color); margin-bottom: 10px;">4. Regime-Specific Models</h4>
+                            <p style="margin: 0; font-size: 0.9rem;">XGBoost Ensemble<br>(5-Fold CV)</p>
+                        </div>
+                        <div style="display: flex; align-items: center; justify-content: center; color: var(--accent-color); font-size: 1.5rem; font-weight: bold;">→</div>
+                        <div class="feature-card" style="text-align: center; padding: 20px;">
+                            <h4 style="color: var(--accent-color); margin-bottom: 10px;">5. Stock Selection</h4>
+                            <p style="margin: 0; font-size: 0.9rem;">Portfolio Weights<br>(Risk-Adjusted)</p>
+                        </div>
                     </div>
                 </div>
-                
-                <p>By integrating these features, the model identifies stocks that are undervalued, high-quality, and positioned for positive returns, aiming to outperform traditional market benchmarks while maintaining disciplined risk management.</p>
+        
+                <h3>Model Components</h3>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <h4>Economic Regime Detection</h4>
+                        <p>K-means clustering algorithm analyzes 8 macroeconomic variables including GDP growth, unemployment rates, yield curve spreads, VIX levels, and inflation indicators to identify four distinct market environments in real-time.</p>
+                    </div>
+        
+                    <div class="feature-card">
+                        <h4>Comprehensive Feature Engineering</h4>
+                        <p>25+ fundamental and technical indicators encompassing value metrics (P/E, P/B, FCF yield), quality measures (ROE, ROIC, earnings quality), and momentum signals, all percentile-ranked within sector classifications.</p>
+                    </div>
+        
+                    <div class="feature-card">
+                        <h4>Regime-Specific XGBoost Models</h4>
+                        <p>Separate ensemble models trained for each economic regime with hyperparameter optimization, capturing unique factor relationships and performance patterns specific to each market environment.</p>
+                    </div>
+        
+                    <div class="feature-card">
+                        <h4>Robust Validation Framework</h4>
+                        <p>Forward-step validation with expanding training windows and 5-fold cross-validation ensures model stability and prevents overfitting across different market conditions and regime transitions.</p>
+                    </div>
+                </div>
+        
+                <div class="philosophy-box">
+                    <h3>Economic Regime Classification</h3>
+                    <p>The model employs K-means clustering on 8 macroeconomic variables (GDP growth, unemployment rates, yield curve spreads, VIX levels, inflation indicators, credit spreads, and industrial production) to identify four distinct economic regimes: Expansion, Late Cycle, Recession, and Recovery. Each regime exhibits unique factor relationships that require specialized model parameters for optimal performance.</p>
+                </div>
+        
+                <div class="philosophy-box">
+                    <h3>Data Infrastructure & Target</h3>
+                    <p><strong>Primary Data Sources:</strong></p>
+                    <ul style="margin-left: 20px; margin-bottom: 20px;">
+                        <li><strong>Market Data:</strong> Daily equity prices, volumes, and market cap data across S&P 500 universe</li>
+                        <li><strong>Fundamental Data:</strong> Quarterly financial statements, analyst estimates, and historical P&L data (5+ years)</li>
+                        <li><strong>Macroeconomic Data:</strong> GDP growth, unemployment, yield curves, inflation, credit spreads, and volatility indices</li>
+                    </ul>
+                    
+                    <p><strong>Model Target:</strong> Forward 1-month return terciles (-1=worst tercile, 1=best tercile) with risk-adjusted portfolio weights optimized for each identified economic regime.</p>
+                </div>
             </div>
         </section>
 
