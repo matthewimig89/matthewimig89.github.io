@@ -278,6 +278,87 @@
             font-size: 1.2rem;
         }
 
+        /* Process Cards */
+        .process-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .process-card {
+            background-color: #ebf8ff;
+            padding: 1.5rem;
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .process-card h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+        }
+
+        /* Timeline */
+        .timeline-container {
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        .timeline {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .timeline-item {
+            flex: 1;
+            min-width: 150px;
+            background-color: #bee3f8;
+            padding: 1rem;
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .timeline-note {
+            font-size: 0.875rem;
+            color: #4a5568;
+            margin-top: 1rem;
+        }
+
+        /* Model Architecture */
+        .architecture-flow {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .architecture-row {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+
+        .architecture-step {
+            flex: 1;
+            min-width: 200px;
+            padding: 1rem;
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .step-1 { background-color: #bee3f8; }
+        .step-2 { background-color: #90cdf4; }
+        .step-3 { background-color: #63b3ed; }
+        .step-4 { background-color: #4299e1; }
+        .step-5 { background-color: #3182ce; }
+
         /* Looker Studio Embed */
         .report-container {
             margin: 40px 0;
@@ -421,6 +502,7 @@
             <ul class="nav-menu" id="navMenu">
                 <li><a href="#welcome" class="nav-link active" onclick="showSection('welcome')">Welcome</a></li>
                 <li><a href="#about" class="nav-link" onclick="showSection('about')">About</a></li>
+                <li><a href="#process" class="nav-link" onclick="showSection('process')">Process</a></li>
                 <li><a href="#features" class="nav-link" onclick="showSection('features')">Features</a></li>
                 <li><a href="#selections" class="nav-link" onclick="showSection('selections')">Selections</a></li>
                 <li><a href="#performance" class="nav-link" onclick="showSection('performance')">Performance</a></li>
@@ -479,77 +561,75 @@
                 <p>Proprietary models, machine learning, risk management focus.</p>
             </div>
         </section>
-        
+
         <!-- Investment Process Section -->
-        <section style="padding: 3rem 1.5rem; background-color: #ffffff;">
-          <div style="max-width: 800px; margin: 0 auto;">
-            <h2 style="font-size: 2rem; font-weight: bold; margin-bottom: 1.5rem;">Investment Process</h2>
-            <p style="font-size: 1.125rem; color: #4a5568; margin-bottom: 2rem;">
-              The model is implemented in a systematic, rules-based cycle designed to capture consistent alpha 
-              while maintaining diversification and disciplined risk management.
-            </p>
-        
-            <!-- Cards Grid -->
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin-bottom: 3rem;">
-              <div style="background-color: #ebf8ff; padding: 1.5rem; border-radius: 1rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
-                <h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 0.5rem;">Quarterly Portfolio Construction</h3>
-                <p style="color: #4a5568;">
-                  Each quarter, the model ranks the universe of stocks using fundamental, momentum, quality, 
-                  and risk factors. The <strong>top 20 stocks</strong> are selected, purchased at 
-                  <strong> equal weights (5% each)</strong> within that vintage.
+        <section id="process" class="section">
+            <div class="container">
+                <h2>Investment Process</h2>
+                <p style="font-size: 1.125rem; color: #4a5568; margin-bottom: 2rem;">
+                    The model is implemented in a systematic, rules-based cycle designed to capture consistent alpha 
+                    while maintaining diversification and disciplined risk management.
                 </p>
-              </div>
-        
-              <div style="background-color: #ebf8ff; padding: 1.5rem; border-radius: 1rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
-                <h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 0.5rem;">One-Year Holding Period</h3>
-                <p style="color: #4a5568;">
-                  Each quarterly vintage is held for <strong>12 months</strong>, ensuring factor exposures 
-                  have time to play out while reducing short-term trading noise.
-                </p>
-              </div>
-        
-              <div style="background-color: #ebf8ff; padding: 1.5rem; border-radius: 1rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
-                <h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 0.5rem;">Quarterly Rebalancing</h3>
-                <p style="color: #4a5568;">
-                  At the end of each quarter, the vintage reaching its one-year mark is <strong>sold in full</strong>. 
-                  The proceeds are rotated into the newly selected 20-stock portfolio, based on the latest factor rankings.
-                </p>
-              </div>
-        
-              <div style="background-color: #ebf8ff; padding: 1.5rem; border-radius: 1rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
-                <h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 0.5rem;">Ongoing Diversification Across Vintages</h3>
-                <p style="color: #4a5568;">
-                  At any given time, the portfolio is composed of <strong>four vintages</strong>, each representing 
-                  ~25% of total capital. This rolling structure smooths returns, reduces timing risk, and provides 
-                  continuous exposure to the model’s signals.
-                </p>
-              </div>
+
+                <div class="process-grid">
+                    <div class="process-card">
+                        <h3>Quarterly Portfolio Construction</h3>
+                        <p style="color: #4a5568;">
+                            Each quarter, the model ranks the universe of stocks using fundamental, momentum, quality, 
+                            and risk factors. The <strong>top 20 stocks</strong> are selected, purchased at 
+                            <strong>equal weights (5% each)</strong> within that vintage.
+                        </p>
+                    </div>
+
+                    <div class="process-card">
+                        <h3>One-Year Holding Period</h3>
+                        <p style="color: #4a5568;">
+                            Each quarterly vintage is held for <strong>12 months</strong>, ensuring factor exposures 
+                            have time to play out while reducing short-term trading noise.
+                        </p>
+                    </div>
+
+                    <div class="process-card">
+                        <h3>Quarterly Rebalancing</h3>
+                        <p style="color: #4a5568;">
+                            At the end of each quarter, the vintage reaching its one-year mark is <strong>sold in full</strong>. 
+                            The proceeds are rotated into the newly selected 20-stock portfolio, based on the latest factor rankings.
+                        </p>
+                    </div>
+
+                    <div class="process-card">
+                        <h3>Ongoing Diversification Across Vintages</h3>
+                        <p style="color: #4a5568;">
+                            At any given time, the portfolio is composed of <strong>four vintages</strong>, each representing 
+                            ~25% of total capital. This rolling structure smooths returns, reduces timing risk, and provides 
+                            continuous exposure to the model's signals.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="timeline-container">
+                    <h3>Rolling Vintage Cycle</h3>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            Quarter 1<br><span style="font-size: 0.875rem; color: #4a5568;">Buy 20 stocks</span>
+                        </div>
+                        <div class="timeline-item">
+                            Quarter 2<br><span style="font-size: 0.875rem; color: #4a5568;">Add new vintage</span>
+                        </div>
+                        <div class="timeline-item">
+                            Quarter 3<br><span style="font-size: 0.875rem; color: #4a5568;">Add new vintage</span>
+                        </div>
+                        <div class="timeline-item">
+                            Quarter 4<br><span style="font-size: 0.875rem; color: #4a5568;">4 vintages held</span>
+                        </div>
+                    </div>
+                    <p class="timeline-note">
+                        Each quarter a new vintage is added, while the oldest vintage (after 12 months) is sold and rotated into the next.
+                    </p>
+                </div>
             </div>
-        
-            <!-- Timeline Diagram -->
-            <div style="text-align: center;">
-              <h3 style="font-size: 1.5rem; font-weight: 600; margin-bottom: 1.5rem;">Rolling Vintage Cycle</h3>
-              <div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem;">
-                <div style="flex: 1; min-width: 150px; background-color: #bee3f8; padding: 1rem; border-radius: 1rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
-                  Quarter 1<br><span style="font-size: 0.875rem; color: #4a5568;">Buy 20 stocks</span>
-                </div>
-                <div style="flex: 1; min-width: 150px; background-color: #bee3f8; padding: 1rem; border-radius: 1rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
-                  Quarter 2<br><span style="font-size: 0.875rem; color: #4a5568;">Add new vintage</span>
-                </div>
-                <div style="flex: 1; min-width: 150px; background-color: #bee3f8; padding: 1rem; border-radius: 1rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
-                  Quarter 3<br><span style="font-size: 0.875rem; color: #4a5568;">Add new vintage</span>
-                </div>
-                <div style="flex: 1; min-width: 150px; background-color: #bee3f8; padding: 1rem; border-radius: 1rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
-                  Quarter 4<br><span style="font-size: 0.875rem; color: #4a5568;">4 vintages held</span>
-                </div>
-              </div>
-              <p style="font-size: 0.875rem; color: #4a5568; margin-top: 1rem;">
-                Each quarter a new vintage is added, while the oldest vintage (after 12 months) is sold and rotated into the next.
-              </p>
-            </div>
-          </div>
         </section>
-        
+
         <!-- Model Features Section -->
         <section id="features" class="section">
             <div class="container">
@@ -636,92 +716,86 @@
         </section>
 
         <!-- Methodology Section -->
-        <!-- Quantitative Model Methodology Section -->
-        <section style="padding: 3rem 1.5rem; background-color: #f7fafc;">
-          <div style="max-width: 900px; margin: 0 auto;">
-            <h2 style="font-size: 2rem; font-weight: bold; margin-bottom: 1.5rem;">Multi-Stage Quantitative Stock Selection Model</h2>
-            <p style="font-size: 1.125rem; color: #4a5568; margin-bottom: 2rem;">
-              A multi-stage quantitative stock selection model that adapts to different economic environments. 
-              The model identifies four distinct economic regimes using unsupervised clustering and trains separate 
-              XGBoost models for each regime to capture regime-specific factor relationships.
-            </p>
-        
-            <!-- Problem Statement & Objective -->
-            <div style="margin-bottom: 2rem;">
-              <h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 0.5rem;">Problem Statement</h3>
-              <p style="color: #4a5568;">
-                Traditional factor models often fail to account for structural breaks in factor relationships 
-                across different economic environments. This model addresses this limitation by explicitly 
-                modeling regime changes and adapting factor exposures accordingly.
-              </p>
-              <h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 0.5rem; margin-top: 1rem;">Business Objective</h3>
-              <p style="color: #4a5568;">
-                Generate consistent alpha across market cycles by dynamically adjusting stock selection criteria 
-                based on prevailing economic conditions.
-              </p>
-            </div>
-        
-            <!-- Diagram / Multi-Step Flow -->
-            <div style="margin-bottom: 2rem;">
-              <h3 style="font-size: 1.5rem; font-weight: 600; text-align: center; margin-bottom: 1rem;">Model Architecture</h3>
-              <div style="display: flex; flex-direction: column; gap: 1rem;">
-        
-                <!-- Step 1 -->
-                <div style="display: flex; flex-wrap: wrap; align-items: flex-start; gap: 1rem;">
-                  <div style="flex: 1; min-width: 200px; background-color: #bee3f8; padding: 1rem; border-radius: 1rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1); text-align: center;">
-                    <strong>Economic Data</strong><br>
-                    Macro Variables<br>
-                    (GDP, Unemployment, Yield Curve, etc.)
-                  </div>
-                  <div style="flex: 1; min-width: 200px; background-color: #90cdf4; padding: 1rem; border-radius: 1rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1); text-align: center;">
-                    <strong>Regime Classification</strong><br>
-                    K-Means Clustering<br>
-                    (4 Regimes)
-                  </div>
-                  <div style="flex: 1; min-width: 200px; background-color: #63b3ed; padding: 1rem; border-radius: 1rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1); text-align: center;">
-                    <strong>Feature Engineering</strong><br>
-                    Value/Quality/Momentum Metrics<br>
-                    (P/E, P/B, ROE, Price Returns, etc.)
-                  </div>
+        <section id="methodology" class="section">
+            <div class="container">
+                <h2>Multi-Stage Quantitative Stock Selection Model</h2>
+                <p style="font-size: 1.125rem; color: #4a5568; margin-bottom: 2rem;">
+                    A multi-stage quantitative stock selection model that adapts to different economic environments. 
+                    The model identifies four distinct economic regimes using unsupervised clustering and trains separate 
+                    XGBoost models for each regime to capture regime-specific factor relationships.
+                </p>
+
+                <div style="margin-bottom: 2rem;">
+                    <h3>Problem Statement</h3>
+                    <p>
+                        Traditional factor models often fail to account for structural breaks in factor relationships 
+                        across different economic environments. This model addresses this limitation by explicitly 
+                        modeling regime changes and adapting factor exposures accordingly.
+                    </p>
+                    <h3>Business Objective</h3>
+                    <p>
+                        Generate consistent alpha across market cycles by dynamically adjusting stock selection criteria 
+                        based on prevailing economic conditions.
+                    </p>
                 </div>
-        
-                <div style="display: flex; flex-wrap: wrap; align-items: flex-start; gap: 1rem; margin-top: 1rem;">
-                  <div style="flex: 1; min-width: 200px; background-color: #4299e1; padding: 1rem; border-radius: 1rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1); text-align: center;">
-                    <strong>Regime-Specific Models</strong><br>
-                    XGBoost Ensemble<br>
-                    (5-Fold CV)
-                  </div>
-                  <div style="flex: 1; min-width: 200px; background-color: #3182ce; padding: 1rem; border-radius: 1rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1); text-align: center;">
-                    <strong>Stock Selection</strong><br>
-                    Portfolio Weights<br>
-                    (Risk-Adjusted)
-                  </div>
+
+                <div style="margin-bottom: 2rem;">
+                    <h3 style="text-align: center; margin-bottom: 1rem;">Model Architecture</h3>
+                    <div class="architecture-flow">
+                        <div class="architecture-row">
+                            <div class="architecture-step step-1">
+                                <strong>Economic Data</strong><br>
+                                Macro Variables<br>
+                                (GDP, Unemployment, Yield Curve, etc.)
+                            </div>
+                            <div class="architecture-step step-2">
+                                <strong>Regime Classification</strong><br>
+                                K-Means Clustering<br>
+                                (4 Regimes)
+                            </div>
+                            <div class="architecture-step step-3">
+                                <strong>Feature Engineering</strong><br>
+                                Value/Quality/Momentum Metrics<br>
+                                (P/E, P/B, ROE, Price Returns, etc.)
+                            </div>
+                        </div>
+
+                        <div class="architecture-row" style="margin-top: 1rem;">
+                            <div class="architecture-step step-4">
+                                <strong>Regime-Specific Models</strong><br>
+                                XGBoost Ensemble<br>
+                                (5-Fold CV)
+                            </div>
+                            <div class="architecture-step step-5">
+                                <strong>Stock Selection</strong><br>
+                                Portfolio Weights<br>
+                                (Risk-Adjusted)
+                            </div>
+                        </div>
+                    </div>
+                    <p style="font-size: 0.875rem; color: #4a5568; margin-top: 1rem; text-align: center;">
+                        Each step transforms inputs to outputs, culminating in regime-aware stock selection and portfolio construction.
+                    </p>
                 </div>
-              </div>
-              <p style="font-size: 0.875rem; color: #4a5568; margin-top: 1rem; text-align: center;">
-                Each step transforms inputs to outputs, culminating in regime-aware stock selection and portfolio construction.
-              </p>
+
+                <div>
+                    <h3>Model Components</h3>
+                    <ul style="color: #4a5568; margin-left: 1rem; margin-bottom: 1rem;">
+                        <li>Economic Regime Classifier: K-means clustering on 8 macroeconomic variables</li>
+                        <li>Feature Engineering Pipeline: 25+ fundamental and technical indicators with percentile rankings</li>
+                        <li>Ensemble Models: Separate XGBoost models for each of 4 economic regimes</li>
+                        <li>Validation Framework: Forward-step validation with expanding training windows</li>
+                        <li>Performance Attribution: Factor decomposition and regime transition analysis</li>
+                    </ul>
+
+                    <h3>Data Requirements</h3>
+                    <p>
+                        <strong>Market Data:</strong> Daily equity prices & volumes (S&P 500), market cap, sector classifications, corporate actions<br>
+                        <strong>Fundamental Data:</strong> Quarterly financials, analyst estimates, historical P&L<br>
+                        <strong>Macroeconomic Data:</strong> GDP growth, unemployment, yield curves, inflation, credit spreads, VIX
+                    </p>
+                </div>
             </div>
-        
-            <!-- Model Components Summary -->
-            <div>
-              <h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 0.5rem;">Model Components</h3>
-              <ul style="color: #4a5568; margin-left: 1rem; margin-bottom: 1rem;">
-                <li>Economic Regime Classifier: K-means clustering on 8 macroeconomic variables</li>
-                <li>Feature Engineering Pipeline: 25+ fundamental and technical indicators with percentile rankings</li>
-                <li>Ensemble Models: Separate XGBoost models for each of 4 economic regimes</li>
-                <li>Validation Framework: Forward-step validation with expanding training windows</li>
-                <li>Performance Attribution: Factor decomposition and regime transition analysis</li>
-              </ul>
-        
-              <h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 0.5rem;">Data Requirements</h3>
-              <p style="color: #4a5568;">
-                <strong>Market Data:</strong> Daily equity prices & volumes (S&P 500), market cap, sector classifications, corporate actions<br>
-                <strong>Fundamental Data:</strong> Quarterly financials, analyst estimates, historical P&L<br>
-                <strong>Macroeconomic Data:</strong> GDP growth, unemployment, yield curves, inflation, credit spreads, VIX
-              </p>
-            </div>
-          </div>
         </section>
 
         <!-- Contact Section -->
