@@ -479,7 +479,77 @@
                 <p>Proprietary models, machine learning, risk management focus.</p>
             </div>
         </section>
-
+        
+        <!-- Investment Process Section -->
+        <section style="padding: 3rem 1.5rem; background-color: #ffffff;">
+          <div style="max-width: 800px; margin: 0 auto;">
+            <h2 style="font-size: 2rem; font-weight: bold; margin-bottom: 1.5rem;">Investment Process</h2>
+            <p style="font-size: 1.125rem; color: #4a5568; margin-bottom: 2rem;">
+              The model is implemented in a systematic, rules-based cycle designed to capture consistent alpha 
+              while maintaining diversification and disciplined risk management.
+            </p>
+        
+            <!-- Cards Grid -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin-bottom: 3rem;">
+              <div style="background-color: #ebf8ff; padding: 1.5rem; border-radius: 1rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+                <h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 0.5rem;">Quarterly Portfolio Construction</h3>
+                <p style="color: #4a5568;">
+                  Each quarter, the model ranks the universe of stocks using fundamental, momentum, quality, 
+                  and risk factors. The <strong>top 20 stocks</strong> are selected, purchased at 
+                  <strong> equal weights (5% each)</strong> within that vintage.
+                </p>
+              </div>
+        
+              <div style="background-color: #ebf8ff; padding: 1.5rem; border-radius: 1rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+                <h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 0.5rem;">One-Year Holding Period</h3>
+                <p style="color: #4a5568;">
+                  Each quarterly vintage is held for <strong>12 months</strong>, ensuring factor exposures 
+                  have time to play out while reducing short-term trading noise.
+                </p>
+              </div>
+        
+              <div style="background-color: #ebf8ff; padding: 1.5rem; border-radius: 1rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+                <h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 0.5rem;">Quarterly Rebalancing</h3>
+                <p style="color: #4a5568;">
+                  At the end of each quarter, the vintage reaching its one-year mark is <strong>sold in full</strong>. 
+                  The proceeds are rotated into the newly selected 20-stock portfolio, based on the latest factor rankings.
+                </p>
+              </div>
+        
+              <div style="background-color: #ebf8ff; padding: 1.5rem; border-radius: 1rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+                <h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 0.5rem;">Ongoing Diversification Across Vintages</h3>
+                <p style="color: #4a5568;">
+                  At any given time, the portfolio is composed of <strong>four vintages</strong>, each representing 
+                  ~25% of total capital. This rolling structure smooths returns, reduces timing risk, and provides 
+                  continuous exposure to the model’s signals.
+                </p>
+              </div>
+            </div>
+        
+            <!-- Timeline Diagram -->
+            <div style="text-align: center;">
+              <h3 style="font-size: 1.5rem; font-weight: 600; margin-bottom: 1.5rem;">Rolling Vintage Cycle</h3>
+              <div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem;">
+                <div style="flex: 1; min-width: 150px; background-color: #bee3f8; padding: 1rem; border-radius: 1rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+                  Quarter 1<br><span style="font-size: 0.875rem; color: #4a5568;">Buy 20 stocks</span>
+                </div>
+                <div style="flex: 1; min-width: 150px; background-color: #bee3f8; padding: 1rem; border-radius: 1rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+                  Quarter 2<br><span style="font-size: 0.875rem; color: #4a5568;">Add new vintage</span>
+                </div>
+                <div style="flex: 1; min-width: 150px; background-color: #bee3f8; padding: 1rem; border-radius: 1rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+                  Quarter 3<br><span style="font-size: 0.875rem; color: #4a5568;">Add new vintage</span>
+                </div>
+                <div style="flex: 1; min-width: 150px; background-color: #bee3f8; padding: 1rem; border-radius: 1rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+                  Quarter 4<br><span style="font-size: 0.875rem; color: #4a5568;">4 vintages held</span>
+                </div>
+              </div>
+              <p style="font-size: 0.875rem; color: #4a5568; margin-top: 1rem;">
+                Each quarter a new vintage is added, while the oldest vintage (after 12 months) is sold and rotated into the next.
+              </p>
+            </div>
+          </div>
+        </section>
+        
         <!-- Model Features Section -->
         <section id="features" class="section">
             <div class="container">
